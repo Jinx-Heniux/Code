@@ -1,12 +1,11 @@
 # Coursera - Python 3 Programming
 
-
-
 ## Foundations of Python Programming
+
+
 
 ### 24.14. Project - OMDB and TasteDive
 
-{% code title="omdb_tastedive.py" %}
 ```python
 import requests_with_caching
 import json
@@ -89,11 +88,10 @@ def get_sorted_recommendations(movie_titles_lst):
 get_sorted_recommendations(["Bridesmaids", "Sherlock Holmes"])
 
 ```
-{% endcode %}
 
 
 
-{% embed url="https://gist.github.com/Jinx-Heniux/8e056d89b9956fc9337d3dcd65e44576" %}
+
 
 
 
