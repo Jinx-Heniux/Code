@@ -87,8 +87,11 @@ def get_sorted_recommendations(movie_titles_lst):
     
 # some invocations that we use in the automated tests; uncomment these if you are getting errors and want better error messages
 get_sorted_recommendations(["Bridesmaids", "Sherlock Holmes"])
+
 ```
 {% endcode %}
+
+{% embed url="https://gist.github.com/Jinx-Heniux/8e056d89b9956fc9337d3dcd65e44576s%22%3E%3C/script%3E" %}
 
 ## Links
 
