@@ -91,7 +91,11 @@ get_sorted_recommendations(["Bridesmaids", "Sherlock Holmes"])
 ```
 {% endcode %}
 
-{% embed url="https://gist.github.com/Jinx-Heniux/8e056d89b9956fc9337d3dcd65e44576s%22%3E%3C/script%3E" %}
+
+
+{% embed url="https://gist.github.com/Jinx-Heniux/8e056d89b9956fc9337d3dcd65e44576" %}
+
+
 
 ## Links
 
