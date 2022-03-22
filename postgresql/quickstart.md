@@ -1,8 +1,7 @@
 # Quickstart
 
-
-
-```shell
+```shell-session
+# Ubuntu 20.04
 # Step 1 — Installing PostgreSQL
 sudo apt update
 sudo apt install postgresql postgresql-contrib
@@ -14,7 +13,11 @@ sudo -i -u postgres
 psql
 # or
 sudo -u postgres psql
+```
 
+
+
+```shell
 # set permissions so postgres can read csv files
 chmod 755 /home/zhs2si/projects/bigdata/big-data-3
 
