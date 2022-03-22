@@ -40,8 +40,28 @@ psql -f setup/init-postgres.sql
 
 
 
+```shell
+# start the Postgres shell by running psql
+psql
+
+# View table and column definitions. We can list the tables in the database with the \d command
+\d
+
+# We can see the column definitions of the buyclicks table by running \d buyclicks:
+\d buyclicks
+
+# Query table. We can run the following command to view the contents of the buyclicks table
+select * from buyclicks;
+
+# Filter rows and columns. We can query only the price and userid columns with the following command:
+select price, userid from buyclicks;
+```
+
+
+
 Links
 
 * [How To Install PostgreSQL on Ubuntu 20.04 \[Quickstart\] | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart)
 * [Instructions for Downloading Hands On Datasets | Coursera](https://www.coursera.org/learn/big-data-integration-processing/supplement/r8sXi/instructions-for-downloading-hands-on-datasets)
 * [https://github.com/words-sdsc/coursera/blob/master/big-data-3/setup.sh](https://github.com/words-sdsc/coursera/blob/master/big-data-3/setup.sh)
+* [Querying Relational Data with Postgres | Coursera](https://www.coursera.org/learn/big-data-integration-processing/supplement/OORny/querying-relational-data-with-postgres)
