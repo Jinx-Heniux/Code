@@ -59,7 +59,7 @@ select price, userid from buyclicks;
 
 
 
-Links
+## Links
 
 * [How To Install PostgreSQL on Ubuntu 20.04 \[Quickstart\] | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart)
 * [Instructions for Downloading Hands On Datasets | Coursera](https://www.coursera.org/learn/big-data-integration-processing/supplement/r8sXi/instructions-for-downloading-hands-on-datasets)
