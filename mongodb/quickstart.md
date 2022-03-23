@@ -36,6 +36,22 @@ mongo --eval 'db.runCommand({ connectionStatus: 1 })'
 
 
 
+```bash
+# coursera/setup.sh at master · words-sdsc/coursera
+# https://github.com/words-sdsc/coursera/blob/master/big-data-3/mongodb/setup.sh
+
+# create directory for database
+mkdir db
+
+# extract data
+tar xzf dump.tar.gz
+
+# import data
+mongorestore dump
+```
+
+
+
 ## Links
 
 * [How To Install MongoDB on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04)
