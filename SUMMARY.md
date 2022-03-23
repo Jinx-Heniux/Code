@@ -1,6 +1,7 @@
 # Table of contents
 
-* [Jinx Heniux](README.md)
+* [Linux](README.md)
+  * [0](linux/0.md)
 * [PostgreSQL](postgresql/README.md)
   * [Quickstart](postgresql/quickstart.md)
 * [Python](python/README.md)

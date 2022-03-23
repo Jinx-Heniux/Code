@@ -1,2 +1,2 @@
-# Jinx Heniux
+# Linux
 
