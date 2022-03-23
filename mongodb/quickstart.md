@@ -37,9 +37,6 @@ mongo --eval 'db.runCommand({ connectionStatus: 1 })'
 
 
 ```bash
-# coursera/setup.sh at master · words-sdsc/coursera
-# https://github.com/words-sdsc/coursera/blob/master/big-data-3/mongodb/setup.sh
-
 # create directory for database
 mkdir db
 
@@ -122,4 +119,5 @@ db.users.find({$and: [{tweet_text: /FIFA/}, {tweet_mentioned_count: {$gt: 4}}]})
 ## Links
 
 * [How To Install MongoDB on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04)
+* [https://github.com/words-sdsc/coursera/blob/master/big-data-3/mongodb/setup.sh](https://github.com/words-sdsc/coursera/blob/master/big-data-3/mongodb/setup.sh)
 * [Querying Documents in MongoDB | Coursera](https://www.coursera.org/learn/big-data-integration-processing/supplement/R93cO/querying-documents-in-mongodb)
