@@ -86,4 +86,5 @@ $SPARK_HOME/sbin/stop-master.sh
 * [Installing Apache Spark on Ubuntu 20.04 or 18.04 - Linux Shout](https://www.how2shout.com/linux/installing-apache-spark-on-ubuntu-20-04-or-18-04/)
 * [Install Apache Spark on Ubuntu 22.04|20.04|18.04 | ComputingForGeeks](https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/)
 * [Install Apache Spark on Ubuntu 20.04 - Vultr.com](https://www.vultr.com/docs/install-apache-spark-on-ubuntu-20-04/)
+* [https://github.com/words-sdsc/coursera/blob/master/big-data-3/setup.sh](https://github.com/words-sdsc/coursera/blob/master/big-data-3/setup.sh)
 
