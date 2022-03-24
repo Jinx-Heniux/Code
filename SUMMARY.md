@@ -1,7 +1,7 @@
 # Table of contents
 
 * [C and C++](README.md)
-  * [0](c-and-c++/0.md)
+  * [Built-in](c-and-c++/built-in.md)
 * [Linux](<README (1).md>)
   * [0](readme/0.md)
   * [Commands](readme/0-1.md)
