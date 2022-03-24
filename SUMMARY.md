@@ -1,6 +1,8 @@
 # Table of contents
 
-* [Linux](README.md)
+* [C and C++](README.md)
+  * [0](c-and-c++/0.md)
+* [Linux](<README (1).md>)
   * [0](linux/0.md)
 * [MongoDB](mongodb/README.md)
   * [Quickstart](mongodb/quickstart.md)
