@@ -1,8 +1,9 @@
 # Table of contents
 
-* [C and C++](README.md)
+* [0](README.md)
+* [C and C++](<README (1).md>)
   * [Built-in](c-and-c++/built-in.md)
-* [Linux](<README (1).md>)
+* [Linux](<README (1) (1).md>)
   * [0](readme/0.md)
   * [Commands](readme/0-1.md)
 * [MongoDB](mongodb/README.md)
