@@ -16,3 +16,5 @@
   * [Coursera - Python 3 Programming Specialization](python/coursera-python-3-programming-specialization.md)
 * [Spark](spark/README.md)
   * [Quickstart](spark/quickstart.md)
+* [Splunk](splunk/README.md)
+  * [Quickstart](splunk/quickstart.md)
