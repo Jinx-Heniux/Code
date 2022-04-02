@@ -14,6 +14,8 @@
   * [Quickstart](postgresql/quickstart.md)
 * [Python](python/README.md)
   * [Coursera - Python 3 Programming Specialization](python/coursera-python-3-programming-specialization.md)
+  * [Django](python/django/README.md)
+    * [Quickstart](python/django/quickstart.md)
 * [Spark](spark/README.md)
   * [Quickstart](spark/quickstart.md)
 * [Splunk](splunk/README.md)
