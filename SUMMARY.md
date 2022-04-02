@@ -13,6 +13,7 @@
 * [PostgreSQL](postgresql/README.md)
   * [Quickstart](postgresql/quickstart.md)
 * [Python](python/README.md)
+  * [Quickstart](python/quickstart.md)
   * [Coursera - Python 3 Programming Specialization](python/coursera-python-3-programming-specialization.md)
   * [Django](python/django/README.md)
     * [Quickstart](python/django/quickstart.md)
