@@ -38,12 +38,42 @@ INSTALLED_APPS = (
 python manage.py runserver
 
 
+
+
+
 # 编写好models.py文件后
 # create migrations (migration files)
 python manage.py makemigrations
 
 # apply the migration files to the database
 python manage.py migrate
+
+
+
+# Django Shell
+python3 manage.py shell
+
+
+
+
+
+
+# sqlite3
+sqlite3 db.sqlite3
+# list all tables
+.tables
+# only print out 10 items
+select * from cats_cat limit 10;
+select count(*) from cats_breed;
+# quit
+.exit
+
+
+
+
+
+# Install django-extensions
+pip3 install django-extensions
 ```
 
 
