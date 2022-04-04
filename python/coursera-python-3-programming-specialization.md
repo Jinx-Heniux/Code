@@ -1,6 +1,54 @@
-# Coursera - Python 3 Programming
+# Coursera - Python 3 Programming Specialization
 
 ## Foundations of Python Programming
+
+
+
+### 6.11. Chapter Assessment
+
+```python
+# Write code to determine how many 9’s are in the list nums 
+# and assign that value to the variable how_many. 
+# Do not use a for loop to do this.
+
+nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
+
+how_many = 0
+
+def cal(num_lst, num):
+    how_many = 0
+    i = 0
+    j = len(num_lst)
+    while i<j:
+        if num_lst[i] == num:
+            how_many += 1
+        i += 1
+    return how_many
+
+how_many = cal(nums, 9)
+
+
+
+
+nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
+how_many = 0
+for item in nums:
+    if item == 9:
+        how_many += 1
+
+
+
+
+
+nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
+how_many = 0
+i = 0
+j = len(nums)
+while i < j:
+    if nums[i] == 9:
+        how_many += 1
+    i += 1
+```
 
 
 
@@ -86,14 +134,7 @@ def get_sorted_recommendations(movie_titles_lst):
     
 # some invocations that we use in the automated tests; uncomment these if you are getting errors and want better error messages
 get_sorted_recommendations(["Bridesmaids", "Sherlock Holmes"])
-
 ```
-
-
-
-
-
-
 
 ## Links
 
