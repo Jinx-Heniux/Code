@@ -12,6 +12,7 @@
 * [Linux](<README (1) (1).md>)
   * [0](readme/0.md)
   * [Commands](readme/0-1.md)
+  * [Bash](readme/bash.md)
 * [MongoDB](mongodb/README.md)
   * [Quickstart](mongodb/quickstart.md)
 * [PostgreSQL](postgresql/README.md)
