@@ -82,3 +82,34 @@ pip3 install django-extensions
 
 
 
+## 配置MySQL
+
+```python
+# 先配置MySQL server, 假设已配置好，可用
+# 安装mysql client
+pip install mysqlclient==1.4.6
+
+
+
+# ~/django_projects/mysite/mysite/settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'drchuck$ads',
+        'USER': 'drchuck',
+        'PASSWORD': 'phone_8675309',
+        'HOST': 'drchuck.mysql.pythonanywhere-services.com',
+         'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
+
+
+python manage.py makemigrations     
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+
+
