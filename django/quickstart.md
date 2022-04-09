@@ -2,6 +2,10 @@
 
 
 
+## 安装Django
+
+## 创建Project和App
+
 ```shell
 # 先配置虚拟环境
 # Install Django
