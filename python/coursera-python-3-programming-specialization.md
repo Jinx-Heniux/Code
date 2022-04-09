@@ -6,11 +6,9 @@
 
 ### 6.11. Chapter Assessment
 
-```python
-# Write code to determine how many 9’s are in the list nums 
-# and assign that value to the variable how_many. 
-# Do not use a for loop to do this.
+![](../.gitbook/assets/2022-04-09\_20h54\_06.png)
 
+```python
 nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
 
 how_many = 0
@@ -59,6 +57,34 @@ while i > 0:
     
     
 ```
+
+
+
+### 7.15. Chapter Assessment
+
+![](../.gitbook/assets/2022-04-09\_20h51\_12.png)
+
+```python
+week_temps_f = "75.1,77.7,83.2,82.5,81.0,79.5,85.7"
+lst = week_temps_f.split(",")
+lst = [float(item) for item in lst]
+t_sum = 0.0
+for item in lst:
+    t_sum += item
+avg_temp = t_sum / len(lst)
+
+##################################################
+
+week_temps_f = "75.1,77.7,83.2,82.5,81.0,79.5,85.7"
+lst = [float(x) for x in week_temps_f.split(",")]
+sum = 0.0
+for i in lst:
+    sum += i
+avg_temp = sum / len(lst)
+
+```
+
+
 
 
 
