@@ -1,7 +1,7 @@
 ---
-description: Everything as Code || 'Talk is cheap. Show me the code.' — Linus Torvalds
+description: Everything as Code
 ---
 
 # 0
 
-Everything as Code || 'Talk is cheap. Show me the code.' — Linus Torvalds
+"Talk is cheap. Show me the code."    — Linus Torvalds
