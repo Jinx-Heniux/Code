@@ -1,10 +1,17 @@
 # Quickstart
 
 ```bash
-# Ubuntu 20.04
-# Step 1 — Installing MongoDB
+# Install MongoDB on Ubuntu 20.04
+# https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04
+# https://github.com/words-sdsc/coursera/blob/master/big-data-3/mongodb/setup.sh
+# https://www.coursera.org/learn/big-data-integration-processing/supplement/R93cO/querying-documents-in-mongodb
 
-# To start, import the public GPG key for the latest stable version of MongoDB by running the following command.
+
+
+#################### Step 1 — Installing MongoDB ####################
+
+# To start, import the public GPG key for the latest stable version of MongoDB 
+# by running the following command.
 curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 
 # If you’d like to double check that the key was added correctly, you can do so with the following command:
@@ -19,7 +26,7 @@ sudo apt update
 # Following that, you can install MongoDB:
 sudo apt install mongodb-org
 
-# Step 2 — Starting the MongoDB Service and Testing the Database
+#################### Step 2 — Starting the MongoDB Service and Testing the Database
 
 # Run the following systemctl command to start the MongoDB service:
 sudo systemctl start mongod.service
@@ -116,8 +123,3 @@ db.users.find({$and: [{tweet_text: /FIFA/}, {tweet_mentioned_count: {$gt: 4}}]})
 
 
 
-## Links
-
-* [How To Install MongoDB on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04)
-* [https://github.com/words-sdsc/coursera/blob/master/big-data-3/mongodb/setup.sh](https://github.com/words-sdsc/coursera/blob/master/big-data-3/mongodb/setup.sh)
-* [Querying Documents in MongoDB | Coursera](https://www.coursera.org/learn/big-data-integration-processing/supplement/R93cO/querying-documents-in-mongodb)
