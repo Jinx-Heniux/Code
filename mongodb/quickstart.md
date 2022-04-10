@@ -73,25 +73,39 @@ show collections
 # We can run db.users.count() to count the number of documents:
 db.users.count()
 
-# Look at document and find distinct values. We can examine the contents of one of the documents by running db.users.findOne():
+# Look at document and find distinct values. 
+# We can examine the contents of one of the documents 
+# by running db.users.findOne():
 db.users.findOne()
 
-# We can find the distinct values for a specific field by using the distinct() command. For example, let's find the distinct values for user_name:
+# We can find the distinct values for a specific field 
+# by using the distinct() command. 
+# For example, let's find the distinct values for user_name:
 db.users.distinct("user_name")
 
-# Search for specific field value. We can search for fields with a specific value using the find() command. For example, let's search for user_name with the value ActionSportsJax:
+# Search for specific field value. 
+# We can search for fields with a specific value using the find() command. 
+# For example, let's search for user_name with the value ActionSportsJax:
 db.users.find({user_name: "ActionSportsJax"})
 
-# By appending .pretty() to the end of the find command, the results will be formatted:
+# By appending .pretty() to the end of the find command, 
+# the results will be formatted:
 db.users.find({user_name: "ActionSportsJax"}).pretty()
 
-# Filter fields returned by query.We can specify a second argument to the find() command to only show specific field(s) in the result. Let's repeat the previous search, but only show the tweet_ID field:
+# Filter fields returned by query.
+# We can specify a second argument to the find() command 
+# to only show specific field(s) in the result. 
+# Let's repeat the previous search, but only show the tweet_ID field:
 db.users.find({user_name: "ActionSportsJax"}, {tweet_ID: 1})
 
-# The _id field is primary key for every document, and we can remove it from the results with the following filter:
+# The _id field is primary key for every document, 
+# and we can remove it from the results with the following filter:
 db.users.find({user_name: "ActionSportsJax"}, {tweet_ID: 1, _id:0})
 
-# Perform regular expression search. MongoDB also supports searching documents with regular expressions. If we search for the value FIFA in the tweet_text field, there are no results:
+# Perform regular expression search. 
+# MongoDB also supports searching documents with regular expressions. 
+# If we search for the value FIFA in the tweet_text field, 
+# there are no results:
 db.users.find({tweet_text: "FIFA"})
 
 # However, if we search using a regular expression, there are many results:
@@ -100,25 +114,39 @@ db.users.find({tweet_text: /FIFA/})
 # We can append .count() to the command to count the number of results:
 db.users.find({tweet_text: /FIFA/}).count()
 
-# Search using text index. A text index can be created to speed up searches and allows advanced searches with $text. Let's create the index using createIndex():
+# Search using text index. 
+# A text index can be created to speed up searches 
+# and allows advanced searches with $text. 
+# Let's create the index using createIndex():
 db.users.createIndex({"tweet_text": "text"})
 # The argument tweet_text specifies the field on which to create the index.
 
-# we can use the $text operator to search the collection. We can perform the previous query to find the documents containing FIFA:
+# we can use the $text operator to search the collection. 
+# We can perform the previous query to find the documents containing FIFA:
 db.users.find({$text: {$search: "FIFA"}}).count()
 
-# We can also search for documents not containing a specific value. For example, let's search for documents containing FIFA, but not Texas:
+# We can also search for documents not containing a specific value. 
+# For example, let's search for documents containing FIFA, but not Texas:
 db.users.find({$text: {$search: "FIFA -Texas"}}).count()
 
-# Search using operators. MongoDB can also search for field values matching a specific criteria. For example, we can find where the tweet_mentioned_count is greater than six:
+# Search using operators. 
+# MongoDB can also search for field values matching a specific criteria. 
+# For example, we can find where the tweet_mentioned_count is greater than six:
 db.users.find({tweet_mentioned_count: {$gt: 6}})
 
-# The $gt operator search for values greater than a specific value. We can use the $where command to compare between fields in the same document. For example, the following searches for tweet_mentioned_count is greater than tweet_followers_count:
+# The $gt operator search for values greater than a specific value. 
+# We can use the $where command to compare between fields in the same document. 
+# For example, the following searches for tweet_mentioned_count is greater than 
+# tweet_followers_count:
 db.users.find({$where: "this.tweet_mentioned_count > this.tweet_followers_count"}).count()
-# Note that the field names for $where are required to be prefixed with this, which represent the document.
+# Note that the field names for $where are required to be prefixed with this, 
+# which represent the document.
 
-# We can combine multiple searches by using $and. For example, let's search for tweet_text containing FIFA and tweet_mentioned_count greater than four:
+# We can combine multiple searches by using $and. 
+# For example, let's search for tweet_text containing 
+# FIFA and tweet_mentioned_count greater than four:
 db.users.find({$and: [{tweet_text: /FIFA/}, {tweet_mentioned_count: {$gt: 4}}]}).count()
+
 ```
 
 
