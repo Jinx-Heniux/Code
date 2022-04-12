@@ -89,6 +89,18 @@ sed -n '/oot/w /tmp/oot.txt' /etc/fstab
 # \(\), 分组 \1, \2 后向引用
 # &: 引用模式匹配整个串
 
+sed 's/oot/OOT/' /etc/fstab
+# 将文件的每一行中，第一个匹配到oot，换成OOT
+
+sed 's/^\//#/' /etc/fstab
+# 将行首的斜线/替换成井号#
+
+sed 's/\//#/' /etc/fstab
+# 替换第一个匹配
+sed 's/\//#/g' /etc/fstab
+# g修饰符，替换所有匹配
+
+
 echo love | sed 's/l..e/&r/'
 echo like | sed 's/l..e/&r/'
 echo "love like" | sed 's/\(l..e\)/\1r/g'
