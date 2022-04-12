@@ -16,6 +16,7 @@
 * [Linux](<README (1) (1).md>)
   * [0](readme/0.md)
   * [Commands](readme/0-1/README.md)
+    * [cat](readme/0-1/cat.md)
     * [sed](readme/0-1/sed.md)
   * [Bash](readme/bash.md)
 * [MongoDB](mongodb/README.md)
