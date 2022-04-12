@@ -11,6 +11,8 @@
   * [Quickstart](django/quickstart.md)
 * [Go](go/README.md)
   * [Quickstart](go/quickstart.md)
+* [Helm](helm/README.md)
+  * [Quickstart](helm/quickstart.md)
 * [Kubernetes](kubernetes/README.md)
   * [kubectl](kubernetes/kubectl.md)
 * [Linux](<README (1) (1).md>)
