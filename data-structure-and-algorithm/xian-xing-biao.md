@@ -1,3 +1,7 @@
+---
+description: C语言实现
+---
+
 # 线性表
 
 
@@ -71,6 +75,55 @@ int main() {
     SeqList L;
     InitList(&L);
     
+    for(int i=0; i<L.MaxSize; i++)
+        printf("data[%d]=%d\n", i, L.data[i]);
+    
+    return 0;
+}
+```
+
+
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define InitSize 10
+
+typedef struct {
+    // ElemType *data;
+    // ElemType = int
+    int *data;
+    int MaxSize;
+    int length;
+} SeqList;
+
+void InitList(SeqList *L) {
+    //用 malloc 函数申请一片连续的存储空间
+    L->data = (int *)malloc(sizeof(int)*InitSize);
+    L->length = 0;
+    L->MaxSize = InitSize;
+}
+
+void IncreaseSize(SeqList *L, int len) {
+    int *p = L->data;
+    L->data = (int *)malloc(sizeof(int)*(InitSize+len));
+    for(int i=0; i<L->length; i++)
+        L->data[i] = p[i];
+    L->MaxSize = L->MaxSize + len;
+    free(p);
+}
+
+int main() {
+    SeqList L;
+    InitList(&L);
+    
+    for(int i=0; i<L.MaxSize; i++)
+        printf("data[%d]=%d\n", i, L.data[i]);
+    
+    printf("==================================\n");
+    
+    IncreaseSize(&L, 5);
     for(int i=0; i<L.MaxSize; i++)
         printf("data[%d]=%d\n", i, L.data[i]);
     
