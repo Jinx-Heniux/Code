@@ -3,8 +3,11 @@
 
 
 ```shell
+# 06 02 sed命令 
+# https://youtu.be/Oy6L3tv7nNk
 # https://blog.51cto.com/zhubo/1828955
 # https://www.cnblogs.com/itmeatball/p/7462797.html
+# 
 # 默认情况下，不修改原文件
 
 
@@ -103,6 +106,8 @@ sed 's/\//#/g' /etc/fstab
 
 echo love | sed 's/l..e/&r/'
 echo like | sed 's/l..e/&r/'
+# &引用模式匹配到的整个字符串
+
 echo "love like" | sed 's/\(l..e\)/\1r/g'
 # 输入 love like 输出 lover liker
 
@@ -111,6 +116,20 @@ echo "love like" | sed 's@l\(..e\)@L\1@g'
 
 sed 's#\(id:\)[0-9]\(:initdefault:\)#\15\2#g' /etc/inittab
 # 在/etc/inittab文件中，id:数字:initdefault，将中间的数字换为5
+
+
+history | sed 's#^[[:space:]]*##' | cut -d' ' -f1
+history | sed -r 's#^[[:space:]]+##g' | cut -d' ' -f1
+# 使用history命令将所有的历史命令号码提取出来
+
+echo this is digit 7 in number | sed 's/digit \([0-9]\)/\1/'
+# 1、首先查找digit \( [ 0-9]\),查找到为digit 7
+# 2、又因为\1在此匹配子串[0-9],即匹配子串7
+# 3、因此结果是查找到digit 7然后用7替换
+
+echo aaa BBB | sed 's/\([a-z]\+\) \([A-Z]\+\)/\2 \1/'
+echo aaa BBB | sed 's/\([a-z]*\) \([A-Z]*\)/\2 \1/'
+# 交换位置
 ```
 
 
