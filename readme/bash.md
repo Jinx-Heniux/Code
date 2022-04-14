@@ -53,3 +53,25 @@ echo $MAX, $MIN
 # https://www.youtube.com/watch?v=jcKZFmvAXnE
 ```
 
+
+
+## case
+
+```bash
+#!/bin/bash
+#
+case $1 in
+[0-9])
+  echo "digit";;
+[a-z])
+  echo "lower";;
+[A-Z])
+  echo "upper";;
+*)
+  echo "special character";;
+esac
+
+# 08 02 bash脚本编程之七 case语句及脚本选项进阶
+# https://www.youtube.com/watch?v=jcKZFmvAXnE
+```
+
