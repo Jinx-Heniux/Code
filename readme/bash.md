@@ -21,6 +21,35 @@ ShellUsers=`echo $ShellUsers | sed 's@[[:space:]]@,@g'`
 
 echo -e "$2, $NumOfUser users, they are: \n$ShellUsers"
 
-# https://www.onlinegdb.com/
+# 08 01 facl及用户及Linux终端
+# https://www.youtube.com/watch?v=diGtbcD5U1g
+```
+
+
+
+## $RANDOM
+
+```bash
+#!/bin/bash
+#
+declare -i MAX=0
+declare -i MIN=0
+
+for I in {1..10}; do
+  MYRAND=$RANDOM
+  [ $I -eq 1 ] && MIN=$MYRAND
+  if [ $I -le 9 ]; then
+    echo -n "$MYRAND,"
+  else
+    echo "$MYRAND"
+  fi
+  [ $MYRAND -gt $MAX ] && MAX=$MYRAND
+  [ $MYRAND -lt $MIN ] && MIN=$MYRAND
+done
+
+echo $MAX, $MIN
+
+# 08 02 bash脚本编程之七 case语句及脚本选项进阶
+# https://www.youtube.com/watch?v=jcKZFmvAXnE
 ```
 
