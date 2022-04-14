@@ -130,6 +130,50 @@ echo this is digit 7 in number | sed 's/digit \([0-9]\)/\1/'
 echo aaa BBB | sed 's/\([a-z]\+\) \([A-Z]\+\)/\2 \1/'
 echo aaa BBB | sed 's/\([a-z]*\) \([A-Z]*\)/\2 \1/'
 # 交换位置
+
+
+sed -r 's/^[[:space:]]+//g' /etc/grub.conf 
+sed -r 's@^[[:space:]]+@@g' /etc/grub.conf
+sed 's/^[[:space:]]//' /etc/grub.conf
+# 删除/etc/grub.conf文件中行首的空白符
+
+
+sed 's/^$//g' /etc/inittab
+sed '/^$/d' /etc/inittab
+# 删除/etc/inittab文件中的空白行
+
+# 删除/etc/inittab文件中开头的#号
+sed 's/^#//g' /etc/inittab
+sed 's/^#//g' cntlm.conf
+# 删除一个#号
+sed 's/^#*//g' cntlm.conf
+sed -r 's/^#+//g' cntlm.conf
+sed -r 's/^#+//g' /etc/inittab
+# 删除开头所有#号
+
+
+# 删除某文件中开头的#号及空白字符，要求#号后面必须要有空白字符
+sed -r 's/^#[[:space:]]+//g' cntlm.conf
+sed -r 's/^#[[:space:]]+//g' /etc/inittab
+
+
+# 取出一个文件路径的目录名称
+echo "/etc/rc.d/" | sed -r 's@^(/.*/)[^/]+/?@\1@g'    
+# 输出/etc/
+echo "/etc/rc.d/123" | sed -r 's@^(/.*/)[^/]+/?@\1@g'  
+# 输出 /etc/rc.d/
+echo "/etc/rc.d/123/" | sed -r 's@^(/.*/)[^/]+/?@\1@g' 
+# 输出/etc/rc.d/ 同上
+
+# 取出一个文件路径的文件名称 基名
+echo "/etc/rc.d/" | sed -r 's@^/.*/([^/]+)/?@\1@g'   
+echo "/etc/rc.d" | sed -r 's@^/.*/([^/]+)/?@\1@g'
+# 输出rc.d
+
+
+# 替换/etc/inittab文件中"id:3:initdefault:"一行中的数字为5
+sed 's@\(id:\)[0-9]\(:initdefault:\)@\15\2@g' /etc/inittab
+echo "id:3:initdefault" | sed '$s/[[:digit:]]/5/' # 不完全正确
 ```
 
 
