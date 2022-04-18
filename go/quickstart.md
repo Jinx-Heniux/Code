@@ -1,6 +1,6 @@
 # Quickstart
 
-## Install Go on Ubuntu 20.04
+## Install Go
 
 ```shell
 # Install Go on Ubuntu 20.04
