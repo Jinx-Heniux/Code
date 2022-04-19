@@ -127,6 +127,7 @@ func main() {
 
 }
 
+// https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%8C%87%E9%92%88.html
 ```
 
 
@@ -148,5 +149,76 @@ func main() {
 	fmt.Printf("scanning result -> name:%s age:%d married:%t \n", name, age, married)
 }
 
+// https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/fmt.html
 ```
+
+
+
+## 读取用户的输入
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+var inputReader *bufio.Reader
+var input string
+var err error
+
+func main() {
+	inputReader = bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter a string: ")
+	input, err = inputReader.ReadString('\n')
+	if err == nil {
+		input = strings.TrimSpace(strings.ToLower(input))
+		fmt.Printf("The input was: %s\n", input)
+	} else {
+		return
+	}
+	// input_lower := strings.TrimSpace(strings.ToLower(input))
+	fmt.Printf("The input was: ##%s##\n", input)
+	fmt.Println(strings.HasPrefix(input, "i"))
+	fmt.Println(strings.HasSuffix(input, "n"))
+	fmt.Println(strings.Contains(input, "a"))
+	fmt.Println(strings.HasPrefix(input, "i") && strings.HasSuffix(input, "n") && strings.Contains(input, "a"))
+	if strings.HasPrefix(input, "i") && strings.HasSuffix(input, "n") && strings.Contains(input, "a") {
+		fmt.Println("Found!")
+	} else {
+		fmt.Println("Not Found!")
+	}
+}
+
+/*
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	var input_str string
+	fmt.Println("Please enter a string:")
+	fmt.Scan(&input_str)
+	fmt.Println(input_str)
+	input_str_lower := strings.ToLower(input_str)
+	fmt.Println(input_str_lower)
+	if strings.HasPrefix(input_str_lower, "i") && strings.HasSuffix(input_str_lower, "n") && strings.Contains(input_str_lower, "a") {
+		fmt.Println("Found!")
+	} else {
+		fmt.Println("Not Found!")
+	}
+}
+*/
+
+// https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go
+// https://learnku.com/docs/the-way-to-go/121-reads-user-input/3661
+// https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
+// https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/fmt.html
+```
+
+
 
