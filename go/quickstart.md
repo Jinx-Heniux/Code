@@ -222,3 +222,34 @@ func main() {
 
 
 
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+var inputReader *bufio.Reader
+var input string
+var err error
+
+func main() {
+	inputReader = bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter a string: ")
+	input, err = inputReader.ReadString('\n')
+	if err == nil {
+		input = strings.TrimSpace(strings.ToLower(input))
+	}
+
+	if strings.HasPrefix(input, "i") && strings.HasSuffix(input, "n") && strings.Contains(input, "a") {
+		fmt.Println("Found!")
+	} else {
+		fmt.Println("Not Found!")
+	}
+}
+
+```
+
