@@ -45,3 +45,25 @@ func main() {
 }
 ```
 
+### Sprint
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	s1 := fmt.Sprint("枯藤\n")
+	name := "枯藤"
+	age := 18
+	s2 := fmt.Sprintf("name:%s,age:%d\n", name, age)
+	s3 := fmt.Sprintln("枯藤")
+	fmt.Printf("type of s1: %T \n", s1)
+	fmt.Printf("type of s2: %T \n", s2)
+	fmt.Printf("type of s3: %T \n", s3)
+	fmt.Println(s1, s2, s3)
+}
+```
+
