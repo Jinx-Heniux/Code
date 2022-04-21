@@ -1,14 +1,6 @@
-# 读取用户的输入
+# Coursera - Programming with Google Go
 
-https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go
-
-https://learnku.com/docs/the-way-to-go/121-reads-user-input/3661
-
-https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter02/02.1.html
-
-https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/fmt.html
-
-
+## [https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go](https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go)
 
 ```go
 package main
