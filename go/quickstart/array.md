@@ -4,6 +4,8 @@
 
 [https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html)
 
+一维数组
+
 ```go
 package main
 
@@ -34,7 +36,7 @@ func main() {
 }
 ```
 
-
+多维数组
 
 ```go
 package main
@@ -55,7 +57,7 @@ func main() {
 
 ```
 
-
+值拷贝行为会造成性能问题，通常会建议使用 slice，或数组指针。
 
 ```go
 package main
@@ -81,3 +83,24 @@ func main() {
 
 ```
 
+多维数组遍历
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	var arr [2][3]int = [...][3]int{{1, 2, 3}, {7, 8, 9}}
+
+	for k1, v1 := range arr {
+		for k2, v2 := range v1 {
+			fmt.Printf("(%d,%d)=%d	", k1, k2, v2)
+		}
+		fmt.Println()
+	}
+
+}
+
+```
