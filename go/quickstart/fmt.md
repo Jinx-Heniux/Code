@@ -67,3 +67,26 @@ func main() {
 }
 ```
 
+
+
+### 格式化占位符
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Printf("%v\n", 100)
+	fmt.Printf("%v\n", false)
+	o := struct{ name string }{"枯藤"}
+	fmt.Printf("%v\n", o)  // {枯藤}
+	fmt.Printf("%#v\n", o) // struct { name string }{name:"枯藤"}
+	fmt.Printf("%T\n", o)  // struct { name string }
+	fmt.Printf("100%%\n")
+}
+
+```
+
