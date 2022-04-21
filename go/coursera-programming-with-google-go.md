@@ -1,5 +1,40 @@
 # Coursera - Programming with Google Go
 
+## module-2-activity-trunc-go
+
+[https://www.coursera.org/learn/golang-getting-started/peer/01wGe/module-2-activity-trunc-go](https://www.coursera.org/learn/golang-getting-started/peer/01wGe/module-2-activity-trunc-go)
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var fp_num float32
+	fmt.Println("Please enter a floating point number:")
+	fmt.Scan(&fp_num)
+	fmt.Printf("The truncated version of the given floating point number: %d", int(fp_num))
+}
+```
+
+```go
+package main
+import "fmt"
+func main(){
+
+	for i := 0;i<2 ;i++ {
+		fmt.Printf("Enter a Floating point number!\n")
+
+	var number float64
+	fmt.Scanln(&number)
+	fmt.Println(int(number))
+
+	}
+	
+}
+
+```
+
 ## module-2-activity-findian-go
 
 [https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go](https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go)
