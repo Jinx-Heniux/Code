@@ -67,44 +67,20 @@ func main() {
 }
 ```
 
-
-
-### 格式化占位符
+### Scan
 
 ```go
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Printf("%v\n", 100)
-	fmt.Printf("%v\n", false)
-	o := struct{ name string }{"枯藤"}
-	fmt.Printf("%v\n", o)  // {枯藤}
-	fmt.Printf("%#v\n", o) // struct { name string }{name:"枯藤"}
-	fmt.Printf("%T\n", o)  // struct { name string }
-	fmt.Printf("100%%\n")
-}
-
-```
-
-```go
-package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	n := 65
-	fmt.Printf("%b\n", n)
-	fmt.Printf("%c\n", n)
-	fmt.Printf("%d\n", n)
-	fmt.Printf("%o\n", n)
-	fmt.Printf("%x\n", n)
-	fmt.Printf("%X\n", n)
+	var (
+		name    string
+		age     int
+		married bool
+	)
+	fmt.Scan(&name, &age, &married)
+	fmt.Printf("scanning result -> name:%s age:%d married:%t \n", name, age, married)
 }
 ```
-
