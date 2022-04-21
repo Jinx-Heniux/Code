@@ -75,6 +75,8 @@ func main() {
 	fmt.Printf("a: %p\n", &a)
 	fmt.Println(a)
 
+	fmt.Println(len(a), cap(a))
+
 }
 
 ```
