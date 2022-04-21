@@ -13,6 +13,7 @@
   * [Quickstart](go/quickstart/README.md)
     * [Array](go/quickstart/array.md)
     * [Pointer](go/quickstart/pointer.md)
+    * [fmt](go/quickstart/fmt.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
