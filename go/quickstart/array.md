@@ -77,7 +77,7 @@ func main() {
 	fmt.Printf("a: %p\n", &a)
 	fmt.Println(a)
 
-	fmt.Println(len(a), cap(a))
+	fmt.Println(len(a), cap(a)) // 内置函数 len 和 cap 都返回数组长度 (元素数量)。
 
 }
 
@@ -101,6 +101,33 @@ func main() {
 		fmt.Println()
 	}
 
+}
+
+```
+
+数组拷贝和传参
+
+```go
+package main
+
+import "fmt"
+
+func printArr(arr *[5]int) {
+	arr[0] = 10
+	for k, v := range arr {
+		fmt.Printf("%d -> %d\n", k, v)
+	}
+}
+
+func main() {
+	// arr1 := [5]int{}
+	var arr1 [5]int
+	printArr(&arr1)
+	fmt.Println(arr1)
+
+	arr2 := [...]int{1, 2, 3, 4, 5}
+	printArr(&arr2)
+	fmt.Println(arr2)
 }
 
 ```
