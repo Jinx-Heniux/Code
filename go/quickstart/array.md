@@ -1,6 +1,8 @@
 # Array
 
-{% embed url="https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html" %}
+## 数组Array · Go语言中文文档
+
+[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html)
 
 ```go
 package main
@@ -30,5 +32,26 @@ func main() {
 	fmt.Println(arr0, arr1, arr2, str)
 	fmt.Println(a, b, c, d)
 }
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+var arr0 [5][3]int
+var arr1 [2][3]int = [...][3]int{{1, 2, 3}, {7, 8, 9}}
+
+func main() {
+
+	a := [2][3]int{{1, 2, 3}, {4, 5, 6}}
+	b := [...][2]int{{1, 2}, {2, 3}, {3, 4}, {4, 5}} // 第 2 纬度不能用 "..."。
+	fmt.Println(arr0, arr1)
+	fmt.Println(a, b)
+
+}
+
 ```
 
