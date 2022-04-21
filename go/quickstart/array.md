@@ -131,3 +131,40 @@ func main() {
 }
 
 ```
+
+求数组所有元素之和
+
+```go
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func sumArr(arr [10]int) int {
+	var sum int
+	for i := 0; i < len(arr); i++ {
+		sum += arr[i]
+	}
+	return sum
+}
+
+func main() {
+	// 若想做一个真正的随机数，要种子
+	// seed()种子默认是1
+	//rand.Seed(1)
+	rand.Seed(time.Now().Unix())
+
+	var b [10]int
+	for i := 0; i < len(b); i++ {
+		// 产生一个0到1000随机数
+		b[i] = rand.Intn(1000)
+		fmt.Println(b[i])
+	}
+	sum := sumArr(b)
+	fmt.Printf("sum=%d\n", sum)
+}
+
+```
