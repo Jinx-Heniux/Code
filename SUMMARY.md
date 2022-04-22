@@ -11,7 +11,7 @@
   * [Quickstart](django/quickstart.md)
 * [Go](go/README.md)
   * [Quickstart](go/quickstart/README.md)
-    * [String](go/quickstart/string.md)
+    * [基本类型](go/quickstart/ji-ben-lei-xing.md)
     * [fmt](go/quickstart/fmt.md)
     * [Pointer](go/quickstart/pointer.md)
     * [Array](go/quickstart/array.md)
