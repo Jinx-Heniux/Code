@@ -84,3 +84,26 @@ func main() {
 	fmt.Printf("scanning result -> name:%s age:%d married:%t \n", name, age, married)
 }
 ```
+
+### Scanf
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var (
+		name    string
+		age     int
+		married bool
+	)
+	fmt.Scanf("1:%s 2:%d 3:%t", &name, &age, &married)
+	fmt.Printf("扫描结果 name:%s age:%d married:%t \n", name, age, married)
+}
+
+// 输入： 1:枯藤 2:18 3:false
+```
+
