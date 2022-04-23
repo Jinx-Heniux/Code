@@ -295,3 +295,31 @@ func main() {
 
 ```
 
+### slice中cap重新分配规律
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	s := make([]int, 0, 1)
+	c := cap(s)
+	fmt.Printf("s:%p\n", &s)
+
+	for i := 0; i < 50; i++ {
+		s = append(s, i)
+		fmt.Printf("i=%d || len= %d cap=%d || s: %p || s=%v\n", i, len(s), cap(s), &s, s)
+		if n := cap(s); n > c {
+			fmt.Printf("cap: %d -> %d\n", c, n)
+			c = n
+		}
+	}
+
+}
+
+```
+
