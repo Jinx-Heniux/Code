@@ -1,11 +1,15 @@
 # kubectl
 
+## create
 
+```bash
+kubectl create secret docker-registry dtrcred --docker-server=https://rb-dtr.de.bosch.com --docker-username=poorfe --docker-password=xxxxxxxxxx
+# 用上面的命令生成secret资源，其中保存了下载容器镜像的用户名及密码。
+```
 
-## kubectl get
+## get
 
 ```shell
-
 kubectl get pods -o wide 
 # 列出当前的pods资源对象 -o wide 列出详细信息
 
