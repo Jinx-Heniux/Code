@@ -51,3 +51,31 @@ func main() {
 
 ```
 
+### 创建指针类型结构体
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type person struct {
+	name string
+	city string
+	age  int8
+}
+
+func main() {
+	var p2 = new(person)
+	fmt.Printf("%T\n", p2)     //*main.person
+	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"", city:"", age:0}
+
+	p2.name = "测试"
+	p2.age = 18
+	p2.city = "北京"
+	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"测试", city:"北京", age:18}
+}
+
+```
+
