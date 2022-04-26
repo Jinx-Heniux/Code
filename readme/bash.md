@@ -92,3 +92,21 @@ case $1 in
 esacb
 ```
 
+
+
+```bash
+#!/bin/bash
+#
+DEBUG=0
+case $1 in
+-v|--verbose)
+  DEBUG=1;;
+*)
+  echo "Unknown Options"
+  exit 7
+  ;;
+esac
+
+[ $DEBUG -eq 1 ] && echo "hello"
+```
+
