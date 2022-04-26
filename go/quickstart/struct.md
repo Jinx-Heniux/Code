@@ -20,12 +20,17 @@ type person struct {
 }
 
 func main() {
+	// 结构体初始化
 	var p1 person
+	fmt.Printf("p1=%#v\n", p1)
+	//p1=main.person{name:"", city:"", age:0}
+
 	p1.name = "pprof.cn"
 	p1.city = "北京"
 	p1.age = 18
-	fmt.Printf("p1=%v\n", p1)  //p1={pprof.cn 北京 18}
-	fmt.Printf("p1=%#v\n", p1) //p1=main.person{name:"pprof.cn", city:"北京", age:18}
+	fmt.Printf("p1=%v\n", p1) //p1={pprof.cn 北京 18}
+	fmt.Printf("p1=%#v\n", p1)
+	//p1=main.person{name:"pprof.cn", city:"北京", age:18}
 }
 
 ```
