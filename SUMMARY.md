@@ -21,7 +21,7 @@
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
 * [Kubernetes](kubernetes/README.md)
-  * [kubectl](kubernetes/kubectl.md)
+  * [Quickstart](kubernetes/quickstart.md)
 * [Linux](<README (1) (1).md>)
   * [Quickstart](readme/0.md)
   * [Commands](readme/0-1/README.md)

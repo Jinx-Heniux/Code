@@ -1,6 +1,8 @@
-# kubectl
+# Quickstart
 
-## apply
+## kubectl
+
+### apply
 
 ```bash
 kubectl diff -f configs/
@@ -15,7 +17,7 @@ kubectl apply -R -f configs/
 
 
 
-## create
+### create
 
 ```bash
 kubectl create deployment java-demo --image=lizhenliang/java-demo --dry-run -o yaml > java-demo-deployment.yaml
@@ -33,7 +35,7 @@ kubectl create -f nginx.yaml
 
 
 
-## delete
+### delete
 
 ```bash
 kubectl delete -f nginx.yaml -f redis.yaml
@@ -45,7 +47,7 @@ kubectl delete pods --all
 
 
 
-## get
+### get
 
 ```shell
 kubectl get pods -o wide 
@@ -89,7 +91,7 @@ echo "WordPress Admin URL: http://$SERVICE_IP/admin"
 
 
 
-## replace
+### replace
 
 ```bash
 kubectl replace -f nginx.yaml
