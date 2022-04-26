@@ -100,17 +100,46 @@ type person struct {
 }
 
 func main() {
-	p3 := &person{} 
+	p3 := &person{}
 	// 使用&对结构体进行取地址操作相当于对该结构体类型进行了一次new实例化操作。
-	
+
 	fmt.Printf("%T\n", p3)     //*main.person
 	fmt.Printf("p3=%#v\n", p3) //p3=&main.person{name:"", city:"", age:0}
 	p3.name = "博客"
 	// p3.name = "博客"其实在底层是(*p3).name = "博客"，这是Go语言帮我们实现的语法糖。
 	p3.age = 30
 	p3.city = "成都"
-	fmt.Printf("p3=%#v\n", p3) 
+	fmt.Printf("p3=%#v\n", p3)
 	//p3=&main.person{name:"博客", city:"成都", age:30}
+
+	// 使用键值对对结构体进行初始化时，键对应结构体的字段，值对应该字段的初始值。
+	p5 := person{
+		name: "pprof.cn",
+		city: "北京",
+		age:  18,
+	}
+	fmt.Printf("p5=%#v\n", p5) //p5=main.person{name:"pprof.cn", city:"北京", age:18}
+
+	// 也可以对结构体指针进行键值对初始化
+	p6 := &person{
+		name: "pprof.cn",
+		city: "北京",
+		age:  18,
+	}
+	fmt.Printf("p6=%#v\n", p6) //p6=&main.person{name:"pprof.cn", city:"北京", age:18}
+
+	p7 := &person{
+		city: "北京",
+	}
+	fmt.Printf("p7=%#v\n", p7) //p7=&main.person{name:"", city:"北京", age:0}
+
+	// 使用值的列表初始化
+	p8 := &person{
+		"pprof.cn",
+		"北京",
+		18,
+	}
+	fmt.Printf("p8=%#v\n", p8) //p8=&main.person{name:"pprof.cn", city:"北京", age:18}
 }
 
 ```
