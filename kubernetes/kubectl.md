@@ -3,7 +3,10 @@
 ## create
 
 ```bash
-kubectl create secret docker-registry dtrcred --docker-server=https://rb-dtr.de.bosch.com --docker-username=poorfe --docker-password=xxxxxxxxxx
+kubectl create deployment java-demo --image=lizhenliang/java-demo --dry-run -o yaml > java-demo-deployment.yaml
+# 创建deployment
+
+kubectl create secret docker-registry dtrcred --docker-server=https://dtr.example.com --docker-username=xxx --docker-password=yyy
 # 用上面的命令生成secret资源，其中保存了下载容器镜像的用户名及密码。
 ```
 
