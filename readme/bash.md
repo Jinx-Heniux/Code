@@ -27,7 +27,11 @@ echo -e "$2, $NumOfUser users, they are: \n$ShellUsers"
 
 
 
-## $RANDOM
+## 08 02 bash脚本编程之七 case语句及脚本选项进阶
+
+[https://www.youtube.com/watch?v=jcKZFmvAXnE](https://www.youtube.com/watch?v=jcKZFmvAXnE)
+
+### $RANDOM
 
 ```bash
 #!/bin/bash
@@ -49,13 +53,11 @@ done
 
 echo $MAX, $MIN
 
-# 08 02 bash脚本编程之七 case语句及脚本选项进阶
-# https://www.youtube.com/watch?v=jcKZFmvAXnE
+# 
+# 
 ```
 
-
-
-## case
+### case
 
 ```bash
 #!/bin/bash
@@ -71,7 +73,5 @@ case $1 in
   echo "special character";;
 esac
 
-# 08 02 bash脚本编程之七 case语句及脚本选项进阶
-# https://www.youtube.com/watch?v=jcKZFmvAXnE
 ```
 
