@@ -1,5 +1,20 @@
 # kubectl
 
+## apply
+
+```bash
+kubectl diff -f configs/
+kubectl apply -f configs/
+# Process all object configuration files in the configs directory, 
+# and create or patch the live objects.
+
+kubectl diff -R -f configs/
+kubectl apply -R -f configs/
+# Recursively process directories
+```
+
+
+
 ## create
 
 ```bash
@@ -8,7 +23,27 @@ kubectl create deployment java-demo --image=lizhenliang/java-demo --dry-run -o y
 
 kubectl create secret docker-registry dtrcred --docker-server=https://dtr.example.com --docker-username=xxx --docker-password=yyy
 # 用上面的命令生成secret资源，其中保存了下载容器镜像的用户名及密码。
+
+kubectl create deployment nginx --image nginx
+# Run an instance of the nginx container by creating a Deployment object
+
+kubectl create -f nginx.yaml
+# Create the objects defined in a configuration file
 ```
+
+
+
+## delete
+
+```bash
+kubectl delete -f nginx.yaml -f redis.yaml
+# Delete the objects defined in two configuration files
+
+kubectl delete pods --all
+# 删除所有Pod
+```
+
+
 
 ## get
 
@@ -50,5 +85,15 @@ kubectl get svc -n kube-system
 export SERVICE_IP=$(kubectl get svc --namespace default happy-panda-wordpress --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
 echo "WordPress URL: http://$SERVICE_IP/"
 echo "WordPress Admin URL: http://$SERVICE_IP/admin"
+```
+
+
+
+## replace
+
+```bash
+kubectl replace -f nginx.yaml
+# Update the objects defined in a configuration file 
+# by overwriting the live configuration
 ```
 
