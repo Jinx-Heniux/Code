@@ -31,7 +31,7 @@ echo -e "$2, $NumOfUser users, they are: \n$ShellUsers"
 
 [https://www.youtube.com/watch?v=jcKZFmvAXnE](https://www.youtube.com/watch?v=jcKZFmvAXnE)
 
-### $RANDOM
+### 求最大值和最小值
 
 ```bash
 #!/bin/bash
@@ -73,5 +73,22 @@ case $1 in
   echo "special character";;
 esac
 
+```
+
+
+
+```bash
+#!/bin/bash
+#
+case $1 in
+'start')
+  echo "start server...";;
+'restart')
+  echo "restart server...";;
+'stop')
+  echo "stop server...";;
+*)
+ echo "`basename $0` <start|restart|stop>";;
+esacb
 ```
 
