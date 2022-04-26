@@ -30,3 +30,24 @@ func main() {
 
 ```
 
+### 匿名结构体
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var user struct {
+		Name string
+		Age  int
+	}
+	user.Name = "pprof.cn"
+	user.Age = 18
+	fmt.Printf("%#v\n", user) // struct { Name string; Age int }{Name:"pprof.cn", Age:18}
+}
+
+```
+
