@@ -199,7 +199,7 @@ func main() {
 
 ```
 
-### \[]\[]T
+### \[]\[]T 指切片中的元素类型为 \[]T
 
 ```go
 package main
@@ -214,8 +214,10 @@ func main() {
 		[]int{100, 200},
 		[]int{11, 22, 33, 44},
 	}
+	fmt.Printf("(%T)(%d)(%d)", data, len(data), cap(data))
 	fmt.Println(data)
 }
+
 
 ```
 
