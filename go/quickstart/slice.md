@@ -194,7 +194,7 @@ func main() {
 	p := &s[2] // *int, 获取底层数组元素指针。
 	*p += 100
 
-	fmt.Println(s)
+	fmt.Println(s) // [0 1 102 3]
 }
 
 ```
