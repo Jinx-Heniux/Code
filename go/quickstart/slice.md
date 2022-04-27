@@ -234,16 +234,22 @@ func main() {
 	d := [5]struct {
 		x int
 	}{}
+	fmt.Printf("(%T)(%d)(%d)", d, len(d), cap(d))
+	fmt.Println(d)
 
 	s := d[:]
+	fmt.Printf("(%T)(%d)(%d)", s, len(s), cap(s))
+	fmt.Println(s)
 
 	d[1].x = 10
 	s[2].x = 20
 
 	fmt.Println(d)
 	fmt.Printf("%p, %p\n", &d, &d[0])
+	fmt.Printf("%p, %p, %p\n", &s, &s[0], s)
 
 }
+
 
 ```
 
