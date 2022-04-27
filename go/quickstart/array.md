@@ -4,23 +4,20 @@
 
 [https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html)
 
-### 一维数组
+一维数组
 
 ```go
 package main
 
 import "fmt"
 
-// 全局
 var arr0 [5]int = [5]int{1, 2, 3}
 var arr1 = [5]int{1, 2, 3, 4, 5}
 var arr2 = [...]int{1, 2, 3, 4, 5, 6}
 var str = [5]string{3: "Hello", 4: "Tom"}
-var arr [5]int // [0 0 0 0 0]
 
 func main() {
 
-	// 局部
 	a := [3]int{1, 2}
 	b := [...]int{1, 2, 3}
 	c := [5]int{0: 100, 4: 100}
@@ -35,14 +32,11 @@ func main() {
 	}
 
 	fmt.Println(arr0, arr1, arr2, str)
-	// [1 2 3 0 0] [1 2 3 4 5] [1 2 3 4 5 6] [   Hello Tom]
 	fmt.Println(a, b, c, d)
-	// [1 2 0] [1 2 3] [100 0 0 0 100] [{user1 10} {user2 20}]
 }
-
 ```
 
-### 多维数组
+多维数组
 
 ```go
 package main

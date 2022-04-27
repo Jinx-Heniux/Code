@@ -14,33 +14,46 @@ import (
 )
 
 func main() {
+
+	var str string
+	fmt.Printf("str -> %v(%T)\n", str, str)
+	if str == "" {
+		fmt.Println("是空")
+	} else {
+		fmt.Println("不是空")
+	}
+
 	//1.声明切片
 	var s1 []int
+	fmt.Printf("s1 -> %v(%T)\n", s1, s1)
 	if s1 == nil {
 		fmt.Println("是空")
 	} else {
 		fmt.Println("不是空")
 	}
-	fmt.Println()
+
 	// 2.:=
 	s2 := []int{}
+	fmt.Printf("s2 -> %v(%T)\n", s2, s2)
+
 	// 3.make()
 	var s3 []int = make([]int, 0)
-	fmt.Println(s1, s2, s3)
-	fmt.Println()
+	fmt.Printf("s3 -> %v(%T)\n", s3, s3)
+
 	// 4.初始化赋值
 	var s4 []int = make([]int, 0, 0)
-	fmt.Println(s4)
-	fmt.Println()
+	fmt.Printf("s4 -> %v(%T)\n", s4, s4)
+
 	s5 := []int{1, 2, 3}
-	fmt.Println(s5)
-	fmt.Println()
+	fmt.Printf("s5 -> %v(%T)(%d)(%d)\n", s5, s5, len(s5), cap(s5))
+
 	// 5.从数组切片
 	arr := [5]int{1, 2, 3, 4, 5}
+	fmt.Printf("arr -> %v(%T)(%d)(%d)\n", arr, arr, len(arr), cap(arr))
 	var s6 []int
 	// 前包后不包
 	s6 = arr[1:4]
-	fmt.Println(s6)
+	fmt.Printf("s6 -> %v(%T)(%d)(%d)\n", s6, s6, len(s6), cap(s6))
 }
 
 ```
