@@ -73,20 +73,28 @@ var slice1 []int = arr[0:6]        //可以简写为 var slice []int = arr[:end]
 var slice2 []int = arr[5:10]       //可以简写为 var slice[]int = arr[start:]
 var slice3 []int = arr[0:len(arr)] //var slice []int = arr[:]
 var slice4 = arr[:len(arr)-1]      //去掉切片的最后一个元素
+
 func main() {
+	fmt.Printf("(%T)(%d)(%d)", arr, len(arr), cap(arr))
 	fmt.Printf("全局变量: arr %v\n", arr)
+
+	fmt.Printf("(%T)(%d)(%d)", slice0, len(slice0), cap(slice0))
 	fmt.Printf("全局变量: slice0 %v\n", slice0)
+
+	fmt.Printf("(%T)(%d)(%d)", slice1, len(slice1), cap(slice1))
 	fmt.Printf("全局变量: slice1 %v\n", slice1)
 	fmt.Printf("全局变量: slice2 %v\n", slice2)
 	fmt.Printf("全局变量: slice3 %v\n", slice3)
 	fmt.Printf("全局变量: slice4 %v\n", slice4)
 	fmt.Printf("-----------------------------------\n")
+
 	arr2 := [...]int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
 	slice5 := arr[2:8]
 	slice6 := arr[0:6]         //可以简写为 slice := arr[:end]
 	slice7 := arr[5:10]        //可以简写为 slice := arr[start:]
 	slice8 := arr[0:len(arr)]  //slice := arr[:]
 	slice9 := arr[:len(arr)-1] //去掉切片的最后一个元素
+	fmt.Printf("(%T)(%d)(%d)", arr2, len(arr2), cap(arr2))
 	fmt.Printf("局部变量:  arr2 %v\n", arr2)
 	fmt.Printf("局部变量:  slice5 %v\n", slice5)
 	fmt.Printf("局部变量:  slice6 %v\n", slice6)
