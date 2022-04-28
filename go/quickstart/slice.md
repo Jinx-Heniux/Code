@@ -594,3 +594,66 @@ func main() {
 
 ```
 
+string本身是不可变的，因此要改变string中字符。需要如下操作： 英文字符串：
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	str := "Hello world"
+	s := []byte(str) //中文字符需要用[]rune(str)
+	s[6] = 'G'
+	s = s[:8]
+	s = append(s, '!')
+	str = string(s)
+	fmt.Println(str)
+}
+```
+
+含有中文字符串
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	str := "你好，世界！hello world！"
+	s := []rune(str)
+	s[3] = '够'
+	s[4] = '浪'
+	s[12] = 'g'
+	s = s[:14]
+	str = string(s)
+	fmt.Println(str)
+}
+
+```
+
+切片容量
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	slice := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	d1 := slice[6:8]
+	fmt.Println(d1, len(d1), cap(d1))
+	d2 := slice[:6:8]
+	fmt.Println(d2, len(d2), cap(d2))
+	d3 := slice[:6]
+	fmt.Println(d3, len(d3), cap(d3))
+}
+
+```
+
