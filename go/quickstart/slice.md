@@ -265,17 +265,34 @@ import (
 func main() {
 
 	var a = []int{1, 2, 3}
+	fmt.Printf("(%T)(%d)(%d)(%p)", a, len(a), cap(a), &a[0])
 	fmt.Printf("slice a : %v\n", a)
+
 	var b = []int{4, 5, 6}
+	fmt.Printf("(%T)(%d)(%d)(%p)", b, len(b), cap(b), &b[0])
 	fmt.Printf("slice b : %v\n", b)
+
 	c := append(a, b...)
+	fmt.Printf("(%T)(%d)(%d)(%p)", c, len(c), cap(c), &c[0])
 	fmt.Printf("slice c : %v\n", c)
+
 	d := append(c, 7)
+	fmt.Printf("(%T)(%d)(%d)(%p)", d, len(d), cap(d), &d[0])
 	fmt.Printf("slice d : %v\n", d)
+
 	e := append(d, 8, 9, 10)
+	fmt.Printf("(%T)(%d)(%d)(%p)", e, len(e), cap(e), &e[0])
 	fmt.Printf("slice e : %v\n", e)
 
+	// ([]int)(3)(3)(0xc0000142d0)slice a : [1 2 3]
+	// ([]int)(3)(3)(0xc0000142e8)slice b : [4 5 6]
+	// ([]int)(6)(6)(0xc00001e360)slice c : [1 2 3 4 5 6]
+	// ([]int)(7)(12)(0xc0000221e0)slice d : [1 2 3 4 5 6 7]
+	// 底层数组翻倍增加，从6变成12
+	// ([]int)(10)(12)(0xc0000221e0)slice e : [1 2 3 4 5 6 7 8 9 10]
+
 }
+
 
 ```
 
