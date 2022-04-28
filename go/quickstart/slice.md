@@ -253,7 +253,9 @@ func main() {
 
 ```
 
-### 切片追加 append
+### 用append内置函数操作切片（切片追加）
+
+append ：向 slice 尾部添加数据，返回新的 slice 对象。
 
 ```go
 package main
@@ -308,14 +310,27 @@ import (
 func main() {
 
 	s1 := make([]int, 0, 5)
-	fmt.Printf("%p\n", &s1)
+	fmt.Printf("(%T)(%d)(%d)", s1, len(s1), cap(s1))
+	fmt.Printf("address of s1->%p\n", &s1)
 
 	s2 := append(s1, 1)
-	fmt.Printf("%p\n", &s2)
+	fmt.Printf("(%T)(%d)(%d)(%p)", s2, len(s2), cap(s2), &s2[0])
+	fmt.Printf("address of s2 -> %p\n", &s2)
 
-	fmt.Println(s1, s2)
+	s3 := append(s1, 1, 2)
+	fmt.Printf("(%T)(%d)(%d)(%p)", s3, len(s3), cap(s3), &s3[0])
+	fmt.Printf("address of s3 -> %p\n", &s3)
+
+	fmt.Println(s1, s2, s3)
+
+	// ([]int)(0)(5)address of s1->0xc00000c030
+	// ([]int)(1)(5)(0xc00001e360)address of s2 -> 0xc00000c060
+	// ([]int)(2)(5)(0xc00001e360)address of s3 -> 0xc00000c090
+	// [] [1] [1 2]
+	// 底层的数组是同一个，地址为0xc00001e360
 
 }
+
 
 ```
 
