@@ -214,6 +214,25 @@ chmod o-t /tmp/project/
 
 
 
+############################## 练习 ##############################
+# 手动创建一个新用户的完整过程
+# 1，新建一个没有家目录的用户openstack
+useradd -M openstack
+# 2，复制/etc/skel到/home/openstack
+cp -r /etc/skel /home/openstack
+# 3，改变/home/openstack及其内部文件的属主属组均为openstack
+chown -R openstack:openstack /home/openstack
+# 4，/home/openstack及其内部文件的属组和其他用户没有任何访问权限
+chmod -R go= /home/openstack
+su - openstack
+
+
+
+
+
+
+
+
 ############################## FACL ##############################
 # Filesystem Access Control List (FACL) 文件系统访问控制列表
 
