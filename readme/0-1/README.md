@@ -46,6 +46,28 @@ who
 useradd, id, finger, usermod, userdel, chsh, chfn, passwd, pwck, groupadd, groupmod, groupdel, gpasswd, newgrp, chage
 
 ```shell
+finger a-user-name
+# user information lookup program
+# The finger displays information about the system users.
+
+
+
+
+
+
+############################## passwd ##############################
+echo "redhat" | passwd --stdin user3
+# 从标准输入读取密码，传递密码过去。不是手动输入
+# 从管道接受字符 修改密码
+
+passwd -d user3 
+# 清空user3的密码 空密码 无法登陆
+
+
+
+
+
+
 ############################## useradd ##############################
 useradd -u 1000 user1
 # 添加用户，设置属主ID为1000
@@ -79,13 +101,7 @@ usermod -aG sudo sammy
 
 
 
-############################## passwd ##############################
-echo "redhat" | passwd --stdin user3
-# 从标准输入读取密码，传递密码过去。不是手动输入
-# 从管道接受字符 修改密码
 
-passwd -d user3 
-# 清空user3的密码 空密码 无法登陆
 
 
 
