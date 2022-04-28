@@ -215,11 +215,10 @@ done
 
 if [ $SHOWNUMS -eq 1 ]; then
   echo "Logged-in users: `who | wc -l`"
-fi
-
-if [ $SHOWUSERS -eq 1 ]; then
-  echo "They are: "
-  who
+  if [ $SHOWUSERS -eq 1 ]; then
+    echo "They are: "
+    who
+  fi
 fi
 
 ```
