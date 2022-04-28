@@ -5,6 +5,23 @@
 whomai, who, w, last, lastb, lastlog, basename, hostname
 
 ```shell
+basename /etc/passwd
+# 直接取得路径基名(文件名)
+
+
+
+
+
+# 如果当前主机的主机名不是 www.magedu.com，就把它改成www.magedu.com
+[ `hostname` != "www.magedu.com" ] && hostname www.magedu.com
+
+# 如果当前主机的主机名为空或者为(none)或者为localhost，就把它改为 www.magedu.com
+[ -z `hostname` ] || [ `hostname` == '(none)' -o `hostname` == 'localhost' ] && hostname www.magedu.com
+
+
+
+
+
 last -n 3
 # 登录成功信息，显示最近三次的信息
 
@@ -14,16 +31,12 @@ lastb -n 3
 lastlog -u hadoop
 # 用户hadoop最近一次登录信息
 
-basename /etc/passwd
-# 直接取得路径基名(文件名)
 
 
 
-# 如果当前主机的主机名不是 www.magedu.com，就把它改成www.magedu.com
-[ `hostname` != "www.magedu.com" ] && hostname www.magedu.com
 
-# 如果当前主机的主机名为空或者为(none)或者为localhost，就把它改为 www.magedu.com
-[ -z `hostname` ] || [ `hostname` == '(none)' -o `hostname` == 'localhost' ] && hostname www.magedu.com
+who
+# show who is logged on
 ```
 
 
@@ -110,14 +123,19 @@ chown, chgrp, chmod, setfacl, getfacl
 
 ```shell
 ############################## chown ##############################
+
 chown hadoop /tmp/hi
 # 将hi目录的属主改成hadoop，注意，只有该目录的属主被改变，其中的内容没有改变
+
 chown -R hadoop /tmp/hi
 # 目录和其中内容的属主都改变为hadoop
+
 chown --reference=/tmp/abc /tmp/test
 # 参考/tmp/abc，也就是和它一样
+
 chown root:root /tmp/abc
 # 同时改变属主和属组
+
 chown :hadoop /tmp/abc
 # 只改变属组
 
@@ -126,6 +144,47 @@ chown :hadoop /tmp/abc
 
 
 ############################## chmod ##############################
+
+chmod 750 /tmp/abc
+# 修改文件abc权限为750
+
+chmod 75 /tmp/abc
+# 75=075
+
+chmod 5 /tmp/abc
+# 5=005
+
+chmod --reference=/tmp/test /tmp/abc
+# 将文件abc权限改成和test一样
+
+chmod u=rwx /tmp/abc
+# 修改属主权限
+
+chmod g=rw /tmp/abc
+# 修改属组权限
+
+chmod o=rx /tmp/abc
+# 修改其他用户权限
+
+chmod g=r,o=r /tmp/abc
+chmod go=rw /tmp/abc
+
+chmod g=rx,o= /tmp/abc
+# 不给权限就是没有权限
+
+chmod u-x /tmp/abc
+# 去掉属主的执行权限
+
+chmod u+x,g-x /tmp/abc
+
+chmod a+x /tmp/abc
+# 对所有用户添加执行权限
+# a可shengl
+chmod -x /tmp/abc
+
+chmod u-wx /tmp/abc
+# 去掉属主的写权限和执行权限
+
 chmod u+s /bin/cat
 # 给文件/bin/cat添加SUID权限
 
