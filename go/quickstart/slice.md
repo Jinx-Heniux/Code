@@ -347,16 +347,30 @@ func main() {
 
 	data := [...]int{0, 1, 2, 3, 4, 10: 0}
 	s := data[:2:3]
-	fmt.Println(s, data)
-	fmt.Println(&s[0], &data[0])
+	fmt.Printf("(%T)(%d)(%d)(%p)", data, len(data), cap(data), &data[0])
+	fmt.Printf("data -> %v\n", data)
+	fmt.Printf("(%T)(%d)(%d)(%p)", s, len(s), cap(s), &s[0])
+	fmt.Printf("s -> %v\n", s)
 	fmt.Println()
 
-	s = append(s, 100, 200)      // 一次 append 两个值，超出 s.cap 限制。
+	s = append(s, 100) // 一次 append 两个值，超出 s.cap 限制。
+	fmt.Printf("(%T)(%d)(%d)(%p)", s, len(s), cap(s), &s[0])
+	fmt.Printf("s -> %v\n", s)
+	fmt.Printf("(%T)(%d)(%d)(%p)", data, len(data), cap(data), &data[0])
+	fmt.Printf("data -> %v\n", data)
+	fmt.Println()
+
+	s = append(s, 100, 200) // 一次 append 两个值，超出 s.cap 限制。
+	fmt.Printf("(%T)(%d)(%d)(%p)", s, len(s), cap(s), &s[0])
+	fmt.Printf("s -> %v\n", s)
+	fmt.Printf("(%T)(%d)(%d)(%p)", data, len(data), cap(data), &data[0])
+	fmt.Printf("data -> %v\n", data)
 	fmt.Println(s, data)         // 重新分配底层数组，与原数组无关。
 	fmt.Println(&s[0], &data[0]) // 比对底层数组起始指针。
 	fmt.Println(cap(s), cap(data))
 
 }
+// https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%88%87%E7%89%87Slice.html#%E8%B6%85%E5%87%BA%E5%8E%9F-slicecap-%E9%99%90%E5%88%B6%EF%BC%8C%E5%B0%B1%E4%BC%9A%E9%87%8D%E6%96%B0%E5%88%86%E9%85%8D%E5%BA%95%E5%B1%82%E6%95%B0%E7%BB%84%EF%BC%8C%E5%8D%B3%E4%BE%BF%E5%8E%9F%E6%95%B0%E7%BB%84%E5%B9%B6%E6%9C%AA%E5%A1%AB%E6%BB%A1%E3%80%82
 
 ```
 
