@@ -531,3 +531,34 @@ func main() {
 
 ```
 
+
+
+### 切片resize（调整大小）
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a = []int{1, 3, 4, 5}
+	fmt.Printf("(%T)(%d)(%d)(%p)", a, len(a), cap(a), &a[0])
+	fmt.Printf("slice a : %v , len(a) : %v\n", a, len(a))
+	b := a[1:2]
+	fmt.Printf("(%T)(%d)(%d)(%p)", b, len(b), cap(b), &b[0])
+	fmt.Printf("slice b : %v , len(b) : %v\n", b, len(b))
+	c := b[0:3]
+	fmt.Printf("(%T)(%d)(%d)(%p)", c, len(c), cap(c), &c[0])
+	fmt.Printf("slice c : %v , len(c) : %v\n", c, len(c))
+
+	// ([]int)(4)(4)(0xc000016200)slice a : [1 3 4 5] , len(a) : 4
+	// ([]int)(1)(3)(0xc000016208)slice b : [3] , len(b) : 1
+	// ([]int)(3)(3)(0xc000016208)slice c : [3 4 5] , len(c) : 3
+	// 注意c是从b做的切片
+
+}
+
+```
+
