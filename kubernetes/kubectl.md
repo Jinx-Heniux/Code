@@ -112,6 +112,18 @@ kubectl get pods -l 'environment in (production, qa)'
 kubectl get pods -l 'environment,environment notin (frontend)'
 
 
+# selects all Pods for which the value of the status.phase field is Running
+kubectl get pods --field-selector status.phase=Running
+# 以下两个等价 equivalent
+kubectl get pods
+kubectl get pods --field-selector "" 
+
+# selects all Pods for which the status.phase does not equal Running and the spec.restartPolicy field equals Always
+kubectl get pods --field-selector=status.phase!=Running,spec.restartPolicy=Always
+
+
+
+
 
 
 
@@ -125,6 +137,14 @@ kubectl get svc -n kube-system
 export SERVICE_IP=$(kubectl get svc --namespace default happy-panda-wordpress --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
 echo "WordPress URL: http://$SERVICE_IP/"
 echo "WordPress Admin URL: http://$SERVICE_IP/admin"
+
+
+# selects all Kubernetes Services that aren't in the default namespace
+kubectl get services --all-namespaces --field-selector metadata.namespace!=default
+
+
+# selects all Statefulsets and Services that are not in the default namespace
+kubectl get statefulsets,services --all-namespaces --field-selector metadata.namespace!=default
 ```
 
 
