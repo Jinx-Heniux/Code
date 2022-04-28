@@ -562,3 +562,35 @@ func main() {
 
 ```
 
+
+
+### 字符串和切片（string and slice）
+
+string底层就是一个byte的数组，因此，也可以进行切片操作。
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	str := "hello world"
+	fmt.Printf("(%T)(%d) str-> %s\n", str, len(str), str)
+	s1 := str[0:5]
+	fmt.Printf("(%T)(%d) ", s1, len(s1))
+	fmt.Println(s1)
+
+	s2 := str[6:]
+	fmt.Printf("(%T)(%d) ", s2, len(s2))
+	fmt.Println(s2)
+
+	// (string)(11) str-> hello world
+	// (string)(5) hello
+	// (string)(5) world
+
+}
+
+```
+
