@@ -508,3 +508,26 @@ func main() {
 
 
 
+### slice遍历
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	fmt.Printf("(%T)(%d)(%d)(%p)\n", data, len(data), cap(data), &data[0])
+	slice := data[:]
+	fmt.Printf("(%T)(%d)(%d)(%p)\n", slice, len(slice), cap(slice), &slice[0])
+	for index, value := range slice {
+		fmt.Printf("inde : %v , value : %v\n", index, value)
+	}
+
+}
+
+```
+
