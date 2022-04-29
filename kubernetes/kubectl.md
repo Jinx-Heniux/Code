@@ -71,6 +71,14 @@ kubectl get deployment
 
 
 
+kubectl get events -A --field-selector=reason=OwnerRefInvalidNamespace
+# a warning Event with a reason of OwnerRefInvalidNamespace and 
+# an involvedObject of the invalid dependent
+
+
+
+
+
 kubectl get namespace
 # list the current namespaces in a cluster
 
