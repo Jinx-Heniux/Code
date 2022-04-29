@@ -700,3 +700,36 @@ func testArray(x [2]int) {
 
 
 
+### 函数传参用数组的指针
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	arrayA := [2]int{100, 200}
+	fmt.Printf("(%T)(%d)(%d)(%p)\n", arrayA, len(arrayA), cap(arrayA), &arrayA)
+	fmt.Printf("(%T)(%d)(%d)(%p)\n", arrayA, len(arrayA), cap(arrayA), &arrayA[0])
+	testArrayAPoint(&arrayA) // 1.传数组指针
+	arrayB := arrayA[:]
+	testArrayBPoint(&arrayB) // 2.传切片
+	fmt.Printf("arrayA : %p , %v\n", &arrayA, arrayA)
+	fmt.Printf("arrayB : %p , %v\n", &arrayB, arrayB)
+	fmt.Printf("arrayB[0] : %p , %v\n", &arrayB[0], arrayB[0])
+}
+
+func testArrayAPoint(x *[2]int) {
+	fmt.Printf("func ArrayA : %p , %v\n", x, *x)
+	(*x)[1] += 100
+}
+
+func testArrayBPoint(x *[]int) {
+	fmt.Printf("func ArrayB : %p , %v\n", x, *x)
+	(*x)[1] += 100
+}
+
+```
+
