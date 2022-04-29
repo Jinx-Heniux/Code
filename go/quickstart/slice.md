@@ -657,3 +657,46 @@ func main() {
 
 ```
 
+
+
+## Slice底层实现 · Go语言中文文档
+
+[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html)&#x20;
+
+### Go 数组是值类型
+
+赋值和函数传参操作都会复制整个数组数据。
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	arrayA := [2]int{100, 200}
+	var arrayB [2]int
+
+	arrayB = arrayA
+
+	fmt.Printf("arrayA : %p , %v\n", &arrayA, arrayA)
+	fmt.Printf("arrayB : %p , %v\n", &arrayB, arrayB)
+
+	testArray(arrayA)
+}
+
+func testArray(x [2]int) {
+	fmt.Printf("func Array : %p , %v\n", &x, x)
+}
+
+// arrayA : 0xc000138000 , [100 200]
+// arrayB : 0xc000138010 , [100 200]
+// func Array : 0xc000138050 , [100 200]
+
+```
+
+三个内存地址都不同，这也就验证了 Go 中数组赋值和函数传参都是值复制的。
+
+
+
