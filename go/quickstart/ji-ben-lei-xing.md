@@ -1,8 +1,32 @@
-# String
+# 基本类型
 
 ## 基本类型 · Go语言中文文档
 
 [https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html)
+
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	z_ch := '中'
+	e_ch := 'A'
+	fmt.Printf("z_ch -> %v(%T)\n", z_ch, z_ch)
+	fmt.Printf("e_ch -> %v(%T)\n", e_ch, e_ch)
+
+	// z_ch -> 20013(int32)
+	// e_ch -> 65(int32)
+	// 当需要处理中文、日文或者其他复合字符时，则需要用到rune类型。
+	// rune类型实际是一个int32。
+}
+
+```
+
+
 
 ### 遍历字符串
 
