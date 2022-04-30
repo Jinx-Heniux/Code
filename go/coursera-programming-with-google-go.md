@@ -168,3 +168,49 @@ func main() {
 
 ```
 
+
+
+## module-3-activity-slice-go
+
+[https://www.coursera.org/learn/golang-getting-started/peer/sLPZg/module-3-activity-slice-go](https://www.coursera.org/learn/golang-getting-started/peer/sLPZg/module-3-activity-slice-go)
+
+```go
+package main
+
+import (
+	"fmt"
+	"sort"
+	"strconv"
+)
+
+func main() {
+
+	s := make([]int, 0, 3)
+
+	for {
+		fmt.Println("Enter 'X' to exit!")
+		fmt.Printf("Please enter a number:\n")
+		var x string
+		fmt.Scanln(&x)
+		fmt.Printf("x->%v(%T)\n", x, x)
+		if x == "X" {
+			// fmt.Println("I'm here.")
+			break
+		} else {
+			i, err := strconv.Atoi(x)
+			if err != nil {
+				panic(err)
+			}
+			fmt.Printf("i->%d(%T)\n", i, i)
+			s = append(s, i)
+		}
+
+	}
+	fmt.Printf("s->%v(%T)\n", s, s)
+	sort.Ints(s)
+	fmt.Printf("s->%v(%T)\n", s, s)
+
+}
+
+```
+
