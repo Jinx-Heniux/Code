@@ -212,7 +212,49 @@ func main() {
 	fmt.Printf("s->%v(%T)\n", s, s)
 
 }
+// by me
+```
 
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"sort"
+	"strconv"
+)
+
+func main() {
+
+	s := make([]int, 0, 3)
+
+	for {
+		// fmt.Println("Enter 'X' to exit!")
+		fmt.Printf("Please enter a number (Enter 'X' to exit)):\n")
+		var x string
+		fmt.Scanln(&x)
+		if x == "X" {
+			break
+		} else {
+			i, err := strconv.Atoi(x)
+			if err != nil {
+				fmt.Println("Invalid Input!")
+				continue
+			}
+			s = append(s, i)
+			sort.Ints(s)
+			fmt.Printf("%v\n", s)
+		}
+
+	}
+	// sort.Ints(s)
+	// fmt.Printf("User input numbers in sorted order: %v\n", s)
+
+}
+
+// by me
 ```
 
 
