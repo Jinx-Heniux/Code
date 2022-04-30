@@ -6,7 +6,7 @@
 
 [https://www.topgoer.com/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5if.html](https://www.topgoer.com/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5if.html)
 
-
+### if...else if...else...
 
 ```go
 package main
@@ -47,7 +47,7 @@ func main() {
 
 ```
 
-
+### if...else...
 
 ```go
 package main
@@ -92,6 +92,93 @@ func main() {
 	}
 	fmt.Printf("a 值为 : %d\n", a)
 	fmt.Printf("b 值为 : %d\n", b)
+}
+
+```
+
+
+
+## 条件语句switch
+
+[https://www.topgoer.com/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5switch.html](https://www.topgoer.com/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5switch.html)
+
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	/* 定义局部变量 */
+	var grade string = "B"
+	var marks int = 90
+
+	switch marks {
+	case 90:
+		grade = "A"
+	case 80:
+		grade = "B"
+	case 50, 60, 70:
+		grade = "C"
+	default:
+		grade = "D"
+	}
+
+	switch {
+	case grade == "A":
+		fmt.Printf("优秀!\n")
+	case grade == "B", grade == "C":
+		fmt.Printf("良好\n")
+	case grade == "D":
+		fmt.Printf("及格\n")
+	case grade == "F":
+		fmt.Printf("不及格\n")
+	default:
+		fmt.Printf("差\n")
+	}
+	fmt.Printf("你的等级是 %s\n", grade)
+}
+
+```
+
+
+
+## 循环语句for
+
+[https://www.topgoer.com/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5for.html](https://www.topgoer.com/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5for.html)
+
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	s := "abc"
+
+	for i, n := 0, len(s); i < n; i++ { // 常见的 for 循环，支持初始化语句。
+		fmt.Printf("s[%d]=%c(%d)\n", i, s[i], s[i])
+	}
+	fmt.Println()
+
+	n := len(s) - 1
+	for n >= 0 { // 替代 while (n > 0) {}
+		fmt.Printf("s[%d]=%c(%d)\n", n, s[n], s[n]) // 替代 for (; n > 0;) {}
+		n--
+	}
+	fmt.Println()
+
+	// for true {}
+	i := 0
+	for { // 替代 while (true) {}
+		if i == len(s) {
+			break
+		}
+		fmt.Printf("s[%d]=%c(%d)\n", i, s[i], s[i]) // 替代 for (;;) {}
+		i++
+	}
 }
 
 ```
