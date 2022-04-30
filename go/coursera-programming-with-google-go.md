@@ -199,7 +199,8 @@ func main() {
 		} else {
 			i, err := strconv.Atoi(x)
 			if err != nil {
-				panic(err)
+				// panic(err)
+				continue
 			}
 			fmt.Printf("i->%d(%T)\n", i, i)
 			s = append(s, i)
