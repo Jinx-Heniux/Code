@@ -79,7 +79,7 @@ func main() {
 	s1 := "hello"
 	// 强制类型转换
 	byteS1 := []byte(s1)
-	fmt.Printf("byteS1: %v(%T)", byteS1, byteS1)
+	fmt.Printf("byteS1: %v(%T)(%d)", byteS1, byteS1, len(byteS1))
 	fmt.Println()
 
 	byteS1[0] = 'H'
@@ -87,11 +87,12 @@ func main() {
 
 	s2 := "博客"
 	runeS2 := []rune(s2)
-	fmt.Printf("runeS2: %v(%T)", runeS2, runeS2)
+	fmt.Printf("runeS2: %v(%T)(%d)", runeS2, runeS2, len(runeS2))
 	fmt.Println()
 
 	runeS2[0] = '狗'
 	fmt.Println(string(runeS2))
 }
+
 ```
 
