@@ -40,17 +40,19 @@ import (
 func main() {
 	// 遍历字符串 traversalString()
 	s := "pprof.cn博客"
-	fmt.Printf("%v(%s)\n", s, s)
+	fmt.Printf("s -> %v(%T)\n", s, s)
 	fmt.Println()
 	for i := 0; i < len(s); i++ { //byte
-		fmt.Printf("%v(%c) ", s[i], s[i])
+		fmt.Printf("%v(%c)(%T) ", s[i], s[i], s[i])
 	}
 	fmt.Println()
+	fmt.Println()
 	for _, r := range s { //rune
-		fmt.Printf("%v(%c) ", r, r)
+		fmt.Printf("%v(%c)(%T) ", r, r, r)
 	}
 	fmt.Println()
 }
+
 ```
 
 ### 修改字符串
