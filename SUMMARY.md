@@ -18,6 +18,7 @@
     * [Slice](go/quickstart/slice.md)
     * [Map](go/quickstart/map.md)
     * [Struct](go/quickstart/struct.md)
+    * [流程控制](go/quickstart/liu-cheng-kong-zhi.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
