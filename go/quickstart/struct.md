@@ -102,8 +102,9 @@ type person struct {
 }
 
 func main() {
+	// 可以通过使用new关键字对结构体进行实例化，得到的是结构体的地址。
 	var p2 = new(person)
-	fmt.Printf("%T\n", p2)     //*main.person
+	fmt.Printf("%T\n", p2)     //*main.person // p2是一个结构体指针
 	fmt.Printf("p2=%#v\n", p2) //p2=&main.person{name:"", city:"", age:0}
 
 	p2.name = "测试"
