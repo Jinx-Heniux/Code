@@ -171,6 +171,17 @@ kubectl label pod my-pod versionID-
 
 # Update a label for a pod using Kubectl:
 kubectl label --overwrite pods my-pod team=ops
+
+
+
+
+# If the dev pods have a “dev” label, 
+# you can run the following kubectl command to get their status
+kubectl get pods -l 'environment in (dev)’
+
+# if you delete all your dev/staging environments at night 
+# to save on compute costs, you can automate the following command
+kubectl delete deployment,services,statefulsets -l environment in (dev,sit)
 ```
 
 
