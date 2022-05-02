@@ -175,6 +175,7 @@ kubectl label --overwrite pods my-pod team=ops
 
 
 
+
 # If the dev pods have a “dev” label, 
 # you can run the following kubectl command to get their status
 kubectl get pods -l 'environment in (dev)’
@@ -182,6 +183,29 @@ kubectl get pods -l 'environment in (dev)’
 # if you delete all your dev/staging environments at night 
 # to save on compute costs, you can automate the following command
 kubectl delete deployment,services,statefulsets -l environment in (dev,sit)
+
+
+
+
+
+# 1. List All Linux Nodes:
+kubectl get nodes -l 'kubernetes.io/os=linux'
+# 2. List all nodes with instance type m3.medium:
+kubectl get nodes -l 'node.kubernetes.io/instance-type=m3.medium'
+# 3. List all nodes in a specific region:
+kubectl get nodes -l 'topology.kubernetes.io/region=us-east-1'
+# 4. List all nodes in specific regions:
+kubectl get nodes -l 'topology.kubernetes.io/region in (us-east-1, us-west-1)'
+
+
+kubectl get pods -l 'environment in (production), release in (canary)'
+kubectl get pods -l 'environment in (production, qa)'
+kubectl get pods -l 'environment notin (qa)'
+
+
+# Example: Find Pods by Labels to Get their Pod Logs
+# https://www.magalix.com/blog/why-it-is-important-to-use-labels-in-your-workloads-specs
+ns='qa' ; label='release=canary' ; kubectl get pods -n $ns -l $label -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | xargs -I {} kubectl -n $ns logs {}
 ```
 
 
