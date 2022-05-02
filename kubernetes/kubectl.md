@@ -157,6 +157,24 @@ kubectl get statefulsets,services --all-namespaces --field-selector metadata.nam
 
 
 
+### label
+
+```bash
+# Check that the labels are applied in the newly created pod:
+kubectl get pod my-pod --show-labels
+
+# Add a label to a pod using Kubectl:
+kubectl label pod my-pod versionID=ver0.9
+
+# Remove a label from a pod using Kubectl:
+kubectl label pod my-pod versionID-
+
+# Update a label for a pod using Kubectl:
+kubectl label --overwrite pods my-pod team=ops
+```
+
+
+
 ### replace
 
 ```bash
