@@ -115,7 +115,7 @@ func main() {
 
 ```
 
-### 取结构体的地址实例化
+### 实例化
 
 ```go
 package main
@@ -131,11 +131,13 @@ type person struct {
 }
 
 func main() {
+
+	/* 取结构体的地址实例化 */
 	p3 := &person{}
 	// 使用&对结构体进行取地址操作相当于对该结构体类型进行了一次new实例化操作。
-
 	fmt.Printf("%T\n", p3)     //*main.person
 	fmt.Printf("p3=%#v\n", p3) //p3=&main.person{name:"", city:"", age:0}
+
 	p3.name = "博客"
 	// p3.name = "博客"其实在底层是(*p3).name = "博客"，这是Go语言帮我们实现的语法糖。
 	p3.age = 30
@@ -143,6 +145,7 @@ func main() {
 	fmt.Printf("p3=%#v\n", p3)
 	//p3=&main.person{name:"博客", city:"成都", age:30}
 
+	/* 使用键值对初始化 */
 	// 使用键值对对结构体进行初始化时，键对应结构体的字段，值对应该字段的初始值。
 	p5 := person{
 		name: "pprof.cn",
@@ -164,7 +167,7 @@ func main() {
 	}
 	fmt.Printf("p7=%#v\n", p7) //p7=&main.person{name:"", city:"北京", age:0}
 
-	// 使用值的列表初始化
+	/* 使用值的列表初始化 */
 	p8 := &person{
 		"pprof.cn",
 		"北京",
