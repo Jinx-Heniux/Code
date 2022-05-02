@@ -178,3 +178,40 @@ func main() {
 
 ```
 
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	// 注意：结构体可以被定义在函数中
+	type test struct {
+		a int8
+		b int8
+		c int8
+		d int8
+	}
+	n := test{
+		1, 2, 3, 4,
+	}
+	fmt.Printf("n.a %p\n", &n.a)
+	fmt.Printf("n.b %p\n", &n.b)
+	fmt.Printf("n.c %p\n", &n.c)
+	fmt.Printf("n.d %p\n", &n.d)
+
+	// n.a 0xc0000c0000
+	// n.b 0xc0000c0001
+	// n.c 0xc0000c0002
+	// n.d 0xc0000c0003
+
+}
+
+```
+
+
+
