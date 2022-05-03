@@ -2,7 +2,7 @@
 
 ## 小命令
 
-whomai, who, w, last, lastb, lastlog, basename, hostname
+whomai, who, w, last, lastb, lastlog, basename, hostname, whatis
 
 ```shell
 basename /etc/passwd
