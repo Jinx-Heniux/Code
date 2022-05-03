@@ -25,7 +25,7 @@
 * [Kubernetes](kubernetes/README.md)
   * [Quickstart](kubernetes/kubectl.md)
 * [Linux](<README (1) (1).md>)
-  * [Quickstart](readme/quickstart/README.md)
+  * [Quickstart](readme/0.md)
     * [vim](readme/quickstart/vim.md)
   * [Commands](readme/0-1/README.md)
     * [cat](readme/0-1/cat.md)
