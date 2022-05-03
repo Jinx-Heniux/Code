@@ -133,6 +133,9 @@ int main() {
     printf("====================\n");
     for(int i=0; i<5; i++)
         L.data[i] = i+1;
+    L.length = 5;
+    for(int i=0; i<MaxSize; i++)
+        printf("data[%d]=%d\n", i, L.data[i]);
     printf("====================\n");
     
     ListInsert(&L, 1, 3);
