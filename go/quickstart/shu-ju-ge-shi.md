@@ -100,3 +100,42 @@ b->[]byte{0x7b, 0x22, 0x61, 0x67, 0x65, 0x22, 0x3a, 0x31, 0x38, 0x2c, 0x22, 0x6e
 
 ```
 
+
+
+### 解析到结构体
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type Person struct {
+	Age       int    `json:"age,string"`
+	Name      string `json:"name"`
+	Niubility bool   `json:"niubility"`
+}
+
+func main() {
+	// 假数据
+	b := []byte(`{"age":"18","name":"5lmh.com","marry":false}`)
+	var p Person
+	fmt.Printf("p->%#v\n", p)
+	err := json.Unmarshal(b, &p)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Printf("p->%#v\n", p)
+	fmt.Println(p)
+}
+
+/*
+p->main.Person{Age:0, Name:"", Niubility:false}
+p->main.Person{Age:18, Name:"5lmh.com", Niubility:false}
+{18 5lmh.com false}
+*/
+
+```
+
