@@ -31,6 +31,17 @@ kubectl apply -R -f configs/
 
 
 
+### cordon
+
+```bash
+# To mark a Node unschedulable, run:
+kubectl cordon $NODENAME
+```
+
+
+
+
+
 ### create
 
 ```bash
@@ -49,6 +60,8 @@ kubectl create -f nginx.yaml
 
 
 
+
+
 ### delete
 
 ```bash
@@ -57,6 +70,15 @@ kubectl delete -f nginx.yaml -f redis.yaml
 
 kubectl delete pods --all
 # 删除所有Pod
+```
+
+
+
+### describe
+
+```bash
+# to view a Node's status and other details:
+kubectl describe node <insert-node-name-here> 
 ```
 
 
