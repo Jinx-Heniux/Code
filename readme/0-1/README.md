@@ -35,8 +35,18 @@ lastlog -u hadoop
 
 
 
+
+w
+# Show who is logged on and what they are doing.
+
+whatis
+# display one-line manual page descriptions
+
 who
 # show who is logged on
+
+whoami
+# print effective userid
 ```
 
 
@@ -135,7 +145,7 @@ useradd -r -s /sbin/nologin hbase
 
 ## 权限管理
 
-chown, chgrp, chmod, setfacl, getfacl
+chown, chgrp, chmod, setfacl, getfacl, umask
 
 ```shell
 ############################## chown ##############################
@@ -260,6 +270,16 @@ setfacl -x u:www /etc/inittab
 # 取消组的额外访问控制权限:setfacl -x g:groupname
 # 撤销一个用户组对一个文件的facl权限
 setfacl -x g:www /etc/inittab
+
+
+
+
+
+
+umask
+# set file mode creation mask
+
+
 ```
 
 
