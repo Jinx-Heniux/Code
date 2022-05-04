@@ -71,21 +71,35 @@ package main
 import "fmt"
 
 func test(x [2]int) {
+	fmt.Printf("x -> %#v || ", x)
 	fmt.Printf("x: %p\n", &x)
 	x[1] = 1000
+	fmt.Printf("x -> %#v || ", x)
+	fmt.Printf("x: %p\n", &x)
 }
 
 func main() {
 
 	a := [2]int{}
+	fmt.Printf("a -> %#v || ", a)
 	fmt.Printf("a: %#p\n", &a)
 	test(a)
+	fmt.Printf("a -> %#v || ", a)
 	fmt.Printf("a: %p\n", &a)
-	fmt.Println(a)
+	// fmt.Println(a)
 
 	fmt.Println(len(a), cap(a)) // 内置函数 len 和 cap 都返回数组长度 (元素数量)。
 
 }
+
+/*
+a -> [2]int{0, 0} || a: c000128000
+x -> [2]int{0, 0} || x: 0xc000128040
+x -> [2]int{0, 1000} || x: 0xc000128040
+a -> [2]int{0, 0} || a: 0xc000128000
+2 2
+*/
+
 
 ```
 
