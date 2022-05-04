@@ -26,6 +26,30 @@ func main() {
 
 
 
+### 匿名变量
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func foo() (int, string) {
+	return 10, "Q1mi"
+}
+
+func main() {
+	x, _ := foo() // 匿名变量用一个下划线_表示
+	_, y := foo() // 匿名变量不占用命名空间，不会分配内存，所以匿名变量之间不存在重复声明。
+	fmt.Println("x=", x)
+	fmt.Println("y=", y)
+}
+
+```
+
+
+
 ## 基本类型 · Go语言中文文档
 
 [https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html)
