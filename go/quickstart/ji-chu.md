@@ -1,4 +1,30 @@
-# 基本类型
+# 基础
+
+## 变量和常量 · Go语言中文文档
+
+[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F.html)
+
+### 短变量声明
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+// 全局变量m
+var m = 100
+
+func main() {
+	n := 10 // 在函数内部，可以使用更简略的 := 方式声明并初始化变量。
+	// m := 200 // 此处声明局部变量m
+	fmt.Println(m, n)
+}
+
+```
+
+
 
 ## 基本类型 · Go语言中文文档
 
