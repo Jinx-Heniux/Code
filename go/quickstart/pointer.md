@@ -215,3 +215,26 @@ new函数不太常用，使用new函数得到的是一个类型的指针，
 
 
 
+### 指针小练习
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var a int
+	fmt.Println(&a)
+	var p *int
+	p = &a
+	*p = 20
+	fmt.Println(a)
+}
+
+/*
+0xc0000b8000
+20
+*/
+
+```
+
