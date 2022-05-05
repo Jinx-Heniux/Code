@@ -261,3 +261,61 @@ map[中国:[北京 上海]]
 
 ```
 
+
+
+## Map实现原理 · Go语言中文文档
+
+[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html)
+
+### Go中Map的使用
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	//直接创建初始化一个map
+	var mapInit = map[string]string{"xiaoli": "湖南", "xiaoliu": "天津"}
+	fmt.Printf("mapInit -> %#v\n", mapInit)
+	//声明一个map类型变量,
+	//map的key的类型是string，value的类型是string
+	var mapTemp map[string]string
+	//使用make函数初始化这个变量,并指定大小(也可以不指定)
+	mapTemp = make(map[string]string, 10)
+	//存储key ，value
+	mapTemp["xiaoming"] = "北京"
+	mapTemp["xiaowang"] = "河北"
+	//根据key获取value,
+	//如果key存在，则ok是true，否则是flase
+	//v1用来接收key对应的value,当ok是false时，v1是nil
+	v1, ok := mapTemp["xiaoming"]
+	fmt.Println(ok, v1)
+	//当key=xiaowang存在时打印value
+	if v2, ok := mapTemp["xiaowang"]; ok {
+		fmt.Println(v2)
+	}
+	//遍历map,打印key和value
+	for k, v := range mapTemp {
+		fmt.Println(k, v)
+	}
+	//删除map中的key
+	delete(mapTemp, "xiaoming")
+	//获取map的大小
+	l := len(mapTemp)
+	fmt.Println(l)
+
+}
+
+/*
+mapInit -> map[string]string{"xiaoli":"湖南", "xiaoliu":"天津"}
+true 北京
+河北
+xiaowang 河北
+xiaoming 北京
+1
+*/
+
+```
+
