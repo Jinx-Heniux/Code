@@ -85,6 +85,11 @@ func main() {
 	fmt.Printf("address of p: %v\n", &p)
 	fmt.Printf("type of p: %T\n", p)
 	fmt.Printf("value of p: %v\n", p)
+	if p != nil {
+		fmt.Println("not null")
+	} else {
+		fmt.Println("null")
+	}
 	//fmt.Printf("value of p: %s\n", *p)
 	// panic: runtime error: invalid memory address or nil pointer dereference
 	d := "Hello"
@@ -93,7 +98,7 @@ func main() {
 	fmt.Printf("address of p: %v\n", &p)
 	fmt.Printf("type of p: %T\n", p)
 	fmt.Printf("value of p: %v\n", p)
-	fmt.Printf("value of p: %s\n", *p)
+	fmt.Printf("value of *p: %s\n", *p)
 
 	if p != nil {
 		fmt.Println("not null")
@@ -102,6 +107,20 @@ func main() {
 	}
 
 }
+
+/*
+address of p: 0xc0000bc018
+type of p: *string
+value of p: <nil>
+null
+++++++
+address of p: 0xc0000bc018
+type of p: *string
+value of p: 0xc000096230
+value of *p: Hello
+not null
+*/
+
 
 ```
 
