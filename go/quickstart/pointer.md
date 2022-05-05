@@ -126,7 +126,7 @@ not null
 
 
 
-### new
+### new and make
 
 ```go
 package main
@@ -168,6 +168,24 @@ func main() {
 	*a = 10
 	fmt.Println(*a)
 }
+```
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var b map[string]int         // 只是声明变量b是一个map类型的变量
+	b = make(map[string]int, 10) // 使用make函数进行初始化操作之后，才能对其进行键值对赋值
+	b["测试"] = 100
+	fmt.Println(b)
+}
+
 ```
 
 
