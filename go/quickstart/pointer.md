@@ -126,6 +126,8 @@ not null
 
 
 
+### new
+
 ```go
 package main
 
@@ -150,4 +152,48 @@ func main() {
 */
 
 ```
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a *int
+	a = new(int)
+	*a = 10
+	fmt.Println(*a)
+}
+```
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	a := new(int)
+	b := new(bool)
+	fmt.Printf("%T\n", a) // *int
+	fmt.Printf("%T\n", b) // *bool
+	fmt.Println(*a)       // 0
+	fmt.Println(*b)       // false
+}
+
+/*
+new函数不太常用，使用new函数得到的是一个类型的指针，
+并且该指针对应的值为该类型的零值。
+*/
+
+```
+
+
 
