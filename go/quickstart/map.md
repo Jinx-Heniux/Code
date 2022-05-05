@@ -181,3 +181,48 @@ func main() {
 }
 ```
 
+
+
+### 元素为map类型的切片
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var mapSlice = make([]map[string]string, 3)
+	for index, value := range mapSlice {
+		fmt.Printf("index:%d value:%v || %#v\n", index, value, value)
+		fmt.Println(value == nil)
+	}
+	fmt.Println("================after init============")
+	// 对切片中的map元素进行初始化
+	mapSlice[0] = make(map[string]string, 10)
+	mapSlice[0]["name"] = "王五"
+	mapSlice[0]["password"] = "123456"
+	mapSlice[0]["address"] = "红旗大街"
+	for index, value := range mapSlice {
+		fmt.Printf("index:%d value:%v\n", index, value)
+		fmt.Println(value == nil)
+	}
+}
+
+/*
+index:0 value:map[] || map[string]string(nil)
+true
+index:1 value:map[] || map[string]string(nil)
+true
+index:2 value:map[] || map[string]string(nil)
+true
+================after init============
+index:0 value:map[address:红旗大街 name:王五 password:123456]
+false
+index:1 value:map[]
+true
+index:2 value:map[]
+true
+*/
+
+```
+
