@@ -126,3 +126,28 @@ not null
 
 
 
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a *int
+	*a = 100
+	fmt.Println(*a)
+
+	var b map[string]int
+	b["测试"] = 100
+	fmt.Println(b)
+}
+
+/*
+执行上面的代码会引发panic，为什么呢？
+在Go语言中对于引用类型的变量，我们在使用的时候不仅要声明它，
+还要为它分配内存空间，否则我们的值就没办法存储。
+*/
+
+```
+
