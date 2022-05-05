@@ -73,6 +73,8 @@ func main() {
 
 ### map的遍历
 
+使用for range遍历map
+
 ```go
 package main
 import "fmt"
@@ -88,7 +90,7 @@ func main() {
 }
 ```
 
-
+只想遍历key
 
 ```go
 package main
@@ -104,7 +106,11 @@ func main() {
         fmt.Printf(" -> %d\n", scoreMap[k])
     }
 }
+// 注意： 遍历map时的元素顺序与添加键值对的顺序无关。
+
 ```
+
+
 
 ### 使用delete()函数删除键值对
 
