@@ -226,3 +226,38 @@ true
 
 ```
 
+
+
+### 值为切片类型的map
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var sliceMap = make(map[string][]string, 3)
+	fmt.Println(sliceMap)
+	fmt.Println("after init")
+	key := "中国"
+	value, ok := sliceMap[key]
+	fmt.Println(value)
+	fmt.Println(value == nil)
+	if !ok {
+		value = make([]string, 0, 2)
+	}
+	value = append(value, "北京", "上海")
+	sliceMap[key] = value
+	fmt.Println(sliceMap)
+}
+
+/*
+map[]
+after init
+[]
+true
+map[中国:[北京 上海]]
+*/
+
+```
+
