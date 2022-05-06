@@ -183,3 +183,43 @@ func main() {
 
 ```
 
+
+
+```go
+package main
+
+import "fmt"
+
+func length(s string) int {
+	fmt.Println("call length.")
+	return len(s)
+}
+
+func main() {
+	s := "abcd"
+
+	for i, n := 0, length(s); i < n; i++ { // 避免多次调用 length 函数。
+		println(i, s[i])
+		fmt.Printf("i = %d; value = %c (%d) (%#v) \n", i, s[i], s[i], s[i])
+		fmt.Println(i, s[i])
+	}
+}
+
+/*
+call length.
+i = 0; value = a (97) (0x61)
+0 97
+i = 1; value = b (98) (0x62)
+1 98
+i = 2; value = c (99) (0x63)
+2 99
+i = 3; value = d (100) (0x64)
+3 100
+0 97
+1 98
+2 99
+3 100
+*/
+
+```
+
