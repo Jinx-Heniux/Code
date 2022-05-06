@@ -111,25 +111,41 @@ func main() {
 	fmt.Printf("s -> %v(%s)(%T)(%d)\n", s, s, s, len(s))
 	fmt.Println()
 	for i := 0; i < len(s); i++ { //byte
-	// 字符串底层是一个byte数组，所以可以和[]byte类型相互转换。
+		// 字符串底层是一个byte数组，所以可以和[]byte类型相互转换。
 		fmt.Printf("%v(%c)(%T) ", s[i], s[i], s[i])
 	}
 	fmt.Println()
 	fmt.Println()
 	rune_nums := 0
-	for _, r := range s { //rune
-	// rune类型用来表示utf8字符，一个rune字符由一个或多个byte组成。
-		fmt.Printf("%v(%c)(%T) ", r, r, r)
+	//for _, r := range s { //rune
+	for i, r := range s {
+		// rune类型用来表示utf8字符，一个rune字符由一个或多个byte组成。
+		fmt.Printf("%d -> %v(%c)(%T) \n", i, r, r, r)
 		rune_nums += 1
 	}
 	fmt.Println()
 	fmt.Printf("numbers of runes: %d\n", rune_nums)
 }
 
-// s -> pprof.cn博客(pprof.cn博客)(string)(14)
-// 112(p)(uint8) 112(p)(uint8) 114(r)(uint8) 111(o)(uint8) 102(f)(uint8) 46(.)(uint8) 99(c)(uint8) 110(n)(uint8) 229(å)(uint8) 141()(uint8) 154()(uint8) 229(å)(uint8) 174(®)(uint8) 162(¢)(uint8)
-// 112(p)(int32) 112(p)(int32) 114(r)(int32) 111(o)(int32) 102(f)(int32) 46(.)(int32) 99(c)(int32) 110(n)(int32) 21338(博)(int32) 23458(客)(int32)
-// numbers of runes: 10
+/*
+s -> pprof.cn博客(pprof.cn博客)(string)(14)
+
+112(p)(uint8) 112(p)(uint8) 114(r)(uint8) 111(o)(uint8) 102(f)(uint8) 46(.)(uint8) 99(c)(uint8) 110(n)(uint8) 229(å)(uint8) 141()(uint8) 154()(uint8) 229(å)(uint8) 174(®)(uint8) 162(¢)(uint8)
+
+0 -> 112(p)(int32)
+1 -> 112(p)(int32)
+2 -> 114(r)(int32)
+3 -> 111(o)(int32)
+4 -> 102(f)(int32)
+5 -> 46(.)(int32)
+6 -> 99(c)(int32)
+7 -> 110(n)(int32)
+8 -> 21338(博)(int32)
+11 -> 23458(客)(int32)
+
+numbers of runes: 10
+*/
+
 
 
 ```
