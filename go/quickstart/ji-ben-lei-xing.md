@@ -1,4 +1,54 @@
-# 基本类型
+# 基础
+
+## 变量和常量 · Go语言中文文档
+
+[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F.html)
+
+### 短变量声明
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+// 全局变量m
+var m = 100
+
+func main() {
+	n := 10 // 在函数内部，可以使用更简略的 := 方式声明并初始化变量。
+	// m := 200 // 此处声明局部变量m
+	fmt.Println(m, n)
+}
+
+```
+
+
+
+### 匿名变量
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func foo() (int, string) {
+	return 10, "Q1mi"
+}
+
+func main() {
+	x, _ := foo() // 匿名变量用一个下划线_表示
+	_, y := foo() // 匿名变量不占用命名空间，不会分配内存，所以匿名变量之间不存在重复声明。
+	fmt.Println("x=", x)
+	fmt.Println("y=", y)
+}
+
+```
+
+
 
 ## 基本类型 · Go语言中文文档
 
@@ -13,13 +63,31 @@ import "fmt"
 
 func main() {
 
+	fmt.Println("str := \"c:\\pprof\\main.exe\"")
+	// str := "c:\pprof\main.exe"
+	// 反斜杠
+
+	// 反引号字符 多行字符串
+	s1 := `第一行
+    第二行
+    第三行
+    `
+	fmt.Println(s1)
+
+	/*
+		组成每个字符串的元素叫做“字符”，可以通过遍历或者单个获取字符串元素获得字符。
+		字符用单引号（’）包裹起来.
+
+		uint8类型，或者叫 byte 型，代表了ASCII码的一个字符。
+		rune类型，代表一个 UTF-8字符。
+	*/
 	z_ch := '中'
 	e_ch := 'A'
-	fmt.Printf("z_ch -> %v(%T)\n", z_ch, z_ch)
-	fmt.Printf("e_ch -> %v(%T)\n", e_ch, e_ch)
+	fmt.Printf("z_ch -> %c (%#v) (%T)\n", z_ch, z_ch, z_ch)
+	fmt.Printf("e_ch -> %c (%#v) (%T)\n", e_ch, e_ch, e_ch)
 
-	// z_ch -> 20013(int32)
-	// e_ch -> 65(int32)
+	// z_ch -> 中 (20013) (int32)
+	// e_ch -> A (65) (int32)
 	// 当需要处理中文、日文或者其他复合字符时，则需要用到rune类型。
 	// rune类型实际是一个int32。
 }
