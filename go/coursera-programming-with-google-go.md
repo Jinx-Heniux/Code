@@ -402,3 +402,42 @@ func main() {
 // by me
 ```
 
+
+
+```go
+package main
+
+import (
+	"bufio"
+	"encoding/json"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+	var name string
+	var address string
+
+	fmt.Printf("Enter a name: \n")
+	stdioIn := bufio.NewReader(os.Stdin)
+	name, _ = stdioIn.ReadString('\n')
+	name = strings.TrimSpace(name)
+
+	fmt.Printf("\nEnter an address: \n")
+	stdioIn = bufio.NewReader(os.Stdin)
+	address, _ = stdioIn.ReadString('\n')
+	address = strings.TrimSpace(address)
+
+	nameAddress := make(map[string]string)
+
+	nameAddress["name"] = name
+	nameAddress["address"] = address
+
+	var marshalled []byte
+	marshalled, _ = json.Marshal(nameAddress)
+	fmt.Println(string(marshalled))
+}
+
+```
+
