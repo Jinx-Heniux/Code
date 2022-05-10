@@ -441,3 +441,105 @@ func main() {
 
 ```
 
+
+
+## final-course-activity-read-go
+
+[https://www.coursera.org/learn/golang-getting-started/peer/CHgQd/final-course-activity-read-go/](https://www.coursera.org/learn/golang-getting-started/peer/CHgQd/final-course-activity-read-go/)
+
+
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+	"strings"
+)
+
+type name struct {
+	fname string
+	lname string
+}
+
+func main() {
+
+	// receive user input
+	inputReader := bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter a file name (e.g. /home/names.txt): ")
+	filename, err := inputReader.ReadString('\n')
+	if err == nil {
+		filename = strings.TrimSpace(filename)
+	} else {
+		fmt.Println("Something is wrong, Please start the program again!")
+		return
+	}
+
+	// filename := "/home/zhs2si/go/src/hello/names.txt"
+
+	nameSlice := make([]name, 0, 20)
+
+	/*
+		// 读文件
+		data, err := ioutil.ReadFile(filename)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Printf("data -> %#v\n", data)
+		fmt.Printf("data -> %#v\n", string(data))
+	*/
+
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	defer file.Close()
+
+	reader := bufio.NewReader(file)
+	for {
+		line, _, err := reader.ReadLine()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return
+		}
+		// fmt.Println(string(line))
+
+		fields := strings.Split(string(line), " ")
+		// fmt.Printf("fields -> %#v\n", fields)
+		/*
+			for i := 0; i < len(fields); i++ {
+				// fmt.Printf("firstname: %v, lastname: %v\n", fields[0], fields[1])
+				name := name{
+					fname: fields[0],
+					lname: fields[1],
+				}
+
+			}
+		*/
+		n := name{
+			fname: fields[0],
+			lname: fields[1],
+		}
+
+		// fmt.Printf("name: %#v\n", n)
+		nameSlice = append(nameSlice, n)
+
+	}
+	// fmt.Printf("name: %#v\n", nameSlice)
+
+	for _, value := range nameSlice {
+		fmt.Printf("first name: %v, last name: %v\n", value.fname, value.lname)
+	}
+}
+
+// by me
+```
+
