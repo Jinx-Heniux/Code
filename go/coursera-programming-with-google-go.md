@@ -543,3 +543,59 @@ func main() {
 // by me
 ```
 
+
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
+)
+
+type Name struct {
+	first string
+	last  string
+}
+
+type People []Name
+
+func (people *People) collectDataFromFile(fileName string) {
+	bytes, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		fmt.Println("Error: unable to read file: ", err)
+		return
+	}
+
+	scanner := bufio.NewScanner(strings.NewReader(string(bytes)))
+	for scanner.Scan() {
+		var name Name
+		line := strings.Split(scanner.Text(), " ")
+		name.first = line[0]
+		name.last = line[1]
+
+		*people = append(*people, name)
+	}
+}
+
+func main() {
+	var people People
+
+	fmt.Printf("Enter file name: ")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	if err := scanner.Err(); err != nil {
+		fmt.Println("Error: ", err)
+	}
+
+	people.collectDataFromFile(scanner.Text())
+	for _, name := range people {
+		fmt.Printf("first_name: %v, \tlast_name: %v \n", name.first, name.last)
+	}
+}
+
+```
+
