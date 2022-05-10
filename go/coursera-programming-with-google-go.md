@@ -599,3 +599,98 @@ func main() {
 
 ```
 
+
+
+```go
+package main
+
+/*
+To: create names.txt
+Input filename: names.txt
+
+Zmur Freis
+George Thijs
+Suopur Hikappooolisonaalocawpfae
+Aion Arovana
+Jieoqurthafsinoolaairthonia Kazier
+Lehman Arjuizio
+
+*/
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+	"unicode/utf8"
+)
+
+const (
+	maxLength = 20
+)
+
+func scanEntry(entry string) string {
+	fmt.Print(entry)
+	myEntryScanner := bufio.NewScanner(os.Stdin)
+	var entryText string
+	if myEntryScanner.Scan() {
+		entryText = myEntryScanner.Text()
+	}
+	return entryText
+}
+
+//Create a name struct (with 2 fields)
+type name struct {
+	fname string
+	lname string
+}
+
+func readLines(path string) ([]name, error) {
+	file, err := os.Open(path)
+	tempSlice := make([]name, 0, 0)
+	fmt.Println(tempSlice)
+	if err != nil {
+		return tempSlice, err
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		fslsNames := strings.Split(scanner.Text(), " ")
+		var fname, lname string
+		fname = fslsNames[0]
+		lname = fslsNames[1]
+
+		if utf8.RuneCountInString(fname) > maxLength {
+			fname = fslsNames[0][:maxLength]
+		}
+		if utf8.RuneCountInString(lname) > maxLength {
+			lname = fslsNames[1][:maxLength]
+		}
+
+		tempSlice = append(tempSlice, name{fname: fname, lname: lname})
+	}
+	return tempSlice, scanner.Err()
+}
+
+func main() {
+	fmt.Print("Hello WOrld \n")
+
+	//Create a slice
+	sliceOfNames := make([]name, 0, 0)
+
+	//Scan (input) for filename
+	fileName := scanEntry("Please enter filename:")
+
+	//Read txt file
+	sliceOfNamest, _ := readLines(fileName)
+	sliceOfNames = sliceOfNamest
+
+	//Iterate slice
+	for x, names := range sliceOfNames {
+		fmt.Println(string(rune(x)) + ". " + names.fname + " " + names.lname)
+	}
+
+}
+
+```
+
