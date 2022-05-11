@@ -21,6 +21,7 @@
     * [流程控制](go/quickstart/liu-cheng-kong-zhi.md)
     * [数据格式](go/quickstart/shu-ju-ge-shi.md)
     * [排序](go/quickstart/pai-xu.md)
+    * [Function](go/quickstart/function.md)
   * [网络编程](go/wang-luo-bian-cheng/README.md)
     * [HTTP](go/wang-luo-bian-cheng/http.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go.md)
