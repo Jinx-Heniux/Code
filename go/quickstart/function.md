@@ -34,8 +34,13 @@ func main() {
 	fmt.Printf("i -> %#v, s -> %#v\n", i, s)
 	fmt.Printf("s -> %v (%T) ", s, s)
 	/*
-		i -> 3, s -> "haha%!(EXTRA int=3)"
-		s -> haha%!(EXTRA int=3) (string)
+	i -> 3, s -> "haha%!(EXTRA int=3)"
+	s -> haha%!(EXTRA int=3) (string)
+	
+	格式化错误
+	实参太多：%!(EXTRA type=value)
+        Printf("hi", "guys"):      hi%!(EXTRA string=guys)
+        https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter01/01.3.html?h=Sprintf
 	*/
 
 	s1 := test(func() int { return 100 }) // 直接将匿名函数当参数。
