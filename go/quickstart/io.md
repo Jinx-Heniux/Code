@@ -25,6 +25,8 @@ func main() {
 	file.Close()
 }
 
+// func Open(name string) (file *File, err Error)
+// 只读方式打开一个名称为name的文件
 ```
 
 
@@ -60,6 +62,9 @@ func main() {
 		a -> [99 100 10] ([]uint8)
 	*/
 }
+
+// func Create(name string) (file *File, err Error)
+// 根据提供的文件名创建新的文件，返回一个文件对象，默认权限是0666
 
 ```
 
