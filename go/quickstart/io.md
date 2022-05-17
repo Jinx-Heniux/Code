@@ -29,3 +29,37 @@ func main() {
 
 
 
+### 写文件
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	// 新建文件
+	file, err := os.Create("./xxx.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer file.Close()
+	for i := 0; i < 5; i++ {
+		file.WriteString("ab\n")
+		file.Write([]byte("cd\n"))
+	}
+
+	a := []byte("cd\n")
+	fmt.Printf("a -> %#v\n", a)
+	fmt.Printf("a -> %v (%T)", a, a)
+	/*
+		a -> []byte{0x63, 0x64, 0xa}
+		a -> [99 100 10] ([]uint8)
+	*/
+}
+
+```
+
