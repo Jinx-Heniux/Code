@@ -68,3 +68,50 @@ func main() {
 
 ```
 
+
+
+### 读文件
+
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func main() {
+	// 打开文件
+	file, err := os.Open("./xxx.txt")
+	if err != nil {
+		fmt.Println("open file err :", err)
+		return
+	}
+	defer file.Close()
+	// 定义接收文件读取的字节数组
+	var buf [128]byte
+	var content []byte
+	for {
+		n, err := file.Read(buf[:])
+		// 文件读取可以用file.Read()和file.ReadAt()，读到文件末尾会返回io.EOF的错误
+		if err == io.EOF {
+			// 读取结束
+			break
+		}
+		if err != nil {
+			fmt.Println("read file err ", err)
+			return
+		}
+		content = append(content, buf[:n]...)
+	}
+	fmt.Println(string(content))
+}
+
+/*
+func (file *File) Read(b []byte) (n int, err Error)
+读取数据到b中
+*/
+
+```
+
