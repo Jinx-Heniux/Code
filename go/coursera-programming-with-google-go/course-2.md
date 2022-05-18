@@ -83,3 +83,71 @@ func main() {
 // by me
 ```
 
+
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func Swap(slice []int, i int, j int) {
+	slice[i], slice[j] = slice[j], slice[i]
+}
+
+func BubbleSort(slice []int) {
+	for i := 0; i < len(slice)-1; i++ {
+		for k := i + 1; k < len(slice); k++ {
+			if slice[i] > slice[k] {
+				Swap(slice, i, k)
+			}
+		}
+	}
+}
+
+func main() {
+
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter up to 10 integers separated by a space (e.g. 4 56 3 63 6 -325 35 0 -342 -4):")
+
+	inputStr, err := reader.ReadString('\n')
+	if err == nil {
+		inputStr = strings.TrimSpace(inputStr)
+	} else {
+		return
+	}
+
+	fields := strings.Fields(inputStr)
+	if len(fields) > 10 {
+		fmt.Println("Input Error: please enter up to 10 integers!")
+		os.Exit(1)
+	}
+
+	inputIntSlice := make([]int, 0, 10)
+
+	for field := range fields {
+		i, err := strconv.Atoi(fields[field])
+		if err != nil {
+			fmt.Println("Invalid Input!")
+			os.Exit(2)
+		}
+		inputIntSlice = append(inputIntSlice, i)
+	}
+
+	// fmt.Println("Original integers:")
+	// fmt.Printf("    -> %v\n", inputIntSlice)
+	BubbleSort(inputIntSlice)
+	// fmt.Println("Sorted integers:")
+	// fmt.Printf("    -> %v\n", inputIntSlice)
+
+	fmt.Printf("Sorted integers: %v\n", inputIntSlice)
+}
+
+// by me
+```
+

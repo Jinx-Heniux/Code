@@ -27,7 +27,7 @@
   * [网络编程](go/wang-luo-bian-cheng/README.md)
     * [HTTP](go/wang-luo-bian-cheng/http.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go/README.md)
-    * [Course 1](go/coursera-programming-with-google-go/course-1.md)
+    * [Course 1](go/coursera-programming-with-google-go.md)
     * [Course 2](go/coursera-programming-with-google-go/course-2.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)

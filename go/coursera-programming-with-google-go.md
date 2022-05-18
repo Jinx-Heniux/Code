@@ -1,4 +1,4 @@
-# Coursera - Programming with Google Go
+# Course 1
 
 ## module-2-activity-trunc-go
 
@@ -693,4 +693,6 @@ func main() {
 }
 
 ```
+
+
 
