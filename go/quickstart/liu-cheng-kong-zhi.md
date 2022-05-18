@@ -183,3 +183,135 @@ func main() {
 
 ```
 
+
+
+```go
+package main
+
+import "fmt"
+
+func length(s string) int {
+	fmt.Println("call length.")
+	return len(s)
+}
+
+func main() {
+	s := "abcd"
+
+	for i, n := 0, length(s); i < n; i++ { // 避免多次调用 length 函数。
+		println(i, s[i])
+		fmt.Printf("i = %d; value = %c (%d) (%#v) \n", i, s[i], s[i], s[i])
+		fmt.Println(i, s[i])
+	}
+}
+
+/*
+call length.
+i = 0; value = a (97) (0x61)
+0 97
+i = 1; value = b (98) (0x62)
+1 98
+i = 2; value = c (99) (0x63)
+2 99
+i = 3; value = d (100) (0x64)
+3 100
+0 97
+1 98
+2 99
+3 100
+*/
+
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	var b int = 15
+	var a int
+
+	numbers := [6]int{1, 2, 3, 5}
+
+	/* for 循环 */
+	for a := 0; a < 10; a++ {
+		fmt.Printf("a 的值为: %d\n", a)
+	}
+
+	for a < b {
+		a++
+		fmt.Printf("a 的值为: %d\n", a)
+	}
+
+	for i, x := range numbers {
+		fmt.Printf("第 %d 位 x 的值 = %d\n", i, x)
+	}
+}
+
+/*
+a 的值为: 0
+a 的值为: 1
+a 的值为: 2
+a 的值为: 3
+a 的值为: 4
+a 的值为: 5
+a 的值为: 6
+a 的值为: 7
+a 的值为: 8
+a 的值为: 9
+a 的值为: 1
+a 的值为: 2
+a 的值为: 3
+a 的值为: 4
+a 的值为: 5
+a 的值为: 6
+a 的值为: 7
+a 的值为: 8
+a 的值为: 9
+a 的值为: 10
+a 的值为: 11
+a 的值为: 12
+a 的值为: 13
+a 的值为: 14
+a 的值为: 15
+第 0 位 x 的值 = 1
+第 1 位 x 的值 = 2
+第 2 位 x 的值 = 3
+第 3 位 x 的值 = 5
+第 4 位 x 的值 = 0
+第 5 位 x 的值 = 0
+*/
+
+```
+
+
+
+### 用循环嵌套来输出 2 到 100 间的素数
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	/* 定义局部变量 */
+	var i, j int
+
+	for i = 2; i < 100; i++ {
+		for j = 2; j <= (i / j); j++ {
+			if i%j == 0 {
+				break // 如果发现因子，则不是素数
+			}
+		}
+		if j > (i / j) {
+			fmt.Printf("%d  是素数\n", i)
+		}
+	}
+}
+
+```
+
