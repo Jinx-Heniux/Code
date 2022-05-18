@@ -20,7 +20,7 @@
     * [Struct](go/quickstart/struct.md)
     * [流程控制](go/quickstart/liu-cheng-kong-zhi.md)
     * [数据格式](go/quickstart/shu-ju-ge-shi.md)
-    * [Sort](go/quickstart/sort/README.md)
+    * [Sort](go/quickstart/pai-xu.md)
       * [Bubble Sort](go/quickstart/sort/bubble-sort.md)
     * [Function](go/quickstart/function.md)
     * [IO](go/quickstart/io.md)
