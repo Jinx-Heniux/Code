@@ -4,7 +4,7 @@
 
 [https://www.coursera.org/learn/golang-functions-methods/peer/UxoIW/module-1-activity-bubble-sort-program/](https://www.coursera.org/learn/golang-functions-methods/peer/UxoIW/module-1-activity-bubble-sort-program/)
 
-
+### by me
 
 ```go
 package main
@@ -151,7 +151,7 @@ func main() {
 // by me
 ```
 
-
+### by Doug Donohoe
 
 ```go
 package main
@@ -217,7 +217,52 @@ func BubbleSort(slice []int) {
 func Swap(slice []int, pos int) {
 	slice[pos], slice[pos+1] = slice[pos+1], slice[pos]
 }
-// by Doug Donohoe
+
+
+```
+
+### by Ansh joshi
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	n := 10
+	var arr [10]int
+	fmt.Println("Enter numbers \n")
+	var temp int
+	for i := 0; i < n; i++ {
+		fmt.Scan(&temp)
+		arr[i] = temp
+	}
+
+	fmt.Println(arr)
+	Bubble(&arr, n)
+	fmt.Println("Sorted array is :")
+	fmt.Println(arr)
+}
+
+func Bubble(arr *[10]int, n int) {
+	//i is for number of swaps steps to take
+	for i := 0; i < n; i++ {
+		for j := 0; j < n-i-1; j++ {
+			if arr[j] > arr[j+1] {
+				swap(&arr[j], &arr[j+1])
+			}
+		}
+	}
+}
+
+func swap(a *int, b *int) {
+	var temp int
+	temp = *a
+	*a = *b
+	*b = temp
+}
 
 ```
 
