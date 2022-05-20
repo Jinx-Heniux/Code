@@ -151,3 +151,73 @@ func main() {
 // by me
 ```
 
+
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func main() {
+	in := bufio.NewReader(os.Stdin)
+
+	// prompt user for numbers
+	fmt.Printf("Please enter up to 10 numbers (separated by spaces): ")
+	numsString, err := in.ReadString('\n')
+	if err != nil {
+		fmt.Printf("Unable to read input: %s", err)
+		os.Exit(1)
+	}
+
+	// convert to slice of strings
+	numsSlice := strings.Split(strings.TrimSpace(numsString), " ")
+
+	// convert to integers
+	var nums []int
+	for i, num := range numsSlice {
+		// no more than 10 elements
+		if i == 10 {
+			break
+		}
+		nums = append(nums, StringToInt(num))
+	}
+
+	// output info + sort
+	fmt.Printf("Input received: %v\n", nums)
+	BubbleSort(nums)
+	fmt.Printf("After bubble sort: %v\n", nums)
+
+}
+
+func StringToInt(num string) int {
+	i, err := strconv.Atoi(num)
+	if err != nil {
+		fmt.Printf("Error converting '%s' to integer (using 0 instead): %s\n", num, err)
+	}
+	return i
+}
+
+func BubbleSort(slice []int) {
+	length := len(slice)
+	for i := 0; i < length-1; i++ {
+		for j := 0; j < length-i-1; j++ {
+			if slice[j] > slice[j+1] {
+				Swap(slice, j)
+			}
+		}
+	}
+}
+
+func Swap(slice []int, pos int) {
+	slice[pos], slice[pos+1] = slice[pos+1], slice[pos]
+}
+// by Doug Donohoe
+
+```
+
