@@ -311,3 +311,34 @@ func main() {
 
 ```
 
+
+
+### by someone else
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var acceleration, velocity, inidisplacement, time float64
+	fmt.Print("Enter the value for acceleration : ")
+	fmt.Scanln(&acceleration)
+	fmt.Print("Enter the value for initial velocity : ")
+	fmt.Scanln(&velocity)
+	fmt.Print("Enter the value for initial displacement : ")
+	fmt.Scanln(&inidisplacement)
+	fmt.Print("Enter the time calculating the displacement(in seconds): ")
+	fmt.Scanln(&time)
+	fn := GenDisplaceFn(acceleration, velocity, inidisplacement)
+	fmt.Println("Displacement after", time, "seconds is : ", fn(time))
+}
+
+func GenDisplaceFn(acceleration, velocity, displacement float64) func(float64) float64 {
+	return func(t float64) float64 {
+		return (0.5 * acceleration * (t * t)) + (velocity * t) + displacement
+	}
+}
+
+```
+
