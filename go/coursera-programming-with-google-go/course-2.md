@@ -266,3 +266,48 @@ func swap(a *int, b *int) {
 
 ```
 
+
+
+## module-2-activity
+
+[https://www.coursera.org/learn/golang-functions-methods/peer/qKrnv/module-2-activity/](https://www.coursera.org/learn/golang-functions-methods/peer/qKrnv/module-2-activity/)
+
+### by me
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func GenDisplaceFn(a, v0, s0 float64) func(float64) float64 {
+	return func(t float64) float64 {
+		return ((a * t * t) / 2.0) + (v0 * t) + s0
+	}
+
+}
+
+func main() {
+
+	var (
+		a  float64
+		v0 float64
+		s0 float64
+		t  float64
+	)
+	fmt.Println("Please enter values for acceleration, initial velocity, and initial displacement:")
+	fmt.Println("(e.g. 10 2 1):")
+	fmt.Scan(&a, &v0, &s0)
+	fmt.Println("Please enter a value for time:")
+	fmt.Println("(e.g. 3):")
+	fmt.Scan(&t)
+	fmt.Printf("Your input: \n\tacceleration: %v\n\tinitial velocity: %v\n\tinitial displacement: %v\n\ttime: %v\n", a, v0, s0, t)
+
+	fn := GenDisplaceFn(a, v0, s0)
+	fmt.Printf("The result for computing the displacement after %v seconds: %v\n", t, fn(t))
+
+}
+
+```
+
