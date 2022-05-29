@@ -455,3 +455,236 @@ func main() {
 
 ```
 
+
+
+### by me
+
+```go
+package main
+
+import "fmt"
+
+type Animal struct {
+	food       string
+	locomotion string
+	noise      string
+}
+
+func (a *Animal) Eat() {
+	fmt.Println(a.food)
+}
+
+func (a *Animal) Move() {
+	fmt.Println(a.locomotion)
+}
+
+func (a *Animal) Speak() {
+	fmt.Println(a.noise)
+}
+
+func main() {
+
+	cow := Animal{
+		food:       "grass",
+		locomotion: "walk",
+		noise:      "moo",
+	}
+	bird := Animal{
+		food:       "worms",
+		locomotion: "fly",
+		noise:      "peep",
+	}
+	snake := Animal{
+		food:       "mice",
+		locomotion: "slither",
+		noise:      "hsss",
+	}
+
+	var (
+		name string
+		info string
+	)
+
+	fmt.Println("Every request from the user must be a single line containing 2 strings. The first string is the name of an animal, either “cow”, “bird”, or “snake”. The second string is the name of the information requested about the animal, either “eat”, “move”, or “speak”. ")
+	for {
+		fmt.Println("\nPlease enter your request (e.g. cow eat):")
+		fmt.Print(">")
+		fmt.Scan(&name, &info)
+		fmt.Printf("%v, %v -> ", name, info)
+		switch name {
+		case "cow":
+			switch info {
+			case "eat":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				cow.Eat()
+			case "move":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				cow.Move()
+			case "speak":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				cow.Speak()
+			default:
+				fmt.Println("Wrong Input!")
+			}
+		case "bird":
+			switch info {
+			case "eat":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				bird.Eat()
+			case "move":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				bird.Move()
+			case "speak":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				bird.Speak()
+			default:
+				fmt.Println("Wrong Input!")
+			}
+		case "snake":
+			switch info {
+			case "eat":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				snake.Eat()
+			case "move":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				snake.Move()
+			case "speak":
+				// fmt.Printf("%s -> %s -> ", name, info)
+				snake.Speak()
+			default:
+				fmt.Println("Wrong Input!")
+			}
+		default:
+			fmt.Println("Wrong Input!")
+		}
+	}
+
+}
+
+```
+
+
+
+### by Павел Вохмянин
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+type Animal struct {
+	food, move, comms string
+}
+
+func (an *Animal) Move() {
+	fmt.Println(an.move)
+}
+
+func (an *Animal) Eat() {
+	fmt.Println(an.food)
+}
+
+func (an *Animal) Speak() {
+	fmt.Println(an.comms)
+}
+
+// getTrait method returns supplied trait of the Animal instance
+func (an *Animal) getTrait(trait string) {
+	switch trait {
+	case "eat":
+		an.Eat()
+	case "move":
+		an.Move()
+	case "speak":
+		an.Speak()
+	}
+}
+
+// bestiary is a map that describes animal and its traits
+// traits must be a pointer to allow us to use methods
+type Bestiary map[string]*Animal
+
+// fill the bestiary with information
+// bestiary is a string-pointer hash, thus we should call newAnimal to fill it
+func (b Bestiary) fill() {
+	b["cow"] = newAnimal("grass", "walk", "moo")
+	b["bird"] = newAnimal("worms", "fly", "peep")
+	b["snake"] = newAnimal("mice", "slither", "hiss")
+}
+
+// validateRequest checks whether submitted request contains valid animal and valid trait
+func (b Bestiary) validateRequest(animal, trait string) bool {
+
+	fields := map[string]bool{"eat": true, "move": true, "speak": true}
+	_, animalExists := b[animal]
+	_, traitExists := fields[trait]
+	return animalExists && traitExists
+}
+
+// newAnimal creates new Animal instance
+func newAnimal(food, move, comms string) *Animal {
+	var an Animal
+	an.food = food
+	an.move = move
+	an.comms = comms
+
+	return &an
+}
+
+// getCommand reads input and makes sure it is in a proper format, or is a quit command
+func getCommand(scanner *bufio.Scanner) (string, string, string) {
+	fmt.Printf("\n> ")
+	scanner.Scan()
+	if scanner.Err() != nil {
+		return "", "", fmt.Sprintf("Unable to read input [%s]", scanner.Err().Error())
+	}
+
+	input := scanner.Text()
+	if strings.ToLower(input) == "quit" || strings.ToLower(input) == "q" {
+		fmt.Println("Goodbye!")
+		os.Exit(0)
+	}
+	parsedInput := strings.Fields(input)
+	if len(parsedInput) != 2 {
+		return "", "", fmt.Sprintf("Unable to parse input [%s]", input)
+	}
+
+	return parsedInput[0], parsedInput[1], ""
+}
+
+// printHelp displays usage
+func printHelp() {
+	fmt.Println("Request data from bestiary using format <animal> <trait> (enter quit to exit)")
+}
+
+func main() {
+	bestiary := make(Bestiary)
+	bestiary.fill()
+
+	printHelp()
+	scanner := bufio.NewScanner(os.Stdin)
+
+	for {
+		animal, trait, skipReason := getCommand(scanner)
+		if skipReason != "" {
+			fmt.Println(skipReason)
+			printHelp()
+			continue
+		}
+
+		if !bestiary.validateRequest(animal, trait) {
+			fmt.Printf("Invalid input [%s, %s]\n", animal, trait)
+			printHelp()
+			continue
+		}
+		bestiary[animal].getTrait(trait)
+	}
+}
+
+```
+
