@@ -342,3 +342,116 @@ func GenDisplaceFn(acceleration, velocity, displacement float64) func(float64) f
 
 ```
 
+
+
+## module-3-activity
+
+[https://www.coursera.org/learn/golang-functions-methods/peer/Z8tkv/module-3-activity/](https://www.coursera.org/learn/golang-functions-methods/peer/Z8tkv/module-3-activity/)
+
+### by me
+
+```go
+package main
+
+import "fmt"
+
+type Animal struct {
+	food       string
+	locomotion string
+	noise      string
+}
+
+func (a *Animal) Eat() {
+	fmt.Println(a.food)
+}
+
+func (a *Animal) Move() {
+	fmt.Println(a.locomotion)
+}
+
+func (a *Animal) Speak() {
+	fmt.Println(a.noise)
+}
+
+func main() {
+
+	cow := Animal{
+		food:       "grass",
+		locomotion: "walk",
+		noise:      "moo",
+	}
+	bird := Animal{
+		food:       "worms",
+		locomotion: "fly",
+		noise:      "peep",
+	}
+	snake := Animal{
+		food:       "mice",
+		locomotion: "slither",
+		noise:      "hsss",
+	}
+
+	var (
+		name string
+		info string
+	)
+
+	fmt.Println("Every request from the user must be a single line containing 2 strings. The first string is the name of an animal, either “cow”, “bird”, or “snake”. The second string is the name of the information requested about the animal, either “eat”, “move”, or “speak”. ")
+	for {
+		fmt.Println("\nPlease enter your request:")
+		fmt.Println("(e.g. cow eat)>")
+		fmt.Scan(&name, &info)
+		fmt.Printf("Your input is animal (%v) | info (%v) \n", name, info)
+		switch name {
+		case "cow":
+			switch info {
+			case "eat":
+				fmt.Printf("%s -> %s -> ", name, info)
+				cow.Eat()
+			case "move":
+				fmt.Printf("%s -> %s -> ", name, info)
+				cow.Move()
+			case "speak":
+				fmt.Printf("%s -> %s -> ", name, info)
+				cow.Speak()
+			default:
+				fmt.Println("Wrong Input!")
+			}
+		case "bird":
+			switch info {
+			case "eat":
+				fmt.Printf("%s -> %s -> ", name, info)
+				bird.Eat()
+			case "move":
+				fmt.Printf("%s -> %s -> ", name, info)
+				bird.Move()
+			case "speak":
+				fmt.Printf("%s -> %s -> ", name, info)
+				bird.Speak()
+			default:
+				fmt.Println("Wrong Input!")
+			}
+		case "snake":
+			switch info {
+			case "eat":
+				fmt.Printf("%s -> %s -> ", name, info)
+				snake.Eat()
+			case "move":
+				fmt.Printf("%s -> %s -> ", name, info)
+				snake.Move()
+			case "speak":
+				fmt.Printf("%s -> %s -> ", name, info)
+				snake.Speak()
+			default:
+				fmt.Println("Wrong Input!")
+			}
+		default:
+			fmt.Println("Wrong Input!")
+		}
+	}
+
+}
+
+
+```
+
