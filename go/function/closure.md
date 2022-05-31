@@ -41,3 +41,38 @@ func main() {
 
 ```
 
+
+
+```go
+package main
+
+import "fmt"
+
+func test() func() {
+	x := 100
+	fmt.Printf("x (%p) = %d\n", &x, x)
+
+	return func() {
+		fmt.Printf("x (%p) = %d\n", &x, x)
+	}
+}
+
+func main() {
+	f := test()
+	fmt.Printf("%T \n", f)
+	f()
+
+	fmt.Println()
+	f2 := test()
+	f2()
+}
+/*
+x (0xc0000ba000) = 100
+func() 
+x (0xc0000ba000) = 100
+
+x (0xc0000ba020) = 100
+x (0xc0000ba020) = 100
+*/
+```
+
