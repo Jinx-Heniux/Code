@@ -232,7 +232,7 @@ func main() {
 
 ```
 
-
+多返回值可直接作为其他函数调用实参。
 
 ```go
 package main
@@ -265,6 +265,8 @@ func main() {
 
 ### 命名返回参数
 
+命名返回参数可看做与形参类似的局部变量，最后由 return 隐式返回。
+
 ```go
 package main
 
@@ -279,7 +281,7 @@ func main() {
 
 ```
 
-
+命名返回参数可被同名局部变量遮蔽，此时需要显式返回。
 
 ```go
 package main
@@ -295,6 +297,28 @@ func add(x, y int) (z int) {
 func main() {
 	println(add(1, 2))
 }
+
+```
+
+命名返回参数允许 defer 延迟调用通过闭包读取和修改。
+
+```go
+package main
+
+func add(x, y int) (z int) {
+	defer func() {
+		z += 100
+	}()
+
+	z = x + y
+	return
+}
+
+func main() {
+	println(add(1, 2))
+}
+
+// 
 
 ```
 
