@@ -28,6 +28,7 @@
     * [参数](go/function/can-shu.md)
     * [返回值](go/function/fan-hui-zhi.md)
     * [匿名函数](go/function/ni-ming-han-shu.md)
+    * [Closure](go/function/closure.md)
   * [网络编程](go/wang-luo-bian-cheng/README.md)
     * [HTTP](go/wang-luo-bian-cheng/http.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go/README.md)
