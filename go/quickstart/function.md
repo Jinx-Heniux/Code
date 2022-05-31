@@ -165,3 +165,70 @@ func main() {
 
 ```
 
+
+
+## [返回值 · Go语言中文文档](https://www.topgoer.com/%E5%87%BD%E6%95%B0/%E8%BF%94%E5%9B%9E%E5%80%BC.html)
+
+
+
+### “裸”返回
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func add(a, b int) (c int) {
+	c = a + b
+	return
+}
+
+func calc(a, b int) (sum int, avg int) {
+	sum = a + b
+	avg = (a + b) / 2
+
+	return
+}
+
+func main() {
+	var a, b int = 1, 2
+	c := add(a, b)
+	sum, avg := calc(a, b)
+	fmt.Println(a, b, c, sum, avg)
+
+	e := 3.0
+	f := 2.0
+	fmt.Printf("e -> %#v | %T \n", e, e)
+	g := e / f
+	fmt.Printf("g -> %#v | %T | %v | %.2f\n", g, g, g, g)
+
+}
+
+```
+
+
+
+### 多返回值
+
+```go
+package main
+
+func test() (int, int) {
+	return 1, 2
+}
+
+func main() {
+	// s := make([]int, 2)
+	// s = test()   // Error: multiple-value test() in single-value context
+
+	x, _ := test()
+	println(x)
+
+	y, z := test()
+	println(y, z)
+}
+
+```
+
