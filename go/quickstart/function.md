@@ -261,3 +261,21 @@ func main() {
 
 ```
 
+
+
+### 命名返回参数
+
+```go
+package main
+
+func add(x, y int) (z int) {
+	z = x + y
+	return
+}
+
+func main() {
+	println(add(1, 2))
+}
+
+```
+
