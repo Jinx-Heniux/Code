@@ -74,6 +74,8 @@ func main() {
 
 
 
+### 引用传递
+
 ```go
 package main
 
@@ -101,6 +103,32 @@ func main() {
 	swap(&a, &b)
 
 	fmt.Printf("a: %d b: %d", a, b)
+}
+
+```
+
+
+
+### 可变参数
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func test(s string, n ...int) string {
+	var x int
+	for _, i := range n {
+		x += i
+	}
+
+	return fmt.Sprintf(s, x)
+}
+
+func main() {
+	println(test("sum: %d", 1, 2, 3, 4, 5))
 }
 
 ```
