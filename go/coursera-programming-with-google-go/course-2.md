@@ -1,8 +1,6 @@
 # Course 2
 
-## module-1-activity-bubble-sort-program
-
-[https://www.coursera.org/learn/golang-functions-methods/peer/UxoIW/module-1-activity-bubble-sort-program/](https://www.coursera.org/learn/golang-functions-methods/peer/UxoIW/module-1-activity-bubble-sort-program/)
+## [module-1-activity-bubble-sort-program](https://www.coursera.org/learn/golang-functions-methods/peer/UxoIW/module-1-activity-bubble-sort-program/)
 
 ### by me
 
@@ -268,9 +266,7 @@ func swap(a *int, b *int) {
 
 
 
-## module-2-activity
-
-[https://www.coursera.org/learn/golang-functions-methods/peer/qKrnv/module-2-activity/](https://www.coursera.org/learn/golang-functions-methods/peer/qKrnv/module-2-activity/)
+## [module-2-activity](https://www.coursera.org/learn/golang-functions-methods/peer/qKrnv/module-2-activity/)
 
 ### by me
 
@@ -344,9 +340,7 @@ func GenDisplaceFn(acceleration, velocity, displacement float64) func(float64) f
 
 
 
-## module-3-activity
-
-[https://www.coursera.org/learn/golang-functions-methods/peer/Z8tkv/module-3-activity/](https://www.coursera.org/learn/golang-functions-methods/peer/Z8tkv/module-3-activity/)
+## [module-3-activity](https://www.coursera.org/learn/golang-functions-methods/peer/Z8tkv/module-3-activity/)
 
 ### by me
 
@@ -684,6 +678,184 @@ func main() {
 		}
 		bestiary[animal].getTrait(trait)
 	}
+}
+
+```
+
+
+
+## [module-4-activity](https://www.coursera.org/learn/golang-functions-methods/peer/gurxW/module-4-activity/)
+
+### by me
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+type Animal interface {
+	Eat()
+	Move()
+	Speak()
+}
+
+// Define animal type "Cow"
+type Cow struct {
+	food       string
+	locomotion string
+	noise      string
+}
+
+func (c *Cow) Eat() {
+	fmt.Print(c.food)
+}
+func (c *Cow) Move() {
+	fmt.Print(c.locomotion)
+}
+func (c *Cow) Speak() {
+	fmt.Print(c.noise)
+}
+
+// Define animal type "Bird"
+type Bird struct {
+	food       string
+	locomotion string
+	noise      string
+}
+
+func (b *Bird) Eat() {
+	fmt.Print(b.food)
+}
+func (b *Bird) Move() {
+	fmt.Print(b.locomotion)
+}
+func (b *Bird) Speak() {
+	fmt.Print(b.noise)
+}
+
+// Define animal type "Snake"
+type Snake struct {
+	food       string
+	locomotion string
+	noise      string
+}
+
+func (s *Snake) Eat() {
+	fmt.Print(s.food)
+}
+func (s *Snake) Move() {
+	fmt.Print(s.locomotion)
+}
+func (s *Snake) Speak() {
+	fmt.Print(s.noise)
+}
+
+func GetInfo(animalMap map[string]Animal, a_name, a_type_or_info string) {
+	value, ok := animalMap[a_name]
+	if ok {
+		// fmt.Println(value)
+		// fmt.Printf("animal -> %#v | %v | %T\n", value, value, value)
+		switch a_type_or_info {
+		case "eat":
+			value.Eat()
+		case "move":
+			value.Move()
+		case "speak":
+			value.Speak()
+		default:
+			fmt.Println("Wrong Input!")
+		}
+		fmt.Println()
+	} else {
+		fmt.Println("animal doesn't exist!")
+	}
+
+}
+
+func CreateAnimal(animalMap map[string]Animal, a_name, a_type_or_info string) {
+
+	value, ok := animalMap[a_name]
+	if ok {
+		// fmt.Println(value)
+		// panic("animal exists already!")
+		fmt.Printf("animal %s exists already! -> %v\n", a_name, value)
+	} else {
+
+		switch a_type_or_info {
+		case "cow":
+			c := &Cow{
+				"grass",
+				"walk",
+				"moo",
+			}
+			animalMap[a_name] = c
+		case "bird":
+			b := &Bird{
+				"worms",
+				"fly",
+				"peep",
+			}
+			animalMap[a_name] = b
+		case "snake":
+			s := &Snake{
+				"mice",
+				"slither",
+				"hsss",
+			}
+			animalMap[a_name] = s
+		default:
+			// panic("Wrong Animal Type!")
+			fmt.Println("Wrong Animal Type!")
+		}
+		fmt.Println("Created it!")
+	}
+}
+
+func main() {
+
+	var (
+		a_command      string
+		a_name         string
+		a_type_or_info string
+	)
+
+	animalMap := make(map[string]Animal)
+
+	fmt.Println("Each “newanimal” command must be a single line containing three strings. The first string is “newanimal”. The second string is an arbitrary string which will be the name of the new animal. The third string is the type of the new animal, either “cow”, “bird”, or “snake”. ")
+	fmt.Println()
+	fmt.Println("Each “query” command must be a single line containing 3 strings. The first string is “query”. The second string is the name of the animal. The third string is the name of the information requested about the animal, either “eat”, “move”, or “speak”. ")
+	fmt.Println("\nCreation command: \n\t\tnewanimal animal_name animal_type (e.g. newanimal mycow cow)")
+	fmt.Println("Query command: \n\t\tquery animal_name animal_info (e.g. query cow1 move)")
+	fmt.Println("Enter 'q' to exit!")
+
+	for {
+
+		fmt.Println("\n\nPlease type your command:")
+		fmt.Print("> ")
+		fmt.Scanln(&a_command, &a_name, &a_type_or_info)
+
+		switch a_command {
+		case "q":
+			os.Exit(0)
+		case "newanimal":
+			CreateAnimal(animalMap, a_name, a_type_or_info)
+		case "query":
+			GetInfo(animalMap, a_name, a_type_or_info)
+		default:
+			fmt.Println("Wrong Command!")
+		}
+
+		fmt.Print("\nYour animals: ")
+		for k := range animalMap {
+			// fmt.Print(k)
+			fmt.Printf("%s, ", k)
+		}
+
+	}
+
 }
 
 ```
