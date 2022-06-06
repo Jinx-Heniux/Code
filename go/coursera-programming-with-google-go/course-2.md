@@ -860,3 +860,99 @@ func main() {
 
 ```
 
+
+
+### by Rupesh Shah
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+type Animal interface {
+	Eat()
+	Move()
+	Speak()
+}
+type Cow struct{ food, locomotion, noise string }
+
+func (c Cow) Eat() {
+	fmt.Println("Food " + c.food)
+}
+func (c Cow) Move() {
+	fmt.Println("Locomotion " + c.locomotion)
+}
+func (c Cow) Speak() {
+	fmt.Println("Noise " + c.noise)
+}
+
+type Bird struct{ food, locomotion, noise string }
+
+func (b Bird) Eat() {
+	fmt.Println("Food " + b.food)
+}
+func (b Bird) Move() {
+	fmt.Println("Locomotion " + b.locomotion)
+}
+func (b Bird) Speak() {
+	fmt.Println("Noise " + b.noise)
+}
+
+type Snake struct{ food, locomotion, noise string }
+
+func (s Snake) Eat() {
+	fmt.Println("Food " + s.food)
+}
+func (s Snake) Move() {
+	fmt.Println("Locomotion " + s.locomotion)
+}
+func (s Snake) Speak() {
+	fmt.Println("Noise " + s.noise)
+}
+
+func main() {
+	var input1, input2, input3 string
+	var animalMap map[string]Animal
+	animalMap = make(map[string]Animal)
+	for {
+		fmt.Println("Enter command. Valid command formats are as following")
+		fmt.Println("For new animal entry - 'newanimal @animalname @animaltype'")
+		fmt.Println("For querying animal details - 'query @animalname @action'")
+		fmt.Print(">")
+		fmt.Scan(&input1, &input2, &input3)
+		if input1 == "newanimal" {
+			switch strings.ToLower(input3) {
+			case "cow":
+				animalMap[input2] = Cow{food: "grass", locomotion: "walk", noise: "moo"}
+				fmt.Println("Created it!")
+			case "bird":
+				animalMap[input2] = Bird{food: "worms", locomotion: "fly", noise: "peep"}
+				fmt.Println("Created it!")
+			case "snake":
+				animalMap[input2] = Snake{food: "mice", locomotion: "slither", noise: "hsss"}
+				fmt.Println("Created it!")
+			default:
+				fmt.Println("Invalid animal type, supported types are [cow|bird|snake]")
+			}
+		} else if input1 == "query" {
+			switch strings.ToLower(input3) {
+			case "eat":
+				animalMap[input2].Eat()
+			case "move":
+				animalMap[input2].Move()
+			case "speak":
+				animalMap[input2].Speak()
+			default:
+				fmt.Println("Invalid action type, supported types are [eat|move|speak]")
+			}
+		} else {
+			fmt.Print("Not a valid command.")
+		}
+	}
+}
+
+```
+
