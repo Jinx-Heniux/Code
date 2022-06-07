@@ -173,3 +173,31 @@ func main() {
 
 ```
 
+
+
+### 斐波那契数列(Fibonacci)
+
+```go
+package main
+
+import "fmt"
+
+func fibonaci(i int) int {
+	if i == 0 {
+		return 0
+	}
+	if i == 1 {
+		return 1
+	}
+	return fibonaci(i-1) + fibonaci(i-2)
+}
+
+func main() {
+	var i int
+	for i = 0; i < 10; i++ {
+		fmt.Printf("i=%d -> %d\n", i, fibonaci(i))
+	}
+}
+
+```
+
