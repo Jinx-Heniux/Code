@@ -146,3 +146,30 @@ func main() {
 
 ```
 
+
+
+### 递归函数
+
+### 数字阶乘 factorial
+
+```go
+package main
+
+import "fmt"
+
+func factorial(i int) int {
+	if i <= 1 {
+		return 1
+	}
+	return i * factorial(i-1)
+}
+
+func main() {
+	// var i int = 7 // Factorial of 7 is 5040
+	// i := 2 // Factorial of 2 is 2
+	i := 3 // Factorial of 3 is 6
+	fmt.Printf("Factorial of %d is %d\n", i, factorial(i))
+}
+
+```
+
