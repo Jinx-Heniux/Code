@@ -117,7 +117,13 @@ func main() {
 
 ```
 
-### 实例化
+
+
+### 取结构体的地址实例化
+
+### 使用键值对初始化
+
+### 使用值的列表初始化
 
 ```go
 package main
@@ -177,8 +183,9 @@ func main() {
 	}
 	fmt.Printf("p8=%#v\n", p8) //p8=&main.person{name:"pprof.cn", city:"北京", age:18}
 }
-
 ```
+
+
 
 ### 结构体内存布局
 
