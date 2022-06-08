@@ -32,6 +32,7 @@
   * [面向对象](go/mian-xiang-dui-xiang/README.md)
     * [方法](go/mian-xiang-dui-xiang/fang-fa.md)
     * [匿名字段](go/mian-xiang-dui-xiang/ni-ming-zi-duan.md)
+    * [方法集](go/mian-xiang-dui-xiang/fang-fa-ji.md)
   * [网络编程](go/wang-luo-bian-cheng/README.md)
     * [HTTP](go/wang-luo-bian-cheng/http.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go/README.md)
