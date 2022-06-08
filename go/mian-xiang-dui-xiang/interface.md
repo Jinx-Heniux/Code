@@ -293,6 +293,19 @@ package main
 
 import "fmt"
 
+func justifyType(x interface{}) {
+	switch v := x.(type) {
+	case string:
+		fmt.Printf("x is a string，value is %v\n", v)
+	case int:
+		fmt.Printf("x is a int is %v\n", v)
+	case bool:
+		fmt.Printf("x is a bool is %v\n", v)
+	default:
+		fmt.Println("unsupport type！")
+	}
+}
+
 func main() {
 	var x interface{}
 	x = "pprof.cn"
@@ -302,9 +315,21 @@ func main() {
 	} else {
 		fmt.Println("类型断言失败")
 	}
+
+	justifyType("pprof.cn")
+	justifyType(100)
+	justifyType(100.00)
+	justifyType(true)
 }
 
-// pprof.cn
+/*
+pprof.cn
+x is a string，value is pprof.cn
+x is a int is 100
+unsupport type！
+x is a bool is true
+*/
+
 
 ```
 
