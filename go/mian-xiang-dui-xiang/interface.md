@@ -230,3 +230,57 @@ type:bool value:true
 
 ```
 
+
+
+### 空接口作为函数的参数
+
+```go
+package main
+
+import "fmt"
+
+// 空接口作为函数参数
+func show(a interface{}) {
+	fmt.Printf("type:%T value:%v\n", a, a)
+}
+
+func main() {
+
+	show("pprof.cn")
+	show(100)
+	show(true)
+}
+
+/*
+type:string value:pprof.cn
+type:int value:100
+type:bool value:true
+*/
+
+```
+
+
+
+### 空接口作为map的值
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	// 空接口作为map值
+	var studentInfo = make(map[string]interface{})
+	studentInfo["name"] = "李白"
+	studentInfo["age"] = 18
+	studentInfo["married"] = false
+	fmt.Println(studentInfo)
+}
+
+/*
+map[age:18 married:false name:李白]
+*/
+
+```
+
