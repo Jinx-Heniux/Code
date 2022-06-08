@@ -1,4 +1,8 @@
-# 方法
+---
+description: 方法
+---
+
+# Method
 
 ## [方法定义 · Go语言中文文档](https://www.topgoer.com/%E6%96%B9%E6%B3%95/%E6%96%B9%E6%B3%95%E5%AE%9A%E4%B9%89.html)
 

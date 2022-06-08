@@ -1,8 +1,6 @@
-# Function
+# 函数定义
 
-## 函数定义
-
-[https://www.topgoer.com/%E5%87%BD%E6%95%B0/%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89.html](https://www.topgoer.com/%E5%87%BD%E6%95%B0/%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89.html)
+## [函数定义 · Go语言中文文档](https://www.topgoer.com/%E5%87%BD%E6%95%B0/%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89.html)
 
 
 
@@ -36,6 +34,10 @@ func main() {
 ```
 
 
+
+### 函数作为参数
+
+### 函数类型
 
 ```go
 package main
