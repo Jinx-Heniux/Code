@@ -204,3 +204,41 @@ func main() {
 
 ```
 
+
+
+### 指针类型匿名字段
+
+```go
+package main
+
+import "fmt"
+
+//人
+type Person struct {
+	name string
+	sex  string
+	age  int
+}
+
+// 学生
+type Student struct {
+	*Person
+	id   int
+	addr string
+}
+
+func main() {
+	s1 := Student{&Person{"5lmh", "man", 18}, 1, "bj"}
+	fmt.Println(s1)
+	fmt.Println(s1.name)
+	fmt.Println(s1.Person.name)
+}
+
+/*
+{0xc0000a0150 1 bj}
+5lmh
+5lmh
+*/
+
+```
+
