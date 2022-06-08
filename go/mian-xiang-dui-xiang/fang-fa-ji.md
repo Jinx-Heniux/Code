@@ -23,12 +23,20 @@ func main() {
 	t1 := T{1}
 	fmt.Printf("t1 is : %v\n", t1)
 	t1.test()
+	fmt.Println()
+	t2 := &t1
+	fmt.Printf("t2 is : %v\n", t2)
+	t2.test()
 }
 
 /*
 t1 is : {1}
 类型 T 方法集包含全部 receiver T 方法。
+
+t2 is : &{1}
+类型 T 方法集包含全部 receiver T 方法。
 */
+
 
 ```
 
