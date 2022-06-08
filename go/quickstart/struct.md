@@ -788,5 +788,100 @@ func main() {
 	fmt.Println(ce)
 }
 
+/*
+[{1 xiaoming 22} {2 xiaozhang 33}]
+[{1 xiaoming 22} {2 xiaozhang 999}]
+*/
+```
+
+
+
+### 删除map类型的结构体
+
+```go
+package main
+
+import "fmt"
+
+type student struct {
+	id   int
+	name string
+	age  int
+}
+
+func main() {
+	ce := make(map[int]student)
+	ce[1] = student{1, "xiaolizi", 22}
+	ce[2] = student{2, "wang", 23}
+	fmt.Println(ce)
+	delete(ce, 2)
+	fmt.Println(ce)
+}
+
+/*
+map[1:{1 xiaolizi 22} 2:{2 wang 23}]
+map[1:{1 xiaolizi 22}]
+*/
+
+```
+
+
+
+### 实现map有序输出(面试经常问到)
+
+```go
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func main() {
+	map1 := make(map[int]string, 5)
+	map1[1] = "www.topgoer.com"
+	map1[2] = "rpc.topgoer.com"
+	map1[5] = "ceshi"
+	map1[3] = "xiaohong"
+	map1[4] = "xiaohuang"
+	fmt.Println(map1)
+	fmt.Println()
+
+	for k, v := range map1 {
+		fmt.Printf("%d -> %s\n", k, v)
+	}
+	fmt.Println()
+
+	sli := []int{}
+	for k, _ := range map1 {
+		sli = append(sli, k)
+	}
+	sort.Ints(sli)
+	fmt.Println(sli)
+	fmt.Println()
+
+	for i := 0; i < len(map1); i++ {
+		fmt.Println(map1[sli[i]])
+	}
+}
+
+/*
+map[1:www.topgoer.com 2:rpc.topgoer.com 3:xiaohong 4:xiaohuang 5:ceshi]
+
+5 -> ceshi
+3 -> xiaohong
+4 -> xiaohuang
+1 -> www.topgoer.com
+2 -> rpc.topgoer.com
+
+[1 2 3 4 5]
+
+www.topgoer.com
+rpc.topgoer.com
+xiaohong
+xiaohuang
+ceshi
+*/
+
 ```
 
