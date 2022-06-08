@@ -284,3 +284,27 @@ map[age:18 married:false name:李白]
 
 ```
 
+
+
+### 类型断言 接口值
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var x interface{}
+	x = "pprof.cn"
+	v, ok := x.(string)
+	if ok {
+		fmt.Println(v)
+	} else {
+		fmt.Println("类型断言失败")
+	}
+}
+
+// pprof.cn
+
+```
+
