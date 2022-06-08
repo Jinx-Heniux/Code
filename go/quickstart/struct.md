@@ -467,3 +467,31 @@ func main() {
 
 ```
 
+
+
+### 结构体的匿名字段
+
+```go
+package main
+
+import "fmt"
+
+//Person 结构体Person类型
+type Person struct {
+	string
+	int
+}
+
+func main() {
+	p1 := Person{
+		"pprof.cn",
+		18,
+	}
+	fmt.Printf("%#v\n", p1)        //main.Person{string:"pprof.cn", int:18}
+	fmt.Println(p1.string, p1.int) //pprof.cn 18
+}
+
+// 匿名字段默认采用类型名作为字段名，结构体要求字段名称必须唯一，因此一个结构体中同种类型的匿名字段只能有一个。
+
+```
+
