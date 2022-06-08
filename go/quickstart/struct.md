@@ -281,3 +281,35 @@ stus: [{pprof.cn 18} {测试 23} {博客 28}] | addr: 0xc00000c030
 
 ```
 
+
+
+### 构造函数
+
+```go
+package main
+
+import "fmt"
+
+type person struct {
+	name string
+	city string
+	age  int8
+}
+
+func newPerson(name, city string, age int8) *person {
+	return &person{
+		name: name,
+		city: city,
+		age:  age,
+	}
+}
+
+func main() {
+	p9 := newPerson("pprof.cn", "测试", 90)
+	fmt.Printf("%#v\n", p9)
+}
+
+// &main.person{name:"pprof.cn", city:"测试", age:90}
+
+```
+
