@@ -128,3 +128,64 @@ s2 is : &{{1}}
 
 ```
 
+
+
+### 如类型 S 包含匿名字段 \*T，则 S 和 \*S 方法集包含 T + \*T 方法
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type S struct {
+	T
+}
+
+type T struct {
+	int
+}
+
+func (t T) testT() {
+	fmt.Println("如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 T 方法")
+}
+func (t *T) testP() {
+	fmt.Println("如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 *T 方法")
+}
+
+func (s S) testT() {
+	fmt.Println("如类型 S 包含匿名字段 *T，则 ......")
+}
+
+func main() {
+	s1 := S{T{1}}
+	s2 := &s1
+	fmt.Printf("s1 is : %v\n", s1)
+	s1.testT()
+	s1.testP()
+	s1.T.testT()
+	s1.T.testP()
+
+	fmt.Printf("s2 is : %v\n", s2)
+	s2.testT()
+	s2.testP()
+	s2.T.testT()
+	s2.T.testP()
+}
+
+/*
+s1 is : {{1}}
+如类型 S 包含匿名字段 *T，则 ......
+如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 *T 方法
+如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 T 方法
+如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 *T 方法
+s2 is : &{{1}}
+如类型 S 包含匿名字段 *T，则 ......
+如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 *T 方法
+如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 T 方法
+如类型 S 包含匿名字段 *T，则 S 和 *S 方法集包含 *T 方法
+*/
+
+```
+
