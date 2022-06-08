@@ -46,7 +46,7 @@ import (
 )
 
 type person struct {
-	name string
+	name string // 结构体的字段（成员变量）
 	city string
 	age  int8
 }
