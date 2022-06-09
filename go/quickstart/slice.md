@@ -654,54 +654,62 @@ import (
 func main() {
 
 	s1 := []int{1, 2, 3, 4, 5}
-	fmt.Printf("(%T)(%d)(%d)(%p)", s1, len(s1), cap(s1), &s1[0])
-	fmt.Printf("slice s1 : %v\n", s1)
+	fmt.Printf("s1 -> %v | %T | %d | %d | %p | %p | %p\n", s1, s1, len(s1), cap(s1), &s1, s1, &s1[0])
 
 	s2 := make([]int, 10)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s2, len(s2), cap(s2), &s2[0])
-	fmt.Printf("slice s2 : %v\n", s2)
+	fmt.Printf("s2 -> %v | %T | %d | %d | %p | %p | %p\n", s2, s2, len(s2), cap(s2), &s2, s2, &s2[0])
 
-	// copy(s1, s2)
-	copy(s2, s1)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s1, len(s1), cap(s1), &s1[0])
-	fmt.Printf("copied slice s1 : %v\n", s1)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s2, len(s2), cap(s2), &s2[0])
-	fmt.Printf("copied slice s2 : %v\n", s2)
+	// copy ：函数 copy 在两个 slice 间复制数据，复制长度以 len 小的为准。(好像不对)
+	// copy(s1, s2) // s2被拷贝到s1
+	copy(s2, s1) // s1被拷贝到s1
+	fmt.Println("after copying ...")
+	fmt.Printf("s1 -> %v | %T | %d | %d | %p | %p | %p\n", s1, s1, len(s1), cap(s1), &s1, s1, &s1[0])
+	fmt.Printf("s2 -> %v | %T | %d | %d | %p | %p | %p\n", s2, s2, len(s2), cap(s2), &s2, s2, &s2[0])
+	fmt.Println()
 
 	s11 := []int{5, 4}
-	fmt.Printf("(%T)(%d)(%d)(%p)", s11, len(s11), cap(s11), &s11[0])
-	fmt.Printf("slice s11 : %v\n", s11)
+	fmt.Printf("s11 -> %v | %T | %d | %d | %p | %p | %p\n", s11, s11, len(s11), cap(s11), &s11, s11, &s11[0])
 
-	copy(s2, s11)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s11, len(s11), cap(s11), &s11[0])
-	fmt.Printf("slice s11 : %v\n", s11)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s2, len(s2), cap(s2), &s2[0])
-	fmt.Printf("copied slice s2 : %v\n", s2)
+	copy(s2, s11) // s11被拷贝到s1
+	fmt.Println("after copying ...")
+	fmt.Printf("s11 -> %v | %T | %d | %d | %p | %p | %p\n", s11, s11, len(s11), cap(s11), &s11, s11, &s11[0])
+	fmt.Printf("s2 -> %v | %T | %d | %d | %p | %p | %p\n", s2, s2, len(s2), cap(s2), &s2, s2, &s2[0])
+	fmt.Println()
 
 	s3 := []int{1, 2, 3}
-	fmt.Printf("(%T)(%d)(%d)(%p)", s3, len(s3), cap(s3), &s3[0])
-	fmt.Printf("slice s3 : %v\n", s3)
+	fmt.Printf("s3 -> %v | %T | %d | %d | %p | %p | %p\n", s3, s3, len(s3), cap(s3), &s3, s3, &s3[0])
 
 	s3 = append(s3, s2...)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s3, len(s3), cap(s3), &s3[0])
-	fmt.Printf("appended slice s3 : %v\n", s3)
+	fmt.Println("after appending ...")
+	fmt.Printf("s3 -> %v | %T | %d | %d | %p | %p | %p\n", s3, s3, len(s3), cap(s3), &s3, s3, &s3[0])
 
 	s3 = append(s3, 4, 5, 6)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s3, len(s3), cap(s3), &s3[0])
-	fmt.Printf("last slice s3 : %v\n", s3)
+	fmt.Println("after appending ...")
+	fmt.Printf("s3 -> %v | %T | %d | %d | %p | %p | %p\n", s3, s3, len(s3), cap(s3), &s3, s3, &s3[0])
 
-	// ([]int)(5)(5)(0xc000128030)slice s1 : [1 2 3 4 5]
-	// ([]int)(10)(10)(0xc000136000)slice s2 : [0 0 0 0 0 0 0 0 0 0]
-	// ([]int)(5)(5)(0xc000128030)copied slice s1 : [1 2 3 4 5]
-	// ([]int)(10)(10)(0xc000136000)copied slice s2 : [1 2 3 4 5 0 0 0 0 0]
-	// ([]int)(2)(2)(0xc000132110)slice s11 : [5 4]
-	// ([]int)(2)(2)(0xc000132110)slice s11 : [5 4]
-	// ([]int)(10)(10)(0xc000136000)copied slice s2 : [5 4 3 4 5 0 0 0 0 0]
-	// ([]int)(3)(3)(0xc00013a000)slice s3 : [1 2 3]
-	// ([]int)(13)(14)(0xc00013c000)appended slice s3 : [1 2 3 5 4 3 4 5 0 0 0 0 0]
-	// 没明白什么是14？([]int)(13)(14)
-	// ([]int)(16)(28)(0xc00013e000)last slice s3 : [1 2 3 5 4 3 4 5 0 0 0 0 0 4 5 6]
 }
+
+/*
+s1 -> [1 2 3 4 5] | []int | 5 | 5 | 0xc00011c018 | 0xc000122030 | 0xc000122030
+s2 -> [0 0 0 0 0 0 0 0 0 0] | []int | 10 | 10 | 0xc00011c078 | 0xc000134000 | 0xc000134000
+after copying ...
+s1 -> [1 2 3 4 5] | []int | 5 | 5 | 0xc00011c018 | 0xc000122030 | 0xc000122030
+s2 -> [1 2 3 4 5 0 0 0 0 0] | []int | 10 | 10 | 0xc00011c078 | 0xc000134000 | 0xc000134000
+
+s11 -> [5 4] | []int | 2 | 2 | 0xc00011c168 | 0xc00012c110 | 0xc00012c110
+after copying ...
+s11 -> [5 4] | []int | 2 | 2 | 0xc00011c168 | 0xc00012c110 | 0xc00012c110
+s2 -> [5 4 3 4 5 0 0 0 0 0] | []int | 10 | 10 | 0xc00011c078 | 0xc000134000 | 0xc000134000
+
+s3 -> [1 2 3] | []int | 3 | 3 | 0xc00011c258 | 0xc000136000 | 0xc000136000
+after appending ...
+s3 -> [1 2 3 5 4 3 4 5 0 0 0 0 0] | []int | 13 | 14 | 0xc00011c258 | 0xc000138000 | 0xc000138000
+after appending ...
+s3 -> [1 2 3 5 4 3 4 5 0 0 0 0 0 4 5 6] | []int | 16 | 28 | 0xc00011c258 | 0xc00013a000 | 0xc00013a000
+*/
+
+// 没明白s3 appending后cap什么是14？
+
 
 ```
 
