@@ -778,6 +778,22 @@ func main() {
 
 }
 
+/*
+([10]int)(10)(10)(0xc0000b2000)
+([]int)(10)(10)(0xc0000b2000)
+inde : 0 , value : 0
+inde : 1 , value : 1
+inde : 2 , value : 2
+inde : 3 , value : 3
+inde : 4 , value : 4
+inde : 5 , value : 5
+inde : 6 , value : 6
+inde : 7 , value : 7
+inde : 8 , value : 8
+inde : 9 , value : 9
+*/
+
+
 ```
 
 
