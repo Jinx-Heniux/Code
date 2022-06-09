@@ -577,18 +577,66 @@ func main() {
 
 	s := make([]int, 0, 1)
 	c := cap(s)
-	fmt.Printf("s:%p\n", &s)
+	fmt.Printf("s -> %v | %T | %d | %d | %p | %p\n", s, s, len(s), cap(s), &s, s)
+	fmt.Println()
 
 	for i := 0; i < 50; i++ {
 		s = append(s, i)
-		fmt.Printf("i=%d || len= %d cap=%d || s: %p || s=%v\n", i, len(s), cap(s), &s, s)
+		fmt.Printf("i=%d (append %d) | len=%d cap=%d s:%p arr:%p s=%v\n", i, i, len(s), cap(s), &s, s, s)
 		if n := cap(s); n > c {
-			fmt.Printf("cap: %d -> %d\n", c, n)
+			fmt.Printf("Increase cap from %d to %d\n", c, n)
+			fmt.Println()
 			c = n
+		} else {
+			fmt.Println("No Increase")
 		}
 	}
 
 }
+
+/*
+s -> [] | []int | 0 | 1 | 0xc00000c030 | 0xc0000140b8
+
+i=0 (append 0) | len=1 cap=1 s:0xc00000c030 arr:0xc0000140b8 s=[0]
+No Increase
+i=1 (append 1) | len=2 cap=2 s:0xc00000c030 arr:0xc0000140e0 s=[0 1]
+Increase cap from 1 to 2
+
+i=2 (append 2) | len=3 cap=4 s:0xc00000c030 arr:0xc00001c140 s=[0 1 2]
+Increase cap from 2 to 4
+
+i=3 (append 3) | len=4 cap=4 s:0xc00000c030 arr:0xc00001c140 s=[0 1 2 3]
+No Increase
+i=4 (append 4) | len=5 cap=8 s:0xc00000c030 arr:0xc00001e200 s=[0 1 2 3 4]
+Increase cap from 4 to 8
+
+i=5 (append 5) | len=6 cap=8 s:0xc00000c030 arr:0xc00001e200 s=[0 1 2 3 4 5]
+No Increase
+i=6 (append 6) | len=7 cap=8 s:0xc00000c030 arr:0xc00001e200 s=[0 1 2 3 4 5 6]
+No Increase
+i=7 (append 7) | len=8 cap=8 s:0xc00000c030 arr:0xc00001e200 s=[0 1 2 3 4 5 6 7]
+No Increase
+i=8 (append 8) | len=9 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8]
+Increase cap from 8 to 16
+
+i=9 (append 9) | len=10 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8 9]
+No Increase
+i=10 (append 10) | len=11 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8 9 10]
+No Increase
+i=11 (append 11) | len=12 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8 9 10 11]
+No Increase
+i=12 (append 12) | len=13 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8 9 10 11 12]
+No Increase
+i=13 (append 13) | len=14 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8 9 10 11 12 13]
+No Increase
+i=14 (append 14) | len=15 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14]
+No Increase
+i=15 (append 15) | len=16 cap=16 s:0xc00000c030 arr:0xc000026100 s=[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]
+No Increase
+i=16 (append 16) | len=17 cap=32 s:0xc00000c030 arr:0xc000100000 s=[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16]
+Increase cap from 16 to 32
+*/
+
 
 ```
 
