@@ -399,8 +399,6 @@ func main() {
 
 ### 用append内置函数操作切片（切片追加）
 
-append ：向 slice 尾部添加数据，返回新的 slice 对象。
-
 ```go
 package main
 
@@ -411,38 +409,52 @@ import (
 func main() {
 
 	var a = []int{1, 2, 3}
-	fmt.Printf("(%T)(%d)(%d)(%p)", a, len(a), cap(a), &a[0])
-	fmt.Printf("slice a : %v\n", a)
+	// fmt.Printf("(%T)(%d)(%d)(%p)", a, len(a), cap(a), &a[0])
+	// fmt.Printf("slice a : %v\n", a)
+	fmt.Printf("a -> %#v | %v | %T | %d | %d | %p | %p\n", a, a, a, len(a), cap(a), a, &a[0])
 
 	var b = []int{4, 5, 6}
-	fmt.Printf("(%T)(%d)(%d)(%p)", b, len(b), cap(b), &b[0])
-	fmt.Printf("slice b : %v\n", b)
+	// fmt.Printf("(%T)(%d)(%d)(%p)", b, len(b), cap(b), &b[0])
+	// fmt.Printf("slice b : %v\n", b)
+	fmt.Printf("b -> %#v | %v | %T | %d | %d | %p | %p\n", b, b, b, len(b), cap(b), b, &b[0])
 
 	c := append(a, b...)
-	fmt.Printf("(%T)(%d)(%d)(%p)", c, len(c), cap(c), &c[0])
-	fmt.Printf("slice c : %v\n", c)
+	// fmt.Printf("(%T)(%d)(%d)(%p)", c, len(c), cap(c), &c[0])
+	// fmt.Printf("slice c : %v\n", c)
+	fmt.Printf("c -> %#v | %v | %T | %d | %d | %p | %p\n", c, c, c, len(c), cap(c), c, &c[0])
 
 	d := append(c, 7)
-	fmt.Printf("(%T)(%d)(%d)(%p)", d, len(d), cap(d), &d[0])
-	fmt.Printf("slice d : %v\n", d)
+	// fmt.Printf("(%T)(%d)(%d)(%p)", d, len(d), cap(d), &d[0])
+	// fmt.Printf("slice d : %v\n", d)
+	fmt.Printf("d -> %#v | %v | %T | %d | %d | %p | %p\n", d, d, d, len(d), cap(d), d, &d[0])
+	// 底层数组翻倍增加，从6变成12
 
 	e := append(d, 8, 9, 10)
-	fmt.Printf("(%T)(%d)(%d)(%p)", e, len(e), cap(e), &e[0])
-	fmt.Printf("slice e : %v\n", e)
+	fmt.Printf("e -> %#v | %v | %T | %d | %d | %p | %p\n", e, e, e, len(e), cap(e), e, &e[0])
 
-	// ([]int)(3)(3)(0xc0000142d0)slice a : [1 2 3]
-	// ([]int)(3)(3)(0xc0000142e8)slice b : [4 5 6]
-	// ([]int)(6)(6)(0xc00001e360)slice c : [1 2 3 4 5 6]
-	// ([]int)(7)(12)(0xc0000221e0)slice d : [1 2 3 4 5 6 7]
-	// 底层数组翻倍增加，从6变成12
-	// ([]int)(10)(12)(0xc0000221e0)slice e : [1 2 3 4 5 6 7 8 9 10]
+	f := append(e, a...)
+	fmt.Printf("f -> %#v | %v | %T | %d | %d | %p | %p\n", f, f, f, len(f), cap(f), f, &f[0])
+
+	g := append(e, 1, 2, 3)
+	fmt.Printf("g -> %#v | %v | %T | %d | %d | %p | %p\n", g, g, g, len(g), cap(g), g, &g[0])
 
 }
+
+/*
+a -> []int{1, 2, 3} | [1 2 3] | []int | 3 | 3 | 0xc000018258 | 0xc000018258
+b -> []int{4, 5, 6} | [4 5 6] | []int | 3 | 3 | 0xc000018270 | 0xc000018270
+c -> []int{1, 2, 3, 4, 5, 6} | [1 2 3 4 5 6] | []int | 6 | 6 | 0xc00001a270 | 0xc00001a270
+d -> []int{1, 2, 3, 4, 5, 6, 7} | [1 2 3 4 5 6 7] | []int | 7 | 12 | 0xc000022120 | 0xc000022120
+e -> []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10} | [1 2 3 4 5 6 7 8 9 10] | []int | 10 | 12 | 0xc000022120 | 0xc000022120
+f -> []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3} | [1 2 3 4 5 6 7 8 9 10 1 2 3] | []int | 13 | 24 | 0xc000180000 | 0xc000180000
+g -> []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3} | [1 2 3 4 5 6 7 8 9 10 1 2 3] | []int | 13 | 24 | 0xc0001800c0 | 0xc0001800c0
+*/
+
 
 
 ```
 
-
+### append ：向 slice 尾部添加数据，返回新的 slice 对象。
 
 ```go
 package main
