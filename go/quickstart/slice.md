@@ -6,7 +6,7 @@ description: 切片
 
 ## [切片Slice · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%88%87%E7%89%87Slice.html)
 
-### 创建切片
+### 创建切片的各种方式
 
 ```go
 package main
@@ -18,28 +18,26 @@ import (
 func main() {
 
 	var str string
-	fmt.Printf("str -> %v(%T)\n", str, str) // str -> (string)
+	fmt.Printf("str -> %v(%T)\n", str, str)
 	if str == "" {
 		fmt.Println("str是空")
 	} else {
 		fmt.Println("str不是空")
 	}
-	// str是空
 
 	//1.声明切片
 	var s1 []int
-	fmt.Printf("s1 -> %#v(%T)\n", s1, s1) // s1 -> []([]int)
+	fmt.Printf("s1 -> %#v | %v | %T | %d | %d\n", s1, s1, s1, len(s1), cap(s1))
 	if s1 == nil {
 		fmt.Println("s1是空")
 	} else {
 		fmt.Println("s1不是空")
 	}
-	// s1是空
 
 	// 2.:=
 	s2 := []int{}
-	fmt.Printf("s2 -> %#v(%T)\n", s2, s2) // s2 -> []([]int)
-	if s2 == nil {
+	fmt.Printf("s2 -> %#v | %v | %T | %d | %d\n", s2, s2, s2, len(s2), cap(s2))
+	if s2 == nil { // this nil check is never true (SA4031)
 		fmt.Println("s2是空")
 	} else {
 		fmt.Println("s2不是空")
@@ -47,38 +45,51 @@ func main() {
 
 	// 3.make()
 	var s3 []int = make([]int, 0)
-	fmt.Printf("s3 -> %#v(%T)\n", s3, s3) // s3 -> []([]int)
-	if s3 == nil {
+	fmt.Printf("s3 -> %#v | %v | %T | %d | %d\n", s3, s3, s3, len(s3), cap(s3))
+	if s3 == nil { // this nil check is never true (SA4031)
 		fmt.Println("s3是空")
 	} else {
 		fmt.Println("s3不是空")
 	}
-	// s3不是空
 
 	// 4.初始化赋值
 	var s4 []int = make([]int, 0, 0)
-	fmt.Printf("s4 -> %#v(%T)\n", s4, s4) // s4 -> []([]int)
-	if s4 == nil {
+	fmt.Printf("s4 -> %#v | %v | %T | %d | %d\n", s4, s4, s4, len(s4), cap(s4))
+	if s4 == nil { // this nil check is never true (SA4031)
 		fmt.Println("s4是空")
 	} else {
 		fmt.Println("s4不是空")
 	}
-	// s4不是空
 
 	s5 := []int{1, 2, 3}
-	fmt.Printf("s5 -> %v(%T)(%d)(%d)\n", s5, s5, len(s5), cap(s5))
-	// s5 -> [1 2 3]([]int)(3)(3)
+	fmt.Printf("s5 -> %#v | %v | %T | %d | %d\n", s5, s5, s5, len(s5), cap(s5))
 
 	// 5.从数组切片
 	arr := [5]int{1, 2, 3, 4, 5}
-	fmt.Printf("arr -> %v(%T)(%d)(%d)\n", arr, arr, len(arr), cap(arr))
-	// arr -> [1 2 3 4 5]([5]int)(5)(5)
+	fmt.Printf("arr -> %#v | %v | %T | %d | %d\n", arr, arr, arr, len(arr), cap(arr))
+
 	var s6 []int
 	// 前包后不包
 	s6 = arr[1:4]
-	fmt.Printf("s6 -> %v(%T)(%d)(%d)\n", s6, s6, len(s6), cap(s6))
-	// s6 -> [2 3 4]([]int)(3)(4)
+	fmt.Printf("s6 -> %#v | %v | %T | %d | %d\n", s6, s6, s6, len(s6), cap(s6))
+
 }
+
+/*
+str -> (string)
+str是空
+s1 -> []int(nil) | [] | []int | 0 | 0
+s1是空
+s2 -> []int{} | [] | []int | 0 | 0
+s2不是空
+s3 -> []int{} | [] | []int | 0 | 0
+s3不是空
+s4 -> []int{} | [] | []int | 0 | 0
+s4不是空
+s5 -> []int{1, 2, 3} | [1 2 3] | []int | 3 | 3
+arr -> [5]int{1, 2, 3, 4, 5} | [1 2 3 4 5] | [5]int | 5 | 5
+s6 -> []int{2, 3, 4} | [2 3 4] | []int | 3 | 4
+*/
 
 
 ```
