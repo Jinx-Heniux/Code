@@ -111,33 +111,48 @@ var slice3 []int = arr[0:len(arr)] //var slice []int = arr[:]
 var slice4 = arr[:len(arr)-1]      //去掉切片的最后一个元素
 
 func main() {
-	fmt.Printf("(%T)(%d)(%d)", arr, len(arr), cap(arr))
-	fmt.Printf("全局变量: arr %v\n", arr)
 
-	fmt.Printf("(%T)(%d)(%d)", slice0, len(slice0), cap(slice0))
-	fmt.Printf("全局变量: slice0 %v\n", slice0)
+	fmt.Printf("全局变量 arr -> %#v | %v | %T | %d | %d\n", arr, arr, arr, len(arr), cap(arr))
+	fmt.Printf("全局变量 slice0 -> %#v | %v | %T | %d | %d\n", slice0, slice0, slice0, len(slice0), cap(slice0))
+	fmt.Printf("全局变量 slice1 -> %#v | %v | %T | %d | %d\n", slice1, slice1, slice1, len(slice1), cap(slice1))
+	fmt.Printf("全局变量 slice2 -> %#v | %v | %T | %d | %d\n", slice2, slice2, slice2, len(slice2), cap(slice2))
+	fmt.Printf("全局变量 slice3 -> %#v | %v | %T | %d | %d\n", slice3, slice3, slice3, len(slice3), cap(slice3))
+	fmt.Printf("全局变量 slice4 -> %#v | %v | %T | %d | %d\n", slice4, slice4, slice4, len(slice4), cap(slice4))
 
-	fmt.Printf("(%T)(%d)(%d)", slice1, len(slice1), cap(slice1))
-	fmt.Printf("全局变量: slice1 %v\n", slice1)
-	fmt.Printf("全局变量: slice2 %v\n", slice2)
-	fmt.Printf("全局变量: slice3 %v\n", slice3)
-	fmt.Printf("全局变量: slice4 %v\n", slice4)
 	fmt.Printf("-----------------------------------\n")
 
 	arr2 := [...]int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
-	slice5 := arr[2:8]
-	slice6 := arr[0:6]         //可以简写为 slice := arr[:end]
-	slice7 := arr[5:10]        //可以简写为 slice := arr[start:]
-	slice8 := arr[0:len(arr)]  //slice := arr[:]
-	slice9 := arr[:len(arr)-1] //去掉切片的最后一个元素
-	fmt.Printf("(%T)(%d)(%d)", arr2, len(arr2), cap(arr2))
-	fmt.Printf("局部变量:  arr2 %v\n", arr2)
-	fmt.Printf("局部变量:  slice5 %v\n", slice5)
-	fmt.Printf("局部变量:  slice6 %v\n", slice6)
-	fmt.Printf("局部变量:  slice7 %v\n", slice7)
-	fmt.Printf("局部变量:  slice8 %v\n", slice8)
-	fmt.Printf("局部变量:  slice9 %v\n", slice9)
+	slice5 := arr2[2:8]
+	slice6 := arr2[0:6]          //可以简写为 slice := arr[:end]
+	slice7 := arr2[5:10]         //可以简写为 slice := arr[start:]
+	slice8 := arr2[0:len(arr2)]  //slice := arr[:]
+	slice9 := arr2[:len(arr2)-1] //去掉切片的最后一个元素
+
+	fmt.Printf("局部变量 arr2 -> %#v | %v | %T | %d | %d\n", arr2, arr2, arr2, len(arr2), cap(arr2))
+	fmt.Printf("全局变量 slice5 -> %#v | %v | %T | %d | %d\n", slice5, slice5, slice5, len(slice5), cap(slice5))
+	fmt.Printf("全局变量 slice6 -> %#v | %v | %T | %d | %d\n", slice6, slice6, slice6, len(slice6), cap(slice6))
+	fmt.Printf("全局变量 slice7 -> %#v | %v | %T | %d | %d\n", slice7, slice7, slice7, len(slice7), cap(slice7))
+	fmt.Printf("全局变量 slice8 -> %#v | %v | %T | %d | %d\n", slice8, slice8, slice8, len(slice8), cap(slice8))
+	fmt.Printf("全局变量 slice9 -> %#v | %v | %T | %d | %d\n", slice9, slice9, slice9, len(slice9), cap(slice9))
+
 }
+
+/*
+全局变量 arr -> [10]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9} | [0 1 2 3 4 5 6 7 8 9] | [10]int | 10 | 10
+全局变量 slice0 -> []int{2, 3, 4, 5, 6, 7} | [2 3 4 5 6 7] | []int | 6 | 8
+全局变量 slice1 -> []int{0, 1, 2, 3, 4, 5} | [0 1 2 3 4 5] | []int | 6 | 10
+全局变量 slice2 -> []int{5, 6, 7, 8, 9} | [5 6 7 8 9] | []int | 5 | 5
+全局变量 slice3 -> []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9} | [0 1 2 3 4 5 6 7 8 9] | []int | 10 | 10
+全局变量 slice4 -> []int{0, 1, 2, 3, 4, 5, 6, 7, 8} | [0 1 2 3 4 5 6 7 8] | []int | 9 | 10
+-----------------------------------
+局部变量 arr2 -> [10]int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0} | [9 8 7 6 5 4 3 2 1 0] | [10]int | 10 | 10
+全局变量 slice5 -> []int{7, 6, 5, 4, 3, 2} | [7 6 5 4 3 2] | []int | 6 | 8
+全局变量 slice6 -> []int{9, 8, 7, 6, 5, 4} | [9 8 7 6 5 4] | []int | 6 | 10
+全局变量 slice7 -> []int{4, 3, 2, 1, 0} | [4 3 2 1 0] | []int | 5 | 5
+全局变量 slice8 -> []int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0} | [9 8 7 6 5 4 3 2 1 0] | []int | 10 | 10
+全局变量 slice9 -> []int{9, 8, 7, 6, 5, 4, 3, 2, 1} | [9 8 7 6 5 4 3 2 1] | []int | 9 | 10
+*/
+
 
 ```
 
@@ -192,6 +207,13 @@ func main() {
 	fmt.Println(s)
 	fmt.Println(data)
 }
+
+/*
+[102 203]
+[0 1 102 203 4 5]
+*/
+
+
 ```
 
 ### 直接创建 slice 对象
