@@ -859,7 +859,9 @@ func main() {
 
 ```
 
-string本身是不可变的，因此要改变string中字符。需要如下操作： 英文字符串：
+string本身是不可变的，因此要改变string中字符。需要如下操作：&#x20;
+
+### 英文字符串
 
 ```go
 package main
@@ -879,7 +881,7 @@ func main() {
 }
 ```
 
-含有中文字符串
+### 含有中文字符串
 
 ```go
 package main
@@ -901,7 +903,7 @@ func main() {
 
 ```
 
-切片容量
+### 切片容量
 
 ```go
 package main
@@ -919,6 +921,13 @@ func main() {
 	d3 := slice[:6]
 	fmt.Println(d3, len(d3), cap(d3))
 }
+
+/*
+[6 7] 2 4
+[0 1 2 3 4 5] 6 8
+[0 1 2 3 4 5] 6 10
+*/
+
 
 ```
 
