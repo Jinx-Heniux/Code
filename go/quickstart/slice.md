@@ -204,14 +204,82 @@ func main() {
 	s[0] += 100
 	s[1] += 200
 
-	fmt.Println(s)
 	fmt.Println(data)
+	fmt.Printf("s -> %#v | %v | %T | %d | %d\n", s, s, s, len(s), cap(s))
+	fmt.Println()
+
+	fmt.Println("s[:high] 从切片s的索引位置0到high处所获得的切片, len=high")
+	s1 := s[:1]
+	fmt.Printf("s1 -> %#v | %v | %T | %d | %d\n", s1, s1, s1, len(s1), cap(s1))
+	s2 := s[:2]
+	fmt.Printf("s2 -> %#v | %v | %T | %d | %d\n", s2, s2, s2, len(s2), cap(s2))
+	s3 := s[:3]
+	fmt.Printf("s3 -> %#v | %v | %T | %d | %d\n", s3, s3, s3, len(s3), cap(s3))
+	s4 := s[:4]
+	fmt.Printf("s4 -> %#v | %v | %T | %d | %d\n", s4, s4, s4, len(s4), cap(s4))
+	fmt.Println()
+	// s5 := s[:5] // panic: runtime error: slice bounds out of range [:5] with capacity 4
+	// fmt.Printf("s5 -> %#v | %v | %T | %d | %d\n", s5, s5, s5, len(s5), cap(s5))
+
+	fmt.Println("s[:] 从切片s的索引位置0到len(s)-1处所获得的切片")
+	s6 := s[:]
+	fmt.Printf("s6 -> %#v | %v | %T | %d | %d\n", s6, s6, s6, len(s6), cap(s6))
+	fmt.Println()
+
+	fmt.Println("s[low:] 从切片s的索引位置low到len(s)-1处所获得的切片")
+	s7 := s[0:]
+	fmt.Printf("s7 -> %#v | %v | %T | %d | %d\n", s7, s7, s7, len(s7), cap(s7))
+	s8 := s[1:]
+	fmt.Printf("s8 -> %#v | %v | %T | %d | %d\n", s8, s8, s8, len(s8), cap(s8))
+	s9 := s[2:]
+	fmt.Printf("s9 -> %#v | %v | %T | %d | %d\n", s9, s9, s9, len(s9), cap(s9))
+	fmt.Println()
+
+	fmt.Println("s[low:high] 从切片s的索引位置low到high处所获得的切片, len=high-low")
+	s10 := s[0:4]
+	fmt.Printf("s10 -> %#v | %v | %T | %d | %d\n", s10, s10, s10, len(s10), cap(s10))
+	s11 := s[1:4]
+	fmt.Printf("s11 -> %#v | %v | %T | %d | %d\n", s11, s11, s11, len(s11), cap(s11))
+	s12 := s[2:4]
+	fmt.Printf("s12 -> %#v | %v | %T | %d | %d\n", s12, s12, s12, len(s12), cap(s12))
+	s13 := s[0:3]
+	fmt.Printf("s13 -> %#v | %v | %T | %d | %d\n", s13, s13, s13, len(s13), cap(s13))
+	fmt.Println()
+
+	fmt.Println("s[low:high:max] 从切片s的索引位置low到high处所获得的切片, len=high-low, cap=max-low")
+	s14 := s[0:3:3]
+	fmt.Printf("s14 -> %#v | %v | %T | %d | %d\n", s14, s14, s14, len(s14), cap(s14))
+
 }
 
 /*
-[102 203]
 [0 1 102 203 4 5]
+s -> []int{102, 203} | [102 203] | []int | 2 | 4
+
+s[:high] 从切片s的索引位置0到high处所获得的切片, len=high
+s1 -> []int{102} | [102] | []int | 1 | 4
+s2 -> []int{102, 203} | [102 203] | []int | 2 | 4
+s3 -> []int{102, 203, 4} | [102 203 4] | []int | 3 | 4
+s4 -> []int{102, 203, 4, 5} | [102 203 4 5] | []int | 4 | 4
+
+s[:] 从切片s的索引位置0到len(s)-1处所获得的切片
+s6 -> []int{102, 203} | [102 203] | []int | 2 | 4
+
+s[low:] 从切片s的索引位置low到len(s)-1处所获得的切片
+s7 -> []int{102, 203} | [102 203] | []int | 2 | 4
+s8 -> []int{203} | [203] | []int | 1 | 3
+s9 -> []int{} | [] | []int | 0 | 2
+
+s[low:high] 从切片s的索引位置low到high处所获得的切片, len=high-low
+s10 -> []int{102, 203, 4, 5} | [102 203 4 5] | []int | 4 | 4
+s11 -> []int{203, 4, 5} | [203 4 5] | []int | 3 | 3
+s12 -> []int{4, 5} | [4 5] | []int | 2 | 2
+s13 -> []int{102, 203, 4} | [102 203 4] | []int | 3 | 4
+
+s[low:high:max] 从切片s的索引位置low到high处所获得的切片, len=high-low, cap=max-low
+s14 -> []int{102, 203, 4} | [102 203 4] | []int | 3 | 3
 */
+
 
 
 ```
