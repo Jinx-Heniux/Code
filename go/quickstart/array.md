@@ -1,8 +1,10 @@
+---
+description: 数组
+---
+
 # Array
 
-## 数组Array · Go语言中文文档
-
-[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html)
+## [数组Array · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html)
 
 ### 一维数组
 
