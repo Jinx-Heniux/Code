@@ -1,10 +1,8 @@
----
-description: 数组
----
-
 # Array
 
-## [数组Array · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html)
+## 数组Array · Go语言中文文档
+
+[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84Array.html)
 
 ### 一维数组
 
@@ -125,11 +123,6 @@ func main() {
 
 }
 
-/*
-(0,0)=1 (0,1)=2 (0,2)=3 
-(1,0)=7 (1,1)=8 (1,2)=9
-*/
-
 ```
 
 ### 数组拷贝和传参
@@ -156,22 +149,6 @@ func main() {
 	printArr(&arr2)
 	fmt.Println(arr2)
 }
-
-/*
-0 -> 10
-1 -> 0
-2 -> 0
-3 -> 0
-4 -> 0
-[10 0 0 0 0]
-0 -> 10
-1 -> 2
-2 -> 3
-3 -> 4
-4 -> 5
-[10 2 3 4 5]
-*/
-
 
 ```
 
@@ -212,34 +189,30 @@ func main() {
 
 ```
 
-
+找出数组中和为给定值的两个元素的下标，例如数组\[1,3,5,8,7]，找出两个元素之和等于8的下标分别是（0，4）和（1，2）
 
 ```go
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-//    找出数组中和为给定值的两个元素的下标，例如数组[1,3,5,8,7]，
-// 找出两个元素之和等于8的下标分别是（0，4）和（1，2）
-
-// 求元素和，是给定的值
-func myTest(a [5]int, target int) {
-	// 遍历数组
-	for i := 0; i < len(a); i++ {
-		other := target - a[i]
-		// 继续遍历
-		for j := i + 1; j < len(a); j++ {
-			if a[j] == other {
+func myTest(arr [5]int, target int) {
+	for i := 0; i < len(arr); i++ {
+		other := target - arr[i]
+		for j := i + 1; j < len(arr); j++ {
+			if arr[j] == other {
 				fmt.Printf("(%d,%d)\n", i, j)
 			}
 		}
 	}
+
 }
 
 func main() {
 	b := [5]int{1, 3, 5, 8, 7}
 	myTest(b, 8)
 }
-
 
 ```

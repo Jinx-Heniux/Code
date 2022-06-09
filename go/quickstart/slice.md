@@ -1,8 +1,10 @@
+---
+description: 切片
+---
+
 # Slice
 
-## 切片Slice · Go语言中文文档
-
-[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%88%87%E7%89%87Slice.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%88%87%E7%89%87Slice.html)
+## [切片Slice · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E5%88%87%E7%89%87Slice.html)
 
 ### 创建切片
 
