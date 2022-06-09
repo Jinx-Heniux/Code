@@ -186,6 +186,17 @@ func main() {
 	fmt.Printf("make局部slice5 : %v\n", slice5)
 }
 
+/*
+([]int)(10)(10)make全局slice0 : [0 0 0 0 0 0 0 0 0 0]
+([]int)(10)(10)make全局slice1 : [0 0 0 0 0 0 0 0 0 0]
+([]int)(10)(10)make全局slice2 : [0 0 0 0 0 0 0 0 0 0]
+--------------------------------------
+([]int)(10)(10)make局部slice3 : [0 0 0 0 0 0 0 0 0 0]
+make局部slice4 : [0 0 0 0 0 0 0 0 0 0]
+make局部slice5 : [0 0 0 0 0 0 0 0 0 0]
+*/
+
+
 ```
 
 ### 读写操作实际目标是底层数组
@@ -466,26 +477,25 @@ import (
 func main() {
 
 	s1 := make([]int, 0, 5)
-	fmt.Printf("(%T)(%d)(%d)", s1, len(s1), cap(s1))
-	fmt.Printf("address of s1->%p\n", &s1)
+	fmt.Printf("s1 -> %#v | %v | %T | %d | %d | %p | %p\n", s1, s1, s1, len(s1), cap(s1), &s1, s1)
 
 	s2 := append(s1, 1)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s2, len(s2), cap(s2), &s2[0])
-	fmt.Printf("address of s2 -> %p\n", &s2)
+	fmt.Printf("s2 -> %#v | %v | %T | %d | %d | %p | %p | %p\n", s2, s2, s2, len(s2), cap(s2), &s2, s2, &s2[0])
 
 	s3 := append(s1, 1, 2)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s3, len(s3), cap(s3), &s3[0])
-	fmt.Printf("address of s3 -> %p\n", &s3)
+	fmt.Printf("s3 -> %#v | %v | %T | %d | %d | %p | %p | %p\n", s3, s3, s3, len(s3), cap(s3), &s3, s3, &s3[0])
 
 	fmt.Println(s1, s2, s3)
 
-	// ([]int)(0)(5)address of s1->0xc00000c030
-	// ([]int)(1)(5)(0xc00001e360)address of s2 -> 0xc00000c060
-	// ([]int)(2)(5)(0xc00001e360)address of s3 -> 0xc00000c090
-	// [] [1] [1 2]
-	// 底层的数组是同一个，地址为0xc00001e360
-
 }
+
+/*
+s1 -> []int{} | [] | []int | 0 | 5 | 0xc00000c030 | 0xc00001a270
+s2 -> []int{1} | [1] | []int | 1 | 5 | 0xc00000c0a8 | 0xc00001a270 | 0xc00001a270
+s3 -> []int{1, 2} | [1 2] | []int | 2 | 5 | 0xc00000c120 | 0xc00001a270 | 0xc00001a270
+[] [1] [1 2]
+*/
+
 
 
 ```
