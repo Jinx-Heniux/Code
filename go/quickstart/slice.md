@@ -715,6 +715,8 @@ s3 -> [1 2 3 5 4 3 4 5 0 0 0 0 0 4 5 6] | []int | 16 | 28 | 0xc00011c258 | 0xc00
 
 
 
+### 两个 slice 可指向同一底层数组，允许元素区间重叠。
+
 ```go
 package main
 
@@ -725,30 +727,31 @@ import (
 func main() {
 
 	data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-	fmt.Printf("(%T)(%d)(%d)(%p)", data, len(data), cap(data), &data[0])
-	fmt.Println("array data : ", data)
+	fmt.Printf("array data -> %v | %T | %d | %d | %p | %p\n", data, data, len(data), cap(data), &data, &data[0])
+
 	s1 := data[8:]
 	s2 := data[:5]
-	fmt.Printf("(%T)(%d)(%d)(%p)", s1, len(s1), cap(s1), &s1[0])
-	fmt.Printf("slice s1 : %v\n", s1)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s2, len(s2), cap(s2), &s2[0])
-	fmt.Printf("slice s2 : %v\n", s2)
-	copy(s2, s1)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s1, len(s1), cap(s1), &s1[0])
-	fmt.Printf("copied slice s1 : %v\n", s1)
-	fmt.Printf("(%T)(%d)(%d)(%p)", s2, len(s2), cap(s2), &s2[0])
-	fmt.Printf("copied slice s2 : %v\n", s2)
-	fmt.Printf("(%T)(%d)(%d)(%p)", data, len(data), cap(data), &data[0])
-	fmt.Println("last array data : ", data)
+	fmt.Printf("s1 -> %v | %T | %d | %d | %p | %p | %p\n", s1, s1, len(s1), cap(s1), &s1, s1, &s1[0])
+	fmt.Printf("s2 -> %v | %T | %d | %d | %p | %p | %p\n", s2, s2, len(s2), cap(s2), &s2, s2, &s2[0])
 
-	// ([10]int)(10)(10)(0xc0000180a0)array data :  [0 1 2 3 4 5 6 7 8 9]
-	// ([]int)(2)(2)(0xc0000180e0)slice s1 : [8 9]
-	// ([]int)(5)(10)(0xc0000180a0)slice s2 : [0 1 2 3 4]
-	// ([]int)(2)(2)(0xc0000180e0)copied slice s1 : [8 9]
-	// ([]int)(5)(10)(0xc0000180a0)copied slice s2 : [8 9 2 3 4]
-	// ([10]int)(10)(10)(0xc0000180a0)last array data :  [8 9 2 3 4 5 6 7 8 9]
+	copy(s2, s1)
+	fmt.Println("after copying ...")
+	fmt.Printf("s1 -> %v | %T | %d | %d | %p | %p | %p\n", s1, s1, len(s1), cap(s1), &s1, s1, &s1[0])
+	fmt.Printf("s2 -> %v | %T | %d | %d | %p | %p | %p\n", s2, s2, len(s2), cap(s2), &s2, s2, &s2[0])
+	fmt.Printf("array data -> %v | %T | %d | %d | %p | %p\n", data, data, len(data), cap(data), &data, &data[0])
 
 }
+
+/*
+array data -> [0 1 2 3 4 5 6 7 8 9] | [10]int | 10 | 10 | 0xc000024050 | 0xc000024050
+s1 -> [8 9] | []int | 2 | 2 | 0xc00000c030 | 0xc000024090 | 0xc000024090
+s2 -> [0 1 2 3 4] | []int | 5 | 10 | 0xc00000c048 | 0xc000024050 | 0xc000024050
+after copying ...
+s1 -> [8 9] | []int | 2 | 2 | 0xc00000c030 | 0xc000024090 | 0xc000024090
+s2 -> [8 9 2 3 4] | []int | 5 | 10 | 0xc00000c048 | 0xc000024050 | 0xc000024050
+array data -> [8 9 2 3 4 5 6 7 8 9] | [10]int | 10 | 10 | 0xc000024050 | 0xc000024050
+*/
+
 
 ```
 
