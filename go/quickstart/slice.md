@@ -1071,3 +1071,40 @@ After newSlice = [10 30 30 40 50], Pointer = 0xc0000ac030, len = 5, cap = 8
 
 ```
 
+
+
+### 切片拷贝
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	array := []int{10, 20, 30, 40}
+	slice := make([]int, 6)
+	n := copy(slice, array)
+	fmt.Println(n, slice) // 4 [10 20 30 40 0 0]
+}
+
+```
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	slice := make([]byte, 3)
+	n := copy(slice, "abcdef")
+	fmt.Println(n, slice) // 3 [97 98 99]
+}
+
+```
+
