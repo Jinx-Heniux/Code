@@ -1003,3 +1003,71 @@ func testArrayBPoint(x *[]int) {
 
 ```
 
+
+
+### 从 slice 中得到一块内存地址
+
+```go
+package main
+
+import (
+	"fmt"
+	"unsafe"
+)
+
+func main() {
+	s := make([]byte, 200)
+	ptr := unsafe.Pointer(&s[0]) // 从 slice 中得到一块内存地址
+	fmt.Printf("&s:%p | &arr:%p | %p\n", &s, ptr, s)
+	// &s:0xc00000c030 | &arr:0xc00007e000 | 0xc00007e000
+}
+```
+
+
+
+### unsafe.Sizeof((\*byte)(nil))
+
+```go
+package main
+
+import (
+	"fmt"
+	"unsafe"
+)
+
+func main() {
+	const ptrSize = unsafe.Sizeof((*byte)(nil))
+	fmt.Println(ptrSize) // 8
+}
+```
+
+
+
+### 扩容策略
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	slice := []int{10, 20, 30, 40}
+	newSlice := append(slice, 50)
+	fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+	newSlice[1] += 10
+	fmt.Printf("After slice = %v, Pointer = %p, len = %d, cap = %d\n", slice, &slice, len(slice), cap(slice))
+	fmt.Printf("After newSlice = %v, Pointer = %p, len = %d, cap = %d\n", newSlice, &newSlice, len(newSlice), cap(newSlice))
+}
+
+/*
+Before slice = [10 20 30 40], Pointer = 0xc0000ac018, len = 4, cap = 4
+Before newSlice = [10 20 30 40 50], Pointer = 0xc0000ac030, len = 5, cap = 8
+After slice = [10 20 30 40], Pointer = 0xc0000ac018, len = 4, cap = 4
+After newSlice = [10 30 30 40 50], Pointer = 0xc0000ac030, len = 5, cap = 8
+*/
+
+```
+
