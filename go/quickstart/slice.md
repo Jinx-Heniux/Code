@@ -1104,7 +1104,35 @@ func main() {
 	slice := make([]byte, 3)
 	n := copy(slice, "abcdef")
 	fmt.Println(n, slice) // 3 [97 98 99]
+	fmt.Printf("%#v | %T | %v | %p | %p | %p | %v\n", slice, slice, slice, slice, &slice[0], &slice, string(slice))
+	// []byte{0x61, 0x62, 0x63} | []uint8 | [97 98 99] | 0xc00012a000 | 0xc00012a000 | 0xc00011c018 | abc
 }
+
+
+```
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	slice := []int{10, 20, 30, 40}
+	for index, value := range slice {
+		fmt.Printf("index=%d value=%d value-addr=%x slice-addr=%x\n", index, value, &value, &slice[index])
+	}
+}
+
+/*
+index=0 value=10 value-addr=c0000140b8 slice-addr=c00001c120
+index=1 value=20 value-addr=c0000140b8 slice-addr=c00001c128
+index=2 value=30 value-addr=c0000140b8 slice-addr=c00001c130
+index=3 value=40 value-addr=c0000140b8 slice-addr=c00001c138
+*/
 
 ```
 
