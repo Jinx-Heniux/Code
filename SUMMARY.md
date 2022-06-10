@@ -1,6 +1,9 @@
 # Table of contents
 
 * [0](README.md)
+* [Book](book/README.md)
+  * [Python](book/python/README.md)
+    * [Python Crash Course](book/python/python-crash-course.md)
 * [Anaconda](anaconda/README.md)
   * [Quickstart](anaconda/quickstart.md)
 * [C and C++](<README (1).md>)
