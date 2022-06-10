@@ -12,21 +12,33 @@ description: Python编程 从入门到实践
 
 ### 1.1 搭建编程环境
 
-1.1.1 Python版本　　2 1.1.2 运行Python代码片段　　2 1.1.3 Sublime Text简介
+#### 1.1.1 Python版本
+
+#### 1.1.2 运行Python代码片段
+
+#### 1.1.3 Sublime Text简介
 
 ### 1.2 在不同操作系统中搭建Python编程环境
 
-1.2.1 在Windows系统中搭建Python编程环境　　4 1.2.2 在macOS系统中搭建Python编程环境　　5 1.2.3 在Linux 系统中搭建Python编程环境
+#### 1.2.1 在Windows系统中搭建Python编程环境
+
+#### 1.2.2 在macOS系统中搭建Python编程环境
+
+#### 1.2.3 在Linux 系统中搭建Python编程环境
 
 ### 1.3 运行Hello World 程序
 
-1.3.1 配置Sublime Text以使用正确的Python版本　　8 1.3.2 运行程序hello\_world.py
+#### 1.3.1 配置Sublime Text以使用正确的Python版本
+
+#### 1.3.2 运行程序hello\_world.py
 
 ### 1.4 解决安装问题　
 
 ### 1.5 从终端运行Python程序
 
-1.5.1 在Windows系统中从终端运行Python 程序　　10 1.5.2 在Linux和macOS系统中从终端运行Python程序
+#### 1.5.1 在Windows系统中从终端运行Python 程序
+
+#### 1.5.2 在Linux和macOS系统中从终端运行Python程序
 
 ### 1.6 小结
 
