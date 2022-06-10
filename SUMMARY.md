@@ -1,9 +1,6 @@
 # Table of contents
 
 * [0](README.md)
-* [Book](book/README.md)
-  * [Python](book/python/README.md)
-    * [Python Crash Course](book/python/python-crash-course.md)
 * [Anaconda](anaconda/README.md)
   * [Quickstart](anaconda/quickstart.md)
 * [C and C++](<README (1).md>)
@@ -60,6 +57,7 @@
 * [Python](python/README.md)
   * [Quickstart](python/quickstart.md)
   * [Coursera - Python 3 Programming Specialization](python/coursera-python-3-programming-specialization.md)
+  * [Book - Python Crash Course](python/book-python-crash-course.md)
 * [Spark](spark/README.md)
   * [Quickstart](spark/quickstart.md)
 * [Splunk](splunk/README.md)
