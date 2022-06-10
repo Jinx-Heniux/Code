@@ -934,9 +934,7 @@ func main() {
 
 
 
-## Slice底层实现 · Go语言中文文档
-
-[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html)&#x20;
+## [Slice底层实现 · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html)
 
 ### Go 数组是值类型
 
