@@ -708,7 +708,8 @@ after appending ...
 s3 -> [1 2 3 5 4 3 4 5 0 0 0 0 0 4 5 6] | []int | 16 | 28 | 0xc00011c258 | 0xc00013a000 | 0xc00013a000
 */
 
-// 没明白s3 appending后cap什么是14？
+// 问题：没明白s3 appending后cap为什么是14？
+// 需要深入理解append()源码
 
 
 ```
