@@ -39,6 +39,7 @@
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go/README.md)
     * [Course 1](go/coursera-programming-with-google-go.md)
     * [Course 2](go/coursera-programming-with-google-go/course-2.md)
+    * [Course 3](go/coursera-programming-with-google-go/course-3.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
 * [Kubernetes](kubernetes/README.md)
