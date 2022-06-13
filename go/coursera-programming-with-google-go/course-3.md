@@ -116,3 +116,36 @@ func main() {
 
 ```
 
+
+
+### by Sabbir Miah
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func changeVal(x *int) {
+	*x = 5
+	return
+}
+func getValue() int {
+	var v int
+	go changeVal(&v)
+	time.Sleep(200 * time.Nanosecond)
+	return v
+}
+
+func main() {
+	for {
+		time.Sleep(1000)
+		fmt.Println(getValue())
+
+	}
+}
+
+```
+
