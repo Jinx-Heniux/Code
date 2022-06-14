@@ -1,5 +1,32 @@
 # Goroutine
 
+## [M3.2.1-2v3 | Coursera](https://www.coursera.org/learn/golang-concurrency/lecture/rWw66/m3-2-1-2v3)
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func foo(wg *sync.WaitGroup) {
+	fmt.Println("new routine")
+	wg.Done()
+}
+
+func main() {
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go foo(&wg)
+	wg.Wait()
+	fmt.Println("main routine")
+}
+
+```
+
+
+
 ## [Goroutine · Go语言中文文档](https://www.topgoer.com/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/goroutine.html)
 
 ### 启动单个goroutine
@@ -105,57 +132,6 @@ main goroutine: i = 2
 new goroutine: i = 2
 new goroutine: i = 3
 */
-
-```
-
-
-
-## [M3.2.1-2v3 | Coursera](https://www.coursera.org/learn/golang-concurrency/lecture/rWw66/m3-2-1-2v3)
-
-```go
-package main
-
-import (
-	"fmt"
-	"sync"
-)
-
-func foo(wg *sync.WaitGroup) {
-	fmt.Println("new routine")
-	wg.Done()
-}
-
-func main() {
-	var wg sync.WaitGroup
-	wg.Add(1)
-	go foo(&wg)
-	wg.Wait()
-	fmt.Println("main routine")
-}
-
-```
-
-
-
-## [M3.3.1-3v3 | Coursera](https://www.coursera.org/learn/golang-concurrency/lecture/ElArP/m3-3-1-3v3)
-
-```go
-package main
-
-import "fmt"
-
-func proc(v1, v2 int, c chan int) {
-	c <- v1 * v2
-}
-
-func main() {
-	c := make(chan int)
-	go proc(1, 2, c)
-	go proc(3, 4, c)
-	a := <-c
-	b := <-c
-	fmt.Println(a, b, a*b)
-}
 
 ```
 
