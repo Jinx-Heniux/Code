@@ -49,3 +49,29 @@ func main() {
 
 ```
 
+
+
+### 无缓冲的通道又称为阻塞的通道
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	ch := make(chan int)
+	ch <- 10
+	fmt.Println("发送成功")
+}
+
+/*
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan send]:
+main.main()
+        /home/zhs2si/go/src/example.jinx.com/hello/goroutines.go:7 +0x31
+exit status 2
+*/
+
+```
+
