@@ -228,3 +228,59 @@ func main() {
 
 ```
 
+
+
+### 单向通道
+
+```go
+package main
+
+import "fmt"
+
+func counter(out chan<- int) {
+	for i := 0; i < 11; i++ {
+		out <- i
+	}
+	close(out)
+}
+
+func squarer(out chan<- int, in <-chan int) {
+	for i := range in {
+		out <- i * i
+	}
+	close(out)
+}
+func printer(in <-chan int) {
+	for i := range in {
+		fmt.Println(i)
+	}
+}
+
+func main() {
+	ch1 := make(chan int)
+	ch2 := make(chan int)
+	go counter(ch1)
+	go squarer(ch2, ch1)
+	printer(ch2)
+}
+
+/*
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+*/
+/*
+1.chan<- int是一个只能发送的通道，可以发送但是不能接收；
+2.<-chan int是一个只能接收的通道，可以接收但是不能发送。
+*/
+
+```
+
