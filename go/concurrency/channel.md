@@ -75,3 +75,35 @@ exit status 2
 
 ```
 
+
+
+### 无缓冲通道也被称为同步通道
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func recv(c chan int) {
+	ret := <-c
+	time.Sleep(time.Second)
+	fmt.Println("接收成功", ret)
+}
+func main() {
+	ch := make(chan int)
+	go recv(ch) // 启用goroutine从通道接收值
+	ch <- 10
+	fmt.Println("发送成功")
+	time.Sleep(2 * time.Second)
+}
+
+/*
+发送成功
+接收成功 10
+*/
+
+```
+
