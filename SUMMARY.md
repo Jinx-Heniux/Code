@@ -42,6 +42,7 @@
     * [Course 3](go/coursera-programming-with-google-go/course-3.md)
   * [Concurrency](go/concurrency/README.md)
     * [Goroutine](go/concurrency/goroutine.md)
+    * [sync](go/concurrency/sync.md)
     * [Channel](go/concurrency/channel.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
