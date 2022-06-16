@@ -304,3 +304,115 @@ partition 3: []int{4534, -894, 98, 0, 3487, -253}, 0xc00018c078, 0xc000192048, 6
 
 ```
 
+
+
+### by me
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"sort"
+	"strconv"
+	"strings"
+	"sync"
+	"unsafe"
+)
+
+// This sorts a slice of integers.
+func SortIntSlice(wg *sync.WaitGroup, is *[]int) {
+	sort.Ints(*is)
+	wg.Done()
+}
+
+// This splits a slice of integer into num partitions (num sub-slices of integers).
+func splitSlice(arr []int, num int64) [][]int {
+	max := int64(len(arr))
+	if max < num {
+		return nil
+	}
+	var sliceOfSlices = make([][]int, 0)
+	quantity := max / num
+	end := int64(0)
+	for i := int64(1); i <= num; i++ {
+		qu := i * quantity
+		if i != num {
+			sliceOfSlices = append(sliceOfSlices, arr[i-1+end:qu])
+		} else {
+			sliceOfSlices = append(sliceOfSlices, arr[i-1+end:])
+		}
+		end = qu - i
+	}
+	return sliceOfSlices
+}
+
+// This merges a slice of integer slices into a single slice of integers.
+func mergeSlices(soss [][]int) []int {
+	slice := make([]int, 0)
+	for i := 0; i < len(soss); i++ {
+		slice = append(slice, soss[i]...)
+	}
+	return slice
+}
+
+func main() {
+
+	// receive user input
+	inputReader := bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter a series of integers (separated by a space, press enter to finish the input):")
+	fmt.Print("(e.g. 4 635 56 6 -3 4 0 -445 -453 45 45 35 4535645 -5345 0 4534 -894 98 0 3487 -253)\n>")
+	inputStr, err := inputReader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Invalid Input!")
+		os.Exit(2)
+	}
+	fields := strings.Fields(inputStr)
+	inputIntSlice := make([]int, 0)
+
+	// convert user input from string to integer
+	for field := range fields {
+		i, err := strconv.Atoi(fields[field])
+		if err != nil {
+			fmt.Println("Invalid Input!")
+			os.Exit(2)
+		}
+		inputIntSlice = append(inputIntSlice, i)
+	}
+
+	// split slices
+	sliceOfSubslices := splitSlice(inputIntSlice, 4)
+
+	// create one goroutine for one subslice to sort it concurrently
+	var wg sync.WaitGroup
+	for i := 0; i < len(sliceOfSubslices); i++ {
+		wg.Add(1)
+		fmt.Printf("partition %d: %v\n", i, sliceOfSubslices[i])
+		go SortIntSlice(&wg, (*[]int)(unsafe.Pointer(&sliceOfSubslices[i])))
+	}
+
+	wg.Wait()
+
+	fmt.Println("before merging: ", sliceOfSubslices)
+
+	mergedSlice := mergeSlices(sliceOfSubslices)
+	sort.Ints(mergedSlice)
+	fmt.Println("after merging: ", mergedSlice)
+
+}
+
+/*
+Please enter a series of integers (separated by a space, press enter to finish the input):
+(e.g. 4 635 56 6 -3 4 0 -445 -453 45 45 35 4535645 -5345 0 4534 -894 98 0 3487 -253)
+>4 635 56 6 -3 4 0 -445 -453 45 45 35 4535645 -5345 0 4534 -894 98 0 3487 -253
+partition 0: [4 635 56 6 -3]
+partition 1: [4 0 -445 -453 45]
+partition 2: [45 35 4535645 -5345 0]
+partition 3: [4534 -894 98 0 3487 -253]
+before merging:  [[-3 4 6 56 635] [-453 -445 0 4 45] [-5345 0 35 45 4535645] [-894 -253 0 98 3487 4534]]
+after merging:  [-5345 -894 -453 -445 -253 -3 0 0 0 4 4 6 35 45 45 56 98 635 3487 4534 4535645]
+*/
+
+```
