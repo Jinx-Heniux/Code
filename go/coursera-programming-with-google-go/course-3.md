@@ -641,3 +641,116 @@ Please input a series of integer with space delimiter:
 
 
 
+### by Jason Tucker
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"sort"
+	"strconv"
+	"sync"
+)
+
+func sortSlice(s *[]int, wg *sync.WaitGroup) {
+	fmt.Printf("sortSlice() sorting %v\n", *s)
+	sort.Ints(*s)
+	wg.Done()
+}
+
+func merge(s1 []int, s2 []int, c chan []int) {
+	var m []int
+	l := len(s1)
+	if l < len(s2) {
+		l = len(s2)
+	}
+	for len(s1) > 0 && len(s2) > 0 {
+		if s1[0] <= s2[0] {
+			m = append(m, s1[0])
+			s1 = s1[1:]
+		} else {
+			m = append(m, s2[0])
+			s2 = s2[1:]
+		}
+	}
+	for i := 0; i < len(s1); i++ {
+		m = append(m, s1[i])
+	}
+	for i := 0; i < len(s2); i++ {
+		m = append(m, s2[i])
+	}
+	c <- m
+	return
+}
+
+func main() {
+	var wg sync.WaitGroup
+	var a []int
+	var split1 int
+
+	fmt.Println("Enter integers, 1 per line (CTRL-D to end):")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Split(bufio.ScanLines)
+	for scanner.Scan() {
+		i, _ := strconv.Atoi(scanner.Text())
+		a = append(a, i)
+	}
+	if len(a)%4 < 3 {
+		split1 = (len(a) / 4)
+	} else {
+		split1 = (len(a) / 4) + 1
+	}
+	split2 := split1 * 2
+	split3 := split1 * 3
+
+	s1 := make([]int, split1)
+	s2 := make([]int, split1)
+	s3 := make([]int, split1)
+	s4 := make([]int, split1)
+	s1 = a[0:split1]
+	s2 = a[split1:split2]
+	s3 = a[split2:split3]
+	s4 = a[split3:len(a)]
+	wg.Add(4)
+	go sortSlice(&s1, &wg)
+	go sortSlice(&s2, &wg)
+	go sortSlice(&s3, &wg)
+	go sortSlice(&s4, &wg)
+	wg.Wait()
+	c := make(chan []int)
+	go merge(s1, s2, c)
+	go merge(s3, s4, c)
+	m1 := <-c
+	m2 := <-c
+	go merge(m1, m2, c)
+	m := <-c
+	fmt.Printf("merged set: %v\n", m)
+
+}
+
+/*
+Enter integers, 1 per line (CTRL-D to end):
+34
+56
+47
+587
+57
+456
+45
+46
+5
+456
+6
+456
+sortSlice() sorting [456 6 456]
+sortSlice() sorting [45 46 5]
+sortSlice() sorting [34 56 47]
+sortSlice() sorting [587 57 456]
+merged set: [5 6 34 45 46 47 56 57 456 456 456 587]
+*/
+
+```
+
