@@ -149,3 +149,158 @@ func main() {
 
 ```
 
+
+
+## [module-3-activity](https://www.coursera.org/learn/golang-concurrency/peer/meeiu/module-3-activity/)
+
+### by me
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"sort"
+	"strconv"
+	"strings"
+	"sync"
+	"unsafe"
+)
+
+/*
+func SortIntSlice(is []int) []int {
+	fmt.Printf("%#v, %p, %d,%d\n", is, is, len(is), cap(is))
+	sort.Ints(is)
+	fmt.Printf("%#v, %p, %d,%d\n", is, is, len(is), cap(is))
+	return is
+}
+*/
+
+func SortIntSlice(wg *sync.WaitGroup, is *[]int) {
+	fmt.Printf("%#v, %p, %d,%d\n", is, is, len(*is), cap(*is))
+	sort.Ints(*is)
+	fmt.Printf("%#v, %p, %d,%d\n", is, is, len(*is), cap(*is))
+	wg.Done()
+}
+
+/*
+func SortIntSlice(is []int) {
+	fmt.Printf("%#v, %p, %d,%d\n", is, is, len(is), cap(is))
+	sort.Ints(is)
+	fmt.Printf("%#v, %p, %d,%d\n", is, is, len(is), cap(is))
+}
+*/
+func splitSlice(arr []int, num int64) [][]int {
+	max := int64(len(arr))
+	// fmt.Println(max)
+	if max < num {
+		return nil
+	}
+	var sliceOfSlices = make([][]int, 0)
+	quantity := max / num
+	end := int64(0)
+	// fmt.Println(quantity, end)
+	for i := int64(1); i <= num; i++ {
+		qu := i * quantity
+		if i != num {
+			sliceOfSlices = append(sliceOfSlices, arr[i-1+end:qu])
+		} else {
+			sliceOfSlices = append(sliceOfSlices, arr[i-1+end:])
+		}
+		end = qu - i
+	}
+	return sliceOfSlices
+}
+
+func mergSlices(soss [][]int) []int {
+	slice := make([]int, 0)
+	for i := 0; i < len(soss); i++ {
+		slice = append(slice, soss[i]...)
+	}
+	return slice
+}
+
+func main() {
+
+	inputReader := bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter a series of integers (separated by a space, press enter to finish the input):")
+	fmt.Print("(e.g. 4 635 56 6 -3 4 0 -445 -453 45 45 35 4535645 -5345 0 4534 -894 98 0 3487 -253)\n>")
+	inputStr, err := inputReader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Invalid Input!")
+		os.Exit(2)
+	}
+	fields := strings.Fields(inputStr)
+	// fmt.Printf("fields -> %#v\n", fields)
+	inputIntSlice := make([]int, 0)
+	// fmt.Printf("inputIntSlice -> %#v\n", inputIntSlice)
+
+	for field := range fields {
+		// fmt.Printf("field %d -> %#v\n", field, fields[field])
+		i, err := strconv.Atoi(fields[field])
+		if err != nil {
+			fmt.Println("Invalid Input!")
+			os.Exit(2)
+		}
+		inputIntSlice = append(inputIntSlice, i)
+	}
+
+	// fmt.Printf("inputIntSlice -> %#v\n", inputIntSlice)
+	// sort.Ints(inputIntSlice)
+	// SortIntSlice(inputIntSlice)
+	// fmt.Printf("inputIntSlice -> %#v\n", inputIntSlice)
+
+	sliceOfSubslices := splitSlice(inputIntSlice, 4)
+	fmt.Printf("%v, %p, %d, %d\n", sliceOfSubslices, sliceOfSubslices, len(sliceOfSubslices), cap(sliceOfSubslices))
+
+	var wg sync.WaitGroup
+	// for slice := range results {
+	for i := 0; i < len(sliceOfSubslices); i++ {
+		wg.Add(1)
+		fmt.Printf("partition %d: %#v, %p, %p, %d,%d\n", i, sliceOfSubslices[i], sliceOfSubslices[i], &sliceOfSubslices[i], len(sliceOfSubslices[i]), cap(sliceOfSubslices[i]))
+		// *ptr := results[i]
+		// ptr := (*[]int)(unsafe.Pointer(&results[i]))
+		// SortIntSlice(ptr)
+		// go sort.Ints(results[slice])
+		// fmt.Printf("ending goroutine for partition %d: %v\n", slice, results[slice])
+		// go SortIntSlice(results[i])
+		// temp := make([]int, 0)
+		go SortIntSlice(&wg, (*[]int)(unsafe.Pointer(&sliceOfSubslices[i])))
+	}
+	// time.Sleep(time.Second)
+	wg.Wait()
+	fmt.Println(sliceOfSubslices)
+
+	mergedSlice := mergSlices(sliceOfSubslices)
+	fmt.Println(mergedSlice)
+	sort.Ints(mergedSlice)
+	fmt.Println(mergedSlice)
+
+}
+
+/*
+Please enter a series of integers (separated by a space, press enter to finish the input):
+(e.g. 4 635 56 6 -3 4 0 -445 -453 45 45 35 4535645 -5345 0 4534 -894 98 0 3487 -253)
+>4 635 56 6 -3 4 0 -445 -453 45 45 35 4535645 -5345 0 4534 -894 98 0 3487 -253
+[[4 635 56 6 -3] [4 0 -445 -453 45] [45 35 4535645 -5345 0] [4534 -894 98 0 3487 -253]], 0xc000192000, 4, 4
+partition 0: []int{4, 635, 56, 6, -3}, 0xc00018c000, 0xc000192000, 5,32
+partition 1: []int{4, 0, -445, -453, 45}, 0xc00018c028, 0xc000192018, 5,27
+partition 2: []int{45, 35, 4535645, -5345, 0}, 0xc00018c050, 0xc000192030, 5,22
+partition 3: []int{4534, -894, 98, 0, 3487, -253}, 0xc00018c078, 0xc000192048, 6,17
+&[]int{4534, -894, 98, 0, 3487, -253}, 0xc000192048, 6,17
+&[]int{-894, -253, 0, 98, 3487, 4534}, 0xc000192048, 6,17
+&[]int{4, 635, 56, 6, -3}, 0xc000192000, 5,32
+&[]int{-3, 4, 6, 56, 635}, 0xc000192000, 5,32
+&[]int{4, 0, -445, -453, 45}, 0xc000192018, 5,27
+&[]int{-453, -445, 0, 4, 45}, 0xc000192018, 5,27
+&[]int{45, 35, 4535645, -5345, 0}, 0xc000192030, 5,22
+&[]int{-5345, 0, 35, 45, 4535645}, 0xc000192030, 5,22
+[[-3 4 6 56 635] [-453 -445 0 4 45] [-5345 0 35 45 4535645] [-894 -253 0 98 3487 4534]]
+[-3 4 6 56 635 -453 -445 0 4 45 -5345 0 35 45 4535645 -894 -253 0 98 3487 4534]
+[-5345 -894 -453 -445 -253 -3 0 0 0 4 4 6 35 45 45 56 98 635 3487 4534 4535645]
+*/
+
+```
+
