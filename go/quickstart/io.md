@@ -1,27 +1,8 @@
 # IO
 
-## [IO操作 · Go语言中文文档](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/IO%E6%93%8D%E4%BD%9C.html)
+## IO操作 · Go语言中文文档
 
-
-
-### 以文件的方式操作终端
-
-```go
-package main
-
-import "os"
-
-func main() {
-	var buf [16]byte
-	os.Stdin.Read(buf[:])
-	os.Stdin.WriteString(string(buf[:]))
-
-	// 输入什么输出什么
-}
-
-```
-
-
+[https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/IO%E6%93%8D%E4%BD%9C.html](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/IO%E6%93%8D%E4%BD%9C.html)
 
 ### 打开和关闭文件
 
