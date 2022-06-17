@@ -64,3 +64,27 @@ func main() {
 }
 ```
 
+
+
+### ReaderAt 接口
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	reader := strings.NewReader("Go语言中文网")
+	p := make([]byte, 10)
+	n, err := reader.ReadAt(p, 1)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%s, %d\n", p, n)
+}
+
+```
+

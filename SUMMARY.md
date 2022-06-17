@@ -43,7 +43,7 @@
     * [Goroutine](go/concurrency/goroutine.md)
     * [sync](go/concurrency/sync.md)
     * [Channel](go/concurrency/channel.md)
-  * [IO](go/io/README.md)
+  * [IO](go/quickstart/io.md)
     * [IO](go/io/io.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
