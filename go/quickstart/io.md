@@ -1,8 +1,27 @@
 # IO
 
-## IO操作 · Go语言中文文档
+## [IO操作 · Go语言中文文档](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/IO%E6%93%8D%E4%BD%9C.html)
 
-[https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/IO%E6%93%8D%E4%BD%9C.html](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/IO%E6%93%8D%E4%BD%9C.html)
+
+
+### 以文件的方式操作终端
+
+```go
+package main
+
+import "os"
+
+func main() {
+	var buf [16]byte
+	os.Stdin.Read(buf[:])
+	os.Stdin.WriteString(string(buf[:]))
+
+	// 输入什么输出什么
+}
+
+```
+
+
 
 ### 打开和关闭文件
 
@@ -56,15 +75,19 @@ func main() {
 
 	a := []byte("cd\n")
 	fmt.Printf("a -> %#v\n", a)
-	fmt.Printf("a -> %v (%T)", a, a)
-	/*
-		a -> []byte{0x63, 0x64, 0xa}
-		a -> [99 100 10] ([]uint8)
-	*/
+	fmt.Printf("a -> %v (%T)\n", a, a)
+
 }
 
-// func Create(name string) (file *File, err Error)
-// 根据提供的文件名创建新的文件，返回一个文件对象，默认权限是0666
+/*
+a -> []byte{0x63, 0x64, 0xa}
+a -> [99 100 10] ([]uint8)
+*/
+/*
+func Create(name string) (file *File, err Error)
+根据提供的文件名创建新的文件，返回一个文件对象，默认权限是0666
+*/
+
 
 ```
 
