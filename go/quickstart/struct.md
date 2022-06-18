@@ -758,7 +758,7 @@ func main() {
 
 
 
-### 切片是引用传递
+### 小练习：切片是引用传递
 
 ```go
 package main
@@ -792,6 +792,113 @@ func main() {
 [{1 xiaoming 22} {2 xiaozhang 33}]
 [{1 xiaoming 22} {2 xiaozhang 999}]
 */
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+type student struct {
+	id   int
+	name string
+	age  int
+}
+
+func demo(ce []student) {
+	fmt.Printf("demo 1: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+	//切片是引用传递，是可以改变值的
+	ce[1].age = 999
+
+	// ce = append(ce, student{3, "xiaowang", 56})
+	// return ce
+	fmt.Printf("demo 2: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+}
+func main() {
+	// var ce []student //定义一个切片类型的结构体
+	ce := []student{
+		{1, "xiaoming", 22},
+		{2, "xiaozhang", 33},
+	}
+	// fmt.Println(ce)
+	fmt.Printf("main 1: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+	demo(ce)
+	// fmt.Println(ce)
+	fmt.Printf("main 2: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+}
+
+/*
+// ce = append(ce, student{3, "xiaowang", 56})
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000ac018, 0xc0000b8040
+demo 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000ac048, 0xc0000b8040
+demo 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000ac048, 0xc0000b8040
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000ac018, 0xc0000b8040
+*/
+
+/*
+ce = append(ce, student{3, "xiaowang", 56})
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c030, 0xc00007c040
+demo 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c060, 0xc00007c040
+demo 2: [{1 xiaoming 22} {2 xiaozhang 999} {3 xiaowang 56}], 3, 3, 0xc00000c060, 0xc000102000
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc00000c030, 0xc00007c040
+*/
+/*
+在demo中使用append后，底层数组改变。
+*/
+
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+type student struct {
+	id   int
+	name string
+	age  int
+}
+
+func demo(ce *[]student) {
+	fmt.Printf("demo 1: %v, %d, %d, %p, %p\n", ce, len(*ce), len(*ce), ce, &(*ce)[0])
+	//切片是引用传递，是可以改变值的
+	(*ce)[1].age = 999
+	*ce = append(*ce, student{3, "xiaowang", 56})
+	fmt.Printf("demo 2: %v, %d, %d, %p, %p\n", ce, len(*ce), len(*ce), ce, &(*ce)[0])
+}
+func main() {
+	// var ce []student //定义一个切片类型的结构体
+	ce := []student{
+		{1, "xiaoming", 22},
+		{2, "xiaozhang", 33},
+	}
+	// fmt.Println(ce)
+	fmt.Printf("main 1: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+	demo(&ce)
+	// fmt.Println(ce)
+	fmt.Printf("main 2: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+}
+
+/*
+修改demo的参数为指针类型
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000ac018, 0xc0000b8040
+demo 1: &[{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000b8040, 0xc0000b8040
+demo 2: &[{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000b8040, 0xc0000b8040
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000ac018, 0xc0000b8040
+*/
+
+/*
+*ce = append(*ce, student{3, "xiaowang", 56})
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c030, 0xc00007c040
+demo 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c060, 0xc00007c040
+demo 2: [{1 xiaoming 22} {2 xiaozhang 999} {3 xiaowang 56}], 3, 3, 0xc00000c060, 0xc000102000
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc00000c030, 0xc00007c040
+*/
+
 ```
 
 

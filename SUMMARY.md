@@ -45,7 +45,7 @@
   * [IO](go/quickstart/io.md)
     * [io](go/io/io.md)
     * [ioutil](go/io/ioutil.md)
-    * [fmt](go/io/fmt.md)
+    * [fmt](go/quickstart/fmt.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
 * [Kubernetes](kubernetes/README.md)
