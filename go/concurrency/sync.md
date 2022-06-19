@@ -178,6 +178,76 @@ fatal error: all goroutines are asleep - deadlock!
 
 ```
 
+### Dining Philosophers
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var wg sync.WaitGroup
+
+type Chopstick struct{ sync.Mutex }
+
+type Philosopher struct {
+	leftCS, rightCS *Chopstick
+}
+
+func (p Philosopher) eat() {
+	p.leftCS.Lock()
+	// time.Sleep(time.Millisecond) // fatal error: all goroutines are asleep - deadlock!
+	p.rightCS.Lock()
+	fmt.Println("eating...")
+	p.rightCS.Unlock()
+	p.leftCS.Unlock()
+	wg.Done()
+}
+
+func main() {
+	Chopsticks := make([]*Chopstick, 5)
+	fmt.Printf("%#v\n", Chopsticks)
+
+	for i := 0; i < 5; i++ {
+		Chopsticks[i] = new(Chopstick)
+	}
+	fmt.Printf("%#v\n", Chopsticks)
+
+	Philosophers := make([]*Philosopher, 5)
+	fmt.Printf("%#v\n", Philosophers)
+
+	for i := 0; i < 5; i++ {
+		Philosophers[i] = &Philosopher{
+			Chopsticks[i],
+			Chopsticks[(i+1)%5],
+		}
+	}
+	fmt.Printf("%#v\n", Philosophers)
+
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
+		go Philosophers[i].eat()
+	}
+
+	wg.Wait()
+}
+
+/*
+[]*main.Chopstick{(*main.Chopstick)(nil), (*main.Chopstick)(nil), (*main.Chopstick)(nil), (*main.Chopstick)(nil), (*main.Chopstick)(nil)}
+[]*main.Chopstick{(*main.Chopstick)(0xc000130000), (*main.Chopstick)(0xc000130008), (*main.Chopstick)(0xc000130010), (*main.Chopstick)(0xc000130018), (*main.Chopstick)(0xc000130020)}
+[]*main.Philosopher{(*main.Philosopher)(nil), (*main.Philosopher)(nil), (*main.Philosopher)(nil), (*main.Philosopher)(nil), (*main.Philosopher)(nil)}
+[]*main.Philosopher{(*main.Philosopher)(0xc00010c210), (*main.Philosopher)(0xc00010c220), (*main.Philosopher)(0xc00010c230), (*main.Philosopher)(0xc00010c240), (*main.Philosopher)(0xc00010c250)}
+eating...
+eating...
+eating...
+eating...
+eating...
+*/
+
+```
+
 
 
 ## [Sync · Go语言中文文档](https://www.topgoer.com/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/sync.html)
