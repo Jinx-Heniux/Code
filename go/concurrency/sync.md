@@ -27,6 +27,72 @@ func main() {
 
 
 
+## [M4.2.1-3v3 | Coursera](https://www.coursera.org/learn/golang-concurrency/lecture/asukV/m4-2-1-3v3)
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+var i int = 0
+
+func inc() {
+	i = i + 1
+}
+
+func main() {
+	for j := 0; j < 10000; j++ {
+		go inc()
+	}
+	time.Sleep(time.Second)
+	fmt.Println(i)
+}
+// 9999
+// 9476
+// 9887
+// should be 10000
+```
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var i int = 0
+var mut sync.Mutex
+var wg sync.WaitGroup
+
+func inc() {
+	mut.Lock()
+	i = i + 1
+	mut.Unlock()
+	wg.Done()
+}
+
+func main() {
+	for j := 0; j < 10000; j++ {
+		wg.Add(1)
+		go inc()
+	}
+	// time.Sleep(time.Second)
+	wg.Wait()
+	fmt.Println(i)
+}
+
+// 10000
+
+```
+
+
+
 ## [Sync · Go语言中文文档](https://www.topgoer.com/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/sync.html)
 
 ### sync.WaitGroup
