@@ -93,6 +93,46 @@ func main() {
 
 
 
+## [M4.3.1-3v3 | Coursera](https://www.coursera.org/learn/golang-concurrency/lecture/x35sK/m4-3-1-3v3)
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var wg sync.WaitGroup
+var on sync.Once
+
+func setup() {
+	fmt.Println("initializing...")
+}
+
+func dostuff() {
+	on.Do(setup)
+	fmt.Println("do some stuff...")
+	wg.Done()
+}
+
+func main() {
+	wg.Add(2)
+	go dostuff()
+	go dostuff()
+	wg.Wait()
+}
+
+/*
+initializing...
+do some stuff...
+do some stuff...
+*/
+
+```
+
+
+
 ## [Sync · Go语言中文文档](https://www.topgoer.com/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/sync.html)
 
 ### sync.WaitGroup
