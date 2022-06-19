@@ -2,6 +2,8 @@
 
 ## [M3.2.1-2v3 | Coursera](https://www.coursera.org/learn/golang-concurrency/lecture/rWw66/m3-2-1-2v3)
 
+### sync.WaitGroup
+
 ```go
 package main
 
@@ -56,7 +58,7 @@ func main() {
 // should be 10000
 ```
 
-
+### sync.Mutex
 
 ```go
 package main
@@ -94,6 +96,8 @@ func main() {
 
 
 ## [M4.3.1-3v3 | Coursera](https://www.coursera.org/learn/golang-concurrency/lecture/x35sK/m4-3-1-3v3)
+
+### sync.Once
 
 ```go
 package main
