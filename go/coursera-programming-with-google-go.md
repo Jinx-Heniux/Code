@@ -1,6 +1,8 @@
 # Course 1
 
-## [module-2-activity-trunc-go](https://www.coursera.org/learn/golang-getting-started/peer/01wGe/module-2-activity-trunc-go)
+## module-2-activity-trunc-go
+
+[https://www.coursera.org/learn/golang-getting-started/peer/01wGe/module-2-activity-trunc-go](https://www.coursera.org/learn/golang-getting-started/peer/01wGe/module-2-activity-trunc-go)
 
 ```go
 package main
@@ -17,26 +19,25 @@ func main() {
 
 ```go
 package main
-
 import "fmt"
+func main(){
 
-func main() {
-
-	for i := 0; i < 2; i++ {
+	for i := 0;i<2 ;i++ {
 		fmt.Printf("Enter a Floating point number!\n")
 
-		var number float64
-		fmt.Scanln(&number)
-		fmt.Println(int(number))
+	var number float64
+	fmt.Scanln(&number)
+	fmt.Println(int(number))
 
 	}
-
+	
 }
-
 
 ```
 
-## [module-2-activity-findian-go](https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go)
+## module-2-activity-findian-go
+
+[https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go](https://www.coursera.org/learn/golang-getting-started/peer/f1Cly/module-2-activity-findian-go)
 
 ```go
 package main
@@ -75,14 +76,7 @@ func main() {
 	}
 }
 
-
-```
-
-
-
-```go
-package main
-
+/*
 import (
 	"fmt"
 	"strings"
@@ -101,6 +95,7 @@ func main() {
 		fmt.Println("Not Found!")
 	}
 }
+*/
 
 ```
 
