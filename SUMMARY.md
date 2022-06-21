@@ -42,6 +42,7 @@
     * [Goroutine](go/concurrency/goroutine.md)
     * [sync](go/concurrency/sync.md)
     * [Channel](go/concurrency/channel.md)
+    * [select](go/concurrency/select.md)
   * [IO](go/quickstart/io.md)
     * [io](go/io/io.md)
     * [ioutil](go/io/ioutil.md)
