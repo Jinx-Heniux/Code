@@ -758,7 +758,7 @@ func main() {
 
 
 
-### 切片是引用传递
+### 小练习：切片是引用传递
 
 ```go
 package main
@@ -792,6 +792,113 @@ func main() {
 [{1 xiaoming 22} {2 xiaozhang 33}]
 [{1 xiaoming 22} {2 xiaozhang 999}]
 */
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+type student struct {
+	id   int
+	name string
+	age  int
+}
+
+func demo(ce []student) {
+	fmt.Printf("demo 1: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+	//切片是引用传递，是可以改变值的
+	ce[1].age = 999
+
+	// ce = append(ce, student{3, "xiaowang", 56})
+	// return ce
+	fmt.Printf("demo 2: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+}
+func main() {
+	// var ce []student //定义一个切片类型的结构体
+	ce := []student{
+		{1, "xiaoming", 22},
+		{2, "xiaozhang", 33},
+	}
+	// fmt.Println(ce)
+	fmt.Printf("main 1: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+	demo(ce)
+	// fmt.Println(ce)
+	fmt.Printf("main 2: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+}
+
+/*
+// ce = append(ce, student{3, "xiaowang", 56})
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000ac018, 0xc0000b8040
+demo 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000ac048, 0xc0000b8040
+demo 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000ac048, 0xc0000b8040
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000ac018, 0xc0000b8040
+*/
+
+/*
+ce = append(ce, student{3, "xiaowang", 56})
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c030, 0xc00007c040
+demo 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c060, 0xc00007c040
+demo 2: [{1 xiaoming 22} {2 xiaozhang 999} {3 xiaowang 56}], 3, 3, 0xc00000c060, 0xc000102000
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc00000c030, 0xc00007c040
+*/
+/*
+在demo中使用append后，底层数组改变。
+*/
+
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+type student struct {
+	id   int
+	name string
+	age  int
+}
+
+func demo(ce *[]student) {
+	fmt.Printf("demo 1: %v, %d, %d, %p, %p\n", ce, len(*ce), len(*ce), ce, &(*ce)[0])
+	//切片是引用传递，是可以改变值的
+	(*ce)[1].age = 999
+	*ce = append(*ce, student{3, "xiaowang", 56})
+	fmt.Printf("demo 2: %v, %d, %d, %p, %p\n", ce, len(*ce), len(*ce), ce, &(*ce)[0])
+}
+func main() {
+	// var ce []student //定义一个切片类型的结构体
+	ce := []student{
+		{1, "xiaoming", 22},
+		{2, "xiaozhang", 33},
+	}
+	// fmt.Println(ce)
+	fmt.Printf("main 1: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+	demo(&ce)
+	// fmt.Println(ce)
+	fmt.Printf("main 2: %v, %d, %d, %p, %p\n", ce, len(ce), len(ce), &ce, &ce[0])
+}
+
+/*
+修改demo的参数为指针类型
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000ac018, 0xc0000b8040
+demo 1: &[{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc0000b8040, 0xc0000b8040
+demo 2: &[{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000b8040, 0xc0000b8040
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc0000ac018, 0xc0000b8040
+*/
+
+/*
+*ce = append(*ce, student{3, "xiaowang", 56})
+main 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c030, 0xc00007c040
+demo 1: [{1 xiaoming 22} {2 xiaozhang 33}], 2, 2, 0xc00000c060, 0xc00007c040
+demo 2: [{1 xiaoming 22} {2 xiaozhang 999} {3 xiaowang 56}], 3, 3, 0xc00000c060, 0xc000102000
+main 2: [{1 xiaoming 22} {2 xiaozhang 999}], 2, 2, 0xc00000c030, 0xc00007c040
+*/
+
 ```
 
 
@@ -844,11 +951,11 @@ func main() {
 	map1[5] = "ceshi"
 	map1[3] = "xiaohong"
 	map1[4] = "xiaohuang"
-	fmt.Println(map1)
+	fmt.Printf("%v,%p\n", map1, &map1)
 	fmt.Println()
 
 	for k, v := range map1 {
-		fmt.Printf("%d -> %s\n", k, v)
+		fmt.Printf("%d -> %s, %p\n", k, v, &v)
 	}
 	fmt.Println()
 
@@ -861,27 +968,28 @@ func main() {
 	fmt.Println()
 
 	for i := 0; i < len(map1); i++ {
-		fmt.Println(map1[sli[i]])
+		fmt.Printf("%s,%p\n", map1[sli[i]], &map1)
 	}
 }
 
 /*
-map[1:www.topgoer.com 2:rpc.topgoer.com 3:xiaohong 4:xiaohuang 5:ceshi]
+map[1:www.topgoer.com 2:rpc.topgoer.com 3:xiaohong 4:xiaohuang 5:ceshi],0xc00000e028
 
-5 -> ceshi
-3 -> xiaohong
-4 -> xiaohuang
-1 -> www.topgoer.com
-2 -> rpc.topgoer.com
+1 -> www.topgoer.com, 0xc0000102a0
+2 -> rpc.topgoer.com, 0xc0000102a0
+5 -> ceshi, 0xc0000102a0
+3 -> xiaohong, 0xc0000102a0
+4 -> xiaohuang, 0xc0000102a0
 
 [1 2 3 4 5]
 
-www.topgoer.com
-rpc.topgoer.com
-xiaohong
-xiaohuang
-ceshi
+www.topgoer.com,0xc00000e028
+rpc.topgoer.com,0xc00000e028
+xiaohong,0xc00000e028
+xiaohuang,0xc00000e028
+ceshi,0xc00000e028
 */
+
 
 ```
 
