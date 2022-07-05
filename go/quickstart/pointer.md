@@ -14,10 +14,15 @@ import (
 func main() {
 	a := 10
 	b := &a
-	fmt.Printf("a:%d ptr:%p\n", a, &a) // a:10 ptr:0xc00001a078
-	fmt.Printf("b:%p type:%T\n", b, b) // b:0xc00001a078 type:*int
-	fmt.Println(&b)                    // 0xc00000e018
+	fmt.Printf("a: %d, &a: %p\n", a, &a)
+	fmt.Printf("b: %#v | %v | %p, &b: %p, *b: %d", b, b, b, &b, *b)
 }
+
+/*
+a: 10, &a: 0xc0000ba000
+b: (*int)(0xc0000ba000) | 0xc0000ba000, &b: 0xc0000b4018, *b: 10
+*/
+
 ```
 
 
