@@ -1,6 +1,8 @@
 # Pointer
 
-## [指针 · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%8C%87%E9%92%88.html)
+## 指针 · Go语言中文文档
+
+[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%8C%87%E9%92%88.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%8C%87%E9%92%88.html)
 
 ### 指针地址和指针类型
 
@@ -14,15 +16,10 @@ import (
 func main() {
 	a := 10
 	b := &a
-	fmt.Printf("a: %d, &a: %p\n", a, &a)
-	fmt.Printf("b: %#v | %v | %p, &b: %p, *b: %d", b, b, b, &b, *b)
+	fmt.Printf("a:%d ptr:%p\n", a, &a) // a:10 ptr:0xc00001a078
+	fmt.Printf("b:%p type:%T\n", b, b) // b:0xc00001a078 type:*int
+	fmt.Println(&b)                    // 0xc00000e018
 }
-
-/*
-a: 10, &a: 0xc0000ba000
-b: (*int)(0xc0000ba000) | 0xc0000ba000, &b: 0xc0000b4018, *b: 10
-*/
-
 ```
 
 

@@ -56,6 +56,7 @@
   * [Commands](readme/0-1/README.md)
     * [cat](readme/0-1/cat.md)
     * [sed](readme/0-1/sed.md)
+    * [vim](readme-1-1/0-1/vim.md)
   * [Bash](readme/bash.md)
 * [MongoDB](mongodb/README.md)
   * [Quickstart](mongodb/quickstart.md)
