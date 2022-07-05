@@ -1,8 +1,6 @@
 # Pointer
 
-## 指针 · Go语言中文文档
-
-[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%8C%87%E9%92%88.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%8C%87%E9%92%88.html)
+## [指针 · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/%E6%8C%87%E9%92%88.html)
 
 ### 指针地址和指针类型
 
