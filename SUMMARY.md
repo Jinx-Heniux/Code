@@ -65,7 +65,6 @@
 * [Python](python/README.md)
   * [Quickstart](python/quickstart.md)
   * [Coursera - Python 3 Programming Specialization](python/coursera-python-3-programming-specialization.md)
-  * [Book - Python Crash Course](python/book-python-crash-course.md)
 * [Spark](spark/README.md)
   * [Quickstart](spark/quickstart.md)
 * [Splunk](splunk/README.md)
