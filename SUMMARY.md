@@ -59,6 +59,7 @@
     * [vim](readme-1-1/0-1/vim.md)
   * [Bash](readme/bash.md)
     * [while](readme-1-1/bash/while.md)
+  * [磁盘及文件系统管理](readme-1-1/ci-pan-ji-wen-jian-xi-tong-guan-li.md)
 * [MongoDB](mongodb/README.md)
   * [Quickstart](mongodb/quickstart.md)
 * [PostgreSQL](postgresql/README.md)
