@@ -754,3 +754,120 @@ merged set: [5 6 34 45 46 47 56 57 456 456 456 587]
 
 ```
 
+
+
+## module-4-activity
+
+### by me
+
+```go
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"sync"
+	"time"
+)
+
+var wg sync.WaitGroup
+var host = make(chan int, 2)
+
+type Chopstick struct{ sync.Mutex }
+
+type Philosopher struct {
+	id              int
+	leftCS, rightCS *Chopstick
+}
+
+func (p Philosopher) eat() {
+	defer wg.Done()
+	for i := 0; i < 3; i++ {
+
+		host <- 1
+
+		rand.Seed(time.Now().UnixNano())
+		flag := rand.Intn(2)
+		if flag == 1 {
+			p.rightCS.Lock()
+			p.leftCS.Lock()
+		} else {
+			p.leftCS.Lock()
+			p.rightCS.Lock()
+		}
+		fmt.Printf("starting to eat %d for %d time(s)\n", p.id, i+1)
+		time.Sleep(time.Second * time.Duration(flag+1))
+		fmt.Printf("finishing to eat %d for %d time(s)\n", p.id, i+1)
+		if flag == 1 {
+			p.rightCS.Unlock()
+			p.leftCS.Unlock()
+		} else {
+			p.leftCS.Unlock()
+			p.rightCS.Unlock()
+		}
+		<-host
+	}
+}
+
+func main() {
+	Chopsticks := make([]*Chopstick, 5)
+
+	for i := 0; i < 5; i++ {
+		Chopsticks[i] = new(Chopstick)
+	}
+
+	Philosophers := make([]*Philosopher, 5)
+
+	for i := 0; i < 5; i++ {
+		Philosophers[i] = &Philosopher{
+			i + 1,
+			Chopsticks[i],
+			Chopsticks[(i+1)%5],
+		}
+	}
+
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
+		go Philosophers[i].eat()
+	}
+
+	wg.Wait()
+}
+
+/*
+starting to eat 5 for 1 time(s)
+starting to eat 2 for 1 time(s)
+finishing to eat 5 for 1 time(s)
+finishing to eat 2 for 1 time(s)
+starting to eat 3 for 1 time(s)
+finishing to eat 3 for 1 time(s)
+starting to eat 1 for 1 time(s)
+starting to eat 4 for 1 time(s)
+finishing to eat 4 for 1 time(s)
+finishing to eat 1 for 1 time(s)
+starting to eat 5 for 2 time(s)
+starting to eat 2 for 2 time(s)
+finishing to eat 5 for 2 time(s)
+finishing to eat 2 for 2 time(s)
+starting to eat 3 for 2 time(s)
+finishing to eat 3 for 2 time(s)
+starting to eat 1 for 2 time(s)
+starting to eat 4 for 2 time(s)
+finishing to eat 4 for 2 time(s)
+finishing to eat 1 for 2 time(s)
+starting to eat 2 for 3 time(s)
+starting to eat 5 for 3 time(s)
+finishing to eat 2 for 3 time(s)
+starting to eat 3 for 3 time(s)
+finishing to eat 5 for 3 time(s)
+finishing to eat 3 for 3 time(s)
+starting to eat 1 for 3 time(s)
+starting to eat 4 for 3 time(s)
+finishing to eat 4 for 3 time(s)
+finishing to eat 1 for 3 time(s)
+*/
+
+```
+
+
+
