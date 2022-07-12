@@ -992,5 +992,74 @@ func main() {
 
 
 
+### by Alex Shirley
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+func main() {
+	// Create the chopsticks
+	var CSticks [5]chan int
+	for i := range CSticks {
+		CSticks[i] = make(chan int, 1)
+	}
+	// Make the server
+	var host = make(chan int, 2)
+	// Make the Philosophers
+	philos := make([]*Philo, 5)
+	var wg sync.WaitGroup
+	wg.Add(5)
+	for i := 0; i < 5; i++ {
+		philos[i] = &Philo{i + 1, 0, CSticks[i], CSticks[(i+1)%5], host, &wg}
+	}
+
+	for i := 0; i < 5; i++ {
+		go philos[i].eat()
+	}
+	wg.Wait()
+
+}
+
+// Philo is a philosopher
+type Philo struct {
+	number          int
+	timesFed        int
+	leftCS, rightCS chan int
+	server          chan int
+	wg              *sync.WaitGroup
+}
+
+func (p *Philo) eat() {
+	for p.timesFed < 3 {
+		p.server <- 1
+		fmt.Println("starting to eat", p.number)
+
+		select {
+		case p.leftCS <- 1:
+			p.rightCS <- 1
+		case p.rightCS <- 1:
+			p.leftCS <- 1
+		}
+		time.Sleep(time.Second * time.Duration(1))
+		//Uncomment for sanity check
+		//fmt.Println(p.number, "is on meal ", p.timesFed)
+		p.timesFed++
+		<-p.rightCS
+		<-p.leftCS
+
+		fmt.Println("finishing eating", p.number)
+		<-p.server
+	}
+	p.wg.Done()
+}
+
+```
+
 
 
