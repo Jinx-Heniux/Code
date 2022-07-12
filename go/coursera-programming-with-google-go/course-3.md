@@ -756,7 +756,7 @@ merged set: [5 6 34 45 46 47 56 57 456 456 456 587]
 
 
 
-## module-4-activity
+## [module-4-activity](https://www.coursera.org/learn/golang-concurrency/peer/MAemV/module-4-activity)
 
 ### by me
 
