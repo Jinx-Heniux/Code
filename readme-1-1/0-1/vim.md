@@ -33,6 +33,17 @@ vim FILE1 FILE2 FILE3
 :qa
 # 全部退出
 
+
+
+
+
+# 分窗口编辑多个文件
+
+vim -o FILE1 FILE2...
+# 水平分割显示
+
+vim -O FILE1 FILE2...
+# 垂直分割显示
 ```
 
 ## 输入模式
