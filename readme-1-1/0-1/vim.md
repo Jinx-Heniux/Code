@@ -368,6 +368,17 @@ N
 
 .,$-1s/pip/PIP/g
 # 从当前行到倒数第二行，将pip换为PIP
+
+
+
+
+# 练习：
+# 将/etc/yum.repos.d/server.repo文件中的ftp://instructor.example.com/pub
+# 替换为http://172.16.0.1/yum
+
+%s/ftp:\/\/instructor\.example\.com\/pub/http:\/\/172.16.0.1\/yum/g
+
+%s@ftp://instructor\.example\.com/pub@http://172.16.0.1/yum@g
 ```
 
 
