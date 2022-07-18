@@ -11,6 +11,28 @@ vim +10 /path/to/file
 
 vim + /path/to/file
 # 打开文件 光标在最后一行
+
+
+
+
+# 使用vim编辑多个文件
+vim FILE1 FILE2 FILE3
+
+:next
+# 切换至下一个文件
+
+:prev
+# 切换至前一个文件
+
+:last
+# 切换至最后一个文件
+
+:first
+# 切换至第一个文件
+
+:qa
+# 全部退出
+
 ```
 
 ## 输入模式
