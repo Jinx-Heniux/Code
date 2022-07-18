@@ -46,6 +46,19 @@ vim -O FILE1 FILE2...
 # 垂直分割显示
 ```
 
+## 分屏显示
+
+```bash
+Ctrl+w, s
+# 水平拆分窗口，或末行模式下sp(split)
+
+Ctrl+w, v
+# 垂直拆分窗口，或末行模式下vs
+
+# 在窗口间切换光标：
+Ctrl+w, ARROW
+```
+
 ## 输入模式
 
 ```bash
