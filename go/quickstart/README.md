@@ -12,6 +12,8 @@
 
 # Download Go: https://go.dev/dl/
 curl -OL https://go.dev/dl/go1.18.1.linux-amd64.tar.gz
+# 或
+wget https://golang.google.cn/dl/go1.16.6.linux-amd64.tar.gz
 
 # To verify the integrity of the file you downloaded, 
 # run the sha256sum command and pass it to the filename as an argument:
@@ -32,11 +34,20 @@ sudo tar -C /usr/local -xvf go1.18.1.linux-amd64.tar.gz
 # which is stored in your user’s home directory. 
 # Here, we’ll use nano:
 sudo nano ~/.profile
+# 或
+suoo nano $HOME/.bash_profile
+
 # Then, add the following information to the end of your file:
-. . .
 export PATH=$PATH:/usr/local/go/bin
+# 或
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+
 # Next, refresh your profile by running the following command:
 source ~/.profile
+# 或
+source $HOME/.bash_profile
+
 # After, check if you can execute go commands by running go version:
 go version
 
