@@ -148,6 +148,7 @@ import (
 )
 
 type Person struct {
+	// Age int `json:"age"`
 	Age       int    `json:"age,string"`
 	Name      string `json:"name"`
 	Niubility bool   `json:"niubility"`
@@ -156,21 +157,32 @@ type Person struct {
 func main() {
 	// 假数据
 	b := []byte(`{"age":"18","name":"5lmh.com","marry":false}`)
-	var p Person
-	fmt.Printf("p->%#v\n", p)
+	// var p Person
+	// var p = Person{} 同上
+	// p := Person{} 同上
+	p := &Person{}
+	fmt.Printf("p->%#v\n%p\n", p, p)
+	fmt.Printf("&p->%p\n", &p)
 	err := json.Unmarshal(b, &p)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Printf("p->%#v\n", p)
+	// fmt.Printf("p->%#v\n", p)
+	fmt.Printf("p->%#v\n%p\n", p, p)
+	fmt.Printf("&p->%p\n", &p)
 	fmt.Println(p)
 }
 
 /*
-p->main.Person{Age:0, Name:"", Niubility:false}
-p->main.Person{Age:18, Name:"5lmh.com", Niubility:false}
-{18 5lmh.com false}
+p->&main.Person{Age:0, Name:"", Niubility:false}
+0xc0000be000
+&p->0xc0000b6018
+p->&main.Person{Age:18, Name:"5lmh.com", Niubility:false}
+0xc0000be000
+&p->0xc0000b6018
+&{18 5lmh.com false}
 */
+
 
 ```
 
