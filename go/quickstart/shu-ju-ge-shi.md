@@ -210,16 +210,19 @@ func main() {
 		fmt.Println(err)
 	}
 	// 自动转到map
-	fmt.Printf("i -> %#v\n", i)
+	fmt.Printf("i -> %#v -> %T\n", i, i)
 	fmt.Println(i)
 	// 可以判断类型
 	m := i.(map[string]interface{})
+	fmt.Printf("m -> %T,%v\n", m, m)
 	for k, v := range m {
 		switch vv := v.(type) {
 		case float64:
 			fmt.Println(k, "是float64类型", vv)
+			fmt.Printf("vv -> %T,%v\n", vv, vv)
+			fmt.Printf("v -> %T,%v", v, v)
 		case string:
-			fmt.Println(k, "是string类型", vv)
+			fmt.Println(k, "是string类型", v)
 		default:
 			fmt.Println("其他")
 		}
@@ -227,12 +230,15 @@ func main() {
 }
 
 /*
-i -> map[string]interface {}{"age":1.3, "marry":false, "name":"5lmh.com"}
+i -> map[string]interface {}{"age":1.3, "marry":false, "name":"5lmh.com"} -> map[string]interface {}
 map[age:1.3 marry:false name:5lmh.com]
+m -> map[string]interface {},map[age:1.3 marry:false name:5lmh.com]
 age 是float64类型 1.3
-name 是string类型 5lmh.com
+vv -> float64,1.3
+v -> float64,1.3name 是string类型 5lmh.com
 其他
 */
+
 
 ```
 
