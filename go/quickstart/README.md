@@ -25,6 +25,8 @@ sha256sum go1.18.1.linux-amd64.tar.gz
 # rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 rm -rf /usr/local/go
 sudo tar -C /usr/local -xvf go1.18.1.linux-amd64.tar.gz
+# 或
+sudo tar -zxvf go1.16.6.linux-amd64.tar.gz -C /usr/local
 
 
 
