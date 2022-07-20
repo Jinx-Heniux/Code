@@ -435,7 +435,15 @@ N
 %s@ftp://instructor\.example\.com/pub@http://172.16.0.1/yum@g
 ```
 
+## 另存为
 
+```bash
+:w /path/to/file
+# 将当前文件另存为
+
+:add1,add2w /path/to/file
+# 将从add1到add2的内容另存为
+```
 
 
 
