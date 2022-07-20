@@ -461,5 +461,46 @@ N
 # 执行ls命令
 ```
 
+## 配置
+
+```bash
+:set number
+:set nu
+# 显示行号
+
+:set nonu
+# 取消显示行号
+
+:set ignorecase
+:set ic
+# 忽略字符大小写
+
+:set noic
+# 区分字符大小写
+
+:set autoindent
+:set ai
+# 设定自动缩进
+
+:set noai
+# 取消设定自动缩进
+
+:set hlsearch
+# 查找到的文本高亮显示
+
+:set nohlsearch
+# 取消查找到的文本高亮显示
+
+:syntax on
+# 设置语法高亮
+
+:syntax off
+# 取消语法高亮
+
+# 配置文件
+# /etc/vimrc：全局，所有用户生效
+# ~/.vimrc：个别用户生效
+```
+
 
 
