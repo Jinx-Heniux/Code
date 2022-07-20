@@ -33,6 +33,12 @@ vim FILE1 FILE2 FILE3
 :qa
 # 全部退出
 
+:wa
+# 保存所有文件
+
+:wqa
+#保存并退出所有文件
+
 
 
 
@@ -44,6 +50,8 @@ vim -o FILE1 FILE2...
 
 vim -O FILE1 FILE2...
 # 垂直分割显示
+
+
 ```
 
 ## 分屏显示
