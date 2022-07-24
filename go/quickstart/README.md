@@ -44,6 +44,11 @@ export PATH=$PATH:/usr/local/go/bin
 # 或
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
+# 或
+export GOROOT="/usr/local/go"
+export GOPATH=$HOME/go
+export GOBIN=$GOROOT/bin
+export PATH=$PATH:$GOBIN
 
 # Next, refresh your profile by running the following command:
 source ~/.profile
