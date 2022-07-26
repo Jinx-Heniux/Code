@@ -162,3 +162,129 @@ channel full
 
 ```
 
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	ch := make(chan int, 10)
+
+	go write(ch)
+
+	for r := range ch {
+		fmt.Printf("recv: %d\n", r)
+		time.Sleep(time.Second)
+	}
+}
+
+func write(ch chan int) {
+	for {
+		select {
+		case ch <- 0:
+			fmt.Println("write 0")
+		default:
+			fmt.Println("channel full")
+		}
+		time.Sleep(time.Millisecond * 500)
+	}
+
+}
+
+/*
+write 0
+recv: 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+write 0
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+channel full
+recv: 0
+write 0
+*/
+
+
+```
+
