@@ -1,4 +1,4 @@
-# Quickstart
+# CLI
 
 ## kubectl
 
@@ -86,23 +86,10 @@ kubectl describe node <insert-node-name-here>
 ### get
 
 ```shell
-kubectl get deployment 
-# 列出当前的deployment资源对象
-
-
-
-
-
 kubectl get events -A --field-selector=reason=OwnerRefInvalidNamespace
 # a warning Event with a reason of OwnerRefInvalidNamespace and 
 # an involvedObject of the invalid dependent
 
-
-
-
-
-kubectl get namespace
-# list the current namespaces in a cluster
 
 
 
@@ -152,7 +139,8 @@ kubectl get pods --field-selector ""
 kubectl get pods --field-selector=status.phase!=Running,spec.restartPolicy=Always
 
 
-
+kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d’/’ -f 2
+# 获取pod名称 pod name
 
 
 
@@ -175,6 +163,31 @@ kubectl get services --all-namespaces --field-selector metadata.namespace!=defau
 
 # selects all Statefulsets and Services that are not in the default namespace
 kubectl get statefulsets,services --all-namespaces --field-selector metadata.namespace!=default
+
+
+
+kubectl get pods -v 9
+
+
+
+```
+
+
+
+### jsonpath
+
+```bash
+kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}'
+
+
+
+
+# SSH into [argocd-application-controller] pod. 进入容器
+kubectl exec -n argocd -it \
+$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}') bash
+
+
+
 ```
 
 
@@ -228,6 +241,36 @@ kubectl get pods -l 'environment notin (qa)'
 # Example: Find Pods by Labels to Get their Pod Logs
 # https://www.magalix.com/blog/why-it-is-important-to-use-labels-in-your-workloads-specs
 ns='qa' ; label='release=canary' ; kubectl get pods -n $ns -l $label -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | xargs -I {} kubectl -n $ns logs {}
+
+
+
+kubectl label namespace argocd istio-injection=enabled --overwrite
+# 打标签
+
+
+
+```
+
+
+
+### port-forward
+
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8083:80
+# 端口转发
+# Open the browser on localhost:8083
+```
+
+
+
+### logs
+
+```bash
+kubectl logs myapp-pod -c init-myservice # 查看第一个 Init 容器
+kubectl logs myapp-pod -c init-mydb      # 查看第二个 Init 容器
+
+
+
 ```
 
 
