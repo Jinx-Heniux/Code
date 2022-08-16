@@ -93,3 +93,75 @@ loop variable i captured by func literal
 
 ```
 
+
+
+### defer f.Close
+
+```go
+package main
+
+import "fmt"
+
+type Test struct {
+	name string
+}
+
+func (t *Test) Close() {
+	fmt.Println(t.name, " closed")
+}
+func main() {
+	ts := []Test{{"a"}, {"b"}, {"c"}}
+	fmt.Printf("%T, %v, %p\n", ts, ts, ts)
+	for _, t := range ts {
+		fmt.Printf("%T, %v, %p\n", t, t, &t)
+		t.Close()
+	}
+}
+
+/*
+[]main.Test, [{a} {b} {c}],0xc00006e150
+main.Test, {a}, 0xc000010280
+a  closed
+main.Test, {b}, 0xc000010280
+b  closed
+main.Test, {c}, 0xc000010280
+c  closed
+*/
+
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+type Test struct {
+	name string
+}
+
+func (t *Test) Close() {
+	fmt.Println(t.name, " closed")
+}
+func main() {
+	ts := []Test{{"a"}, {"b"}, {"c"}}
+	fmt.Printf("%T, %v, %p\n", ts, ts, ts)
+	for _, t := range ts {
+		fmt.Printf("%T, %v, %p\n", t, t, &t)
+		defer t.Close()
+	}
+}
+
+/*
+[]main.Test, [{a} {b} {c}], 0xc00006e150
+main.Test, {a}, 0xc000010280
+main.Test, {b}, 0xc000010280
+main.Test, {c}, 0xc000010280
+c  closed
+c  closed
+c  closed
+*/
+
+```
+
