@@ -58,3 +58,38 @@ func main() {
 
 ```
 
+
+
+### defer 碰上闭包
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	var whatever [5]struct{}
+
+	fmt.Println(whatever)
+
+	for i := range whatever {
+		defer func() { fmt.Println(i) }()
+	}
+}
+
+/*
+loop variable i captured by func literal
+*/
+
+/*
+[{} {} {} {} {}]
+4
+4
+4
+4
+4
+*/
+
+```
+
