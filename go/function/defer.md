@@ -165,3 +165,85 @@ c  closed
 
 ```
 
+
+
+```go
+package main
+
+import "fmt"
+
+type Test struct {
+	name string
+}
+
+func (t *Test) Close() {
+	fmt.Println(t.name, " closed")
+}
+func Close(t Test) {
+	fmt.Printf("%T, %v, %p\n", t, t, &t)
+	t.Close()
+}
+func main() {
+	ts := []Test{{"a"}, {"b"}, {"c"}}
+	fmt.Printf("%T, %v, %p\n", ts, ts, ts)
+	for _, t := range ts {
+		fmt.Printf("%T, %v, %p\n", t, t, &t)
+		defer Close(t)
+	}
+}
+
+/*
+[]main.Test, [{a} {b} {c}], 0xc0000a0150
+main.Test, {a}, 0xc00009e240
+main.Test, {b}, 0xc00009e240
+main.Test, {c}, 0xc00009e240
+main.Test, {c}, 0xc00009e2b0
+c  closed
+main.Test, {b}, 0xc00009e2f0
+b  closed
+main.Test, {a}, 0xc00009e330
+a  closed
+*/
+
+```
+
+
+
+```go
+package main
+
+import "fmt"
+
+type Test struct {
+	name string
+}
+
+func (t *Test) Close() {
+	fmt.Println(t.name, " closed")
+}
+func main() {
+	ts := []Test{{"a"}, {"b"}, {"c"}}
+	fmt.Printf("%T, %v, %p\n", ts, ts, ts)
+	for _, t := range ts {
+		fmt.Printf("%T, %v, %p\n", t, t, &t)
+		t2 := t
+		fmt.Printf("%T, %v, %p\n", t2, t2, &t2)
+		defer t2.Close()
+	}
+}
+
+/*
+[]main.Test, [{a} {b} {c}], 0xc0000a0150
+main.Test, {a}, 0xc00009e240
+main.Test, {a}, 0xc00009e270
+main.Test, {b}, 0xc00009e240
+main.Test, {b}, 0xc00009e2d0
+main.Test, {c}, 0xc00009e240
+main.Test, {c}, 0xc00009e330
+c  closed
+b  closed
+a  closed
+*/
+
+```
+
