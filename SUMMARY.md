@@ -27,6 +27,7 @@
     * [返回值](go/function/fan-hui-zhi.md)
     * [匿名函数](go/function/ni-ming-han-shu.md)
     * [Closure](go/function/closure.md)
+    * [defer](go/function/defer.md)
   * [面向对象](go/mian-xiang-dui-xiang/README.md)
     * [Method](go/mian-xiang-dui-xiang/method.md)
     * [匿名字段](go/mian-xiang-dui-xiang/ni-ming-zi-duan.md)
