@@ -408,3 +408,33 @@ first defer err <nil>
 
 ```
 
+
+
+### defer 与 return
+
+```go
+package main
+
+import "fmt"
+
+func foo() (i int) {
+
+	i = 0
+	defer func() {
+		fmt.Println(i)
+	}()
+
+	return 2
+}
+
+func main() {
+	foo()
+}
+
+/*
+2
+*/
+
+
+```
+
