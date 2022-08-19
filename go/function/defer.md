@@ -247,3 +247,36 @@ a  closed
 
 ```
 
+
+
+### 多个 defer 注册，按 FILO 次序执行 ( 先进后出 )。
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	test(0)
+}
+
+func test(x int) {
+	defer fmt.Println("a")
+	defer fmt.Println("b")
+
+	defer func() {
+		fmt.Println(100 / x)
+	}()
+
+	defer fmt.Println("c")
+}
+
+/*
+c
+b
+a
+panic: runtime error: integer divide by zero
+*/
+
+```
+
