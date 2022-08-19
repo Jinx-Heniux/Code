@@ -534,3 +534,203 @@ func main() {
 
 ```
 
+
+
+### 不检查错误
+
+```go
+package main
+
+import "os"
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+
+	if f != nil {
+		defer f.Close()
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 改进一下
+
+```go
+package main
+
+import "os"
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				// log etc
+			}
+		}()
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 再改进一下
+
+```go
+package main
+
+import "os"
+
+func do() (err error) {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+
+	if f != nil {
+		defer func() {
+			if ferr := f.Close(); ferr != nil {
+				err = ferr
+			}
+		}()
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 释放不同的资源
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close book.txt err %v\n", err)
+			}
+		}()
+	}
+
+	// ..code...
+
+	f, err = os.Open("another-book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close another-book.txt err %v\n", err)
+			}
+		}()
+	}
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 解决方案
+
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func(f io.Closer) {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close book.txt err %v\n", err)
+			}
+		}(f)
+	}
+
+	// ..code...
+
+	f, err = os.Open("another-book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func(f io.Closer) {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close another-book.txt err %v\n", err)
+			}
+		}(f)
+	}
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
