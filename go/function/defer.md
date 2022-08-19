@@ -280,3 +280,37 @@ panic: runtime error: integer divide by zero
 
 ```
 
+
+
+### 延迟调用参数在注册时求值或复制，可用指针或闭包 "延迟" 读取。
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	test()
+}
+
+func test() {
+	x, y := 10, 20
+
+	defer func(i int) {
+		fmt.Println("defer: ", i, y)
+	}(x)
+
+	x += 10
+	y += 100
+
+	fmt.Println("x=", x, " y=", y)
+}
+
+/*
+x= 20  y= 120
+defer:  10 120
+*/
+
+
+```
+
