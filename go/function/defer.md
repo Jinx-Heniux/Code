@@ -471,3 +471,35 @@ runtime error: invalid memory address or nil pointer dereference
 
 ```
 
+
+
+### 在错误的位置使用 defer
+
+```go
+package main
+
+import "net/http"
+
+func do() error {
+	res, err := http.Get("http://www.google1.com")
+	defer res.Body.Close()
+	if err != nil {
+		return err
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+/*
+panic: runtime error: invalid memory address or nil pointer dereference
+*/
+
+
+```
+
