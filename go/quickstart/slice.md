@@ -1136,3 +1136,36 @@ index=3 value=40 value-addr=c0000140b8 slice-addr=c00001c138
 
 ```
 
+
+
+## [6、slice和map · 语雀](https://www.yuque.com/aceld/mo95lb/ovmzgh)
+
+
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var numbers = make([]int, 3, 5)
+	numbers[2] = 100
+	fmt.Printf("address of number: %p | numbers: %v\n", &numbers, numbers)
+	printSlice(numbers)
+}
+
+func printSlice(x []int) {
+	x[2] = 200
+	fmt.Printf("address of x: %p | x: %v\n", &x, x)
+	fmt.Printf("len=%d cap=%d slice=%v\n", len(x), cap(x), x)
+}
+
+/*
+address of number: 0xc0000ac018 | numbers: [0 0 100]
+address of x: 0xc0000ac048 | x: [0 0 200]
+len=3 cap=5 slice=[0 0 200]
+*/
+
+
+```
+
