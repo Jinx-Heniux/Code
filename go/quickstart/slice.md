@@ -1169,3 +1169,39 @@ len=3 cap=5 slice=[0 0 200]
 
 ```
 
+
+
+### 空切片 nil
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var numbers []int
+	fmt.Printf("address of number: %p | numbers: %v\n", &numbers, numbers)
+	printSlice(numbers)
+
+	if numbers == nil {
+		fmt.Println("slice is nil")
+	}
+}
+
+func printSlice(x []int) {
+	fmt.Printf("address of x: %p | x: %v\n", &x, x)
+	fmt.Printf("len=%d cap=%d slice=%v\n", len(x), cap(x), x)
+}
+
+/*
+address of number: 0xc00000c030 | numbers: []
+address of x: 0xc00000c048 | x: []
+len=0 cap=0 slice=[]
+slice is nil
+*/
+
+
+```
+
+
+
