@@ -60,7 +60,7 @@
     * [用户管理](readme-1-1/0-1/yong-hu-guan-li.md)
     * [权限管理](readme-1-1/0-1/quan-xian-guan-li.md)
     * [磁盘及文件系统管理](readme-1-1/0-1/ci-pan-ji-wen-jian-xi-tong-guan-li.md)
-    * [压缩及归档](readme-1-1/0-1/ya-suo-ji-gui-dang.md)
+    * [0](readme-1-1/0-1/0.md)
     * [bash](readme-1-1/0-1/bash/README.md)
     * [case](readme-1-1/0-1/case.md)
     * [cat](readme/0-1/cat.md)
