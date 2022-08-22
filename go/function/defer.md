@@ -247,3 +247,490 @@ a  closed
 
 ```
 
+
+
+### 多个 defer 注册，按 FILO 次序执行 ( 先进后出 )。
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	test(0)
+}
+
+func test(x int) {
+	defer fmt.Println("a")
+	defer fmt.Println("b")
+
+	defer func() {
+		fmt.Println(100 / x)
+	}()
+
+	defer fmt.Println("c")
+}
+
+/*
+c
+b
+a
+panic: runtime error: integer divide by zero
+*/
+
+```
+
+
+
+### 延迟调用参数在注册时求值或复制，可用指针或闭包 "延迟" 读取。
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	test()
+}
+
+func test() {
+	x, y := 10, 20
+
+	defer func(i int) {
+		fmt.Println("defer: ", i, y)
+	}(x)
+
+	x += 10
+	y += 100
+
+	fmt.Println("x=", x, " y=", y)
+}
+
+/*
+x= 20  y= 120
+defer:  10 120
+*/
+
+
+```
+
+
+
+### 滥用 defer 可能会导致性能问题，尤其是在一个 "大循环" 里。
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+var lock sync.Mutex
+
+func test() {
+	lock.Lock()
+	lock.Unlock()
+}
+
+func testdefer() {
+	lock.Lock()
+	defer lock.Unlock()
+}
+
+func main() {
+	func() {
+		t1 := time.Now()
+
+		for i := 0; i < 10000; i++ {
+			test()
+		}
+		elapsed := time.Since(t1)
+		fmt.Println("test elapsed: ", elapsed)
+	}()
+	func() {
+		t1 := time.Now()
+
+		for i := 0; i < 10000; i++ {
+			testdefer()
+		}
+		elapsed := time.Since(t1)
+		fmt.Println("testdefer elapsed: ", elapsed)
+	}()
+
+}
+
+/*
+test elapsed:  165.732µs
+testdefer elapsed:  168.037µs
+*/
+
+```
+
+
+
+### defer陷阱
+
+### defer 与 closure
+
+```go
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func foo(a, b int) (i int, err error) {
+	defer fmt.Printf("first defer err %v\n", err)
+	defer func(err error) { fmt.Printf("second defer err %v\n", err) }(err)
+	defer func() { fmt.Printf("third defer err %v\n", err) }()
+	if b == 0 {
+		err = errors.New("divided by zero!")
+		return
+	}
+
+	i = a / b
+	return
+}
+
+func main() {
+	foo(2, 0)
+}
+
+/*
+third defer err divided by zero!
+second defer err <nil>
+first defer err <nil>
+*/
+
+
+```
+
+
+
+### defer 与 return
+
+```go
+package main
+
+import "fmt"
+
+func foo() (i int) {
+
+	i = 0
+	defer func() {
+		fmt.Println(i)
+	}()
+
+	return 2
+}
+
+func main() {
+	foo()
+}
+
+/*
+2
+*/
+
+
+```
+
+
+
+### defer nil 函数
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func test() {
+	var run func() = nil
+	defer run()
+	fmt.Println("runs")
+}
+
+func main() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
+	test()
+}
+
+/*
+runs
+runtime error: invalid memory address or nil pointer dereference
+*/
+
+```
+
+
+
+### 在错误的位置使用 defer
+
+```go
+package main
+
+import "net/http"
+
+func do() error {
+	res, err := http.Get("http://www.google1.com")
+	defer res.Body.Close()
+	if err != nil {
+		return err
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+/*
+panic: runtime error: invalid memory address or nil pointer dereference
+*/
+
+
+```
+
+
+
+### 解决方案
+
+```go
+package main
+
+import "net/http"
+
+func do() error {
+	res, err := http.Get("http://xxxxxxxxxx")
+	if res != nil {
+		defer res.Body.Close()
+	}
+
+	if err != nil {
+		return err
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 不检查错误
+
+```go
+package main
+
+import "os"
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+
+	if f != nil {
+		defer f.Close()
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 改进一下
+
+```go
+package main
+
+import "os"
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				// log etc
+			}
+		}()
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 再改进一下
+
+```go
+package main
+
+import "os"
+
+func do() (err error) {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+
+	if f != nil {
+		defer func() {
+			if ferr := f.Close(); ferr != nil {
+				err = ferr
+			}
+		}()
+	}
+
+	// ..code...
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 释放不同的资源
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close book.txt err %v\n", err)
+			}
+		}()
+	}
+
+	// ..code...
+
+	f, err = os.Open("another-book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func() {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close another-book.txt err %v\n", err)
+			}
+		}()
+	}
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
+
+
+### 解决方案
+
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func do() error {
+	f, err := os.Open("book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func(f io.Closer) {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close book.txt err %v\n", err)
+			}
+		}(f)
+	}
+
+	// ..code...
+
+	f, err = os.Open("another-book.txt")
+	if err != nil {
+		return err
+	}
+	if f != nil {
+		defer func(f io.Closer) {
+			if err := f.Close(); err != nil {
+				fmt.Printf("defer close another-book.txt err %v\n", err)
+			}
+		}(f)
+	}
+
+	return nil
+}
+
+func main() {
+	do()
+}
+
+
+```
+
