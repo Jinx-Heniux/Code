@@ -1,8 +1,6 @@
 # Map
 
-## Map · Go语言中文文档
-
-[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map.html)
+## [Map · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map.html)
 
 ### map基本使用
 
@@ -263,9 +261,7 @@ map[中国:[北京 上海]]
 
 
 
-## Map实现原理 · Go语言中文文档
-
-[https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html)
+## [Map实现原理 · Go语言中文文档](https://www.topgoer.com/go%E5%9F%BA%E7%A1%80/Map%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html)
 
 ### Go中Map的使用
 
@@ -395,6 +391,81 @@ map[golang:map[desc:golang抗并发非常good id:2] php:map[desc:php是世界上
 map[golang:map[desc:golang抗并发非常good id:2] php:map[desc:php是世界上最美的语言 id:1]]
 */
 
+
+```
+
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	//第一种声明
+	var test1 map[string]string
+	fmt.Println(test1)
+	if test1 == nil {
+		fmt.Println("test1 is nil")
+	}
+	//在使用map前，需要先make，make的作用就是给map分配数据空间
+	test1 = make(map[string]string, 10)
+	test1["one"] = "php"
+	test1["two"] = "golang"
+	test1["three"] = "java"
+	fmt.Println(test1) //map[two:golang three:java one:php]
+
+	//第二种声明
+	test2 := make(map[string]string)
+	test2["one"] = "php"
+	test2["two"] = "golang"
+	test2["three"] = "java"
+	fmt.Println(test2) //map[one:php two:golang three:java]
+
+	//第三种声明
+	test3 := map[string]string{
+		"one":   "php",
+		"two":   "golang",
+		"three": "java",
+	}
+	fmt.Println(test3) //map[one:php two:golang three:java]
+
+	language := make(map[string]map[string]string)
+	language["php"] = make(map[string]string, 2)
+	language["php"]["id"] = "1"
+	language["php"]["desc"] = "php是世界上最美的语言"
+	language["golang"] = make(map[string]string, 2)
+	language["golang"]["id"] = "2"
+	language["golang"]["desc"] = "golang抗并发非常good"
+
+	fmt.Println(language) //map[php:map[id:1 desc:php是世界上最美的语言] golang:map[id:2 desc:golang抗并发非常good]]
+
+	// 增删改查
+	val, key := language["php"] //查找是否有php这个子元素
+	if key {
+		fmt.Printf("%v\n", val)
+	} else {
+		fmt.Printf("no\n")
+	}
+
+	language["php"]["id"] = "3"         //修改了php子元素的id值
+	language["php"]["nickname"] = "啪啪啪" //增加php元素里的nickname值
+	delete(language, "php")             //删除了php子元素
+	fmt.Println(language)
+}
+
+/*
+map[]
+test1 is nil
+map[one:php three:java two:golang]
+map[one:php three:java two:golang]
+map[one:php three:java two:golang]
+map[golang:map[desc:golang抗并发非常good id:2] php:map[desc:php是世界上最美的语言 id:1]]
+map[desc:php是世界上最美的语言 id:1]
+map[golang:map[desc:golang抗并发非常good id:2]]
+*/
 
 ```
 
