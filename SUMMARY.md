@@ -69,6 +69,7 @@
     * [tar](readme-1-1/0-1/tar.md)
     * [vim](readme-1-1/0-1/vim.md)
     * [while](readme-1-1/0-1/bash/while.md)
+    * [until](readme-1-1/0-1/until.md)
 * [MongoDB](mongodb/README.md)
   * [Quickstart](mongodb/quickstart.md)
 * [PostgreSQL](postgresql/README.md)

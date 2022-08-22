@@ -1,39 +1,5 @@
 # Commands
 
-常用命令
-
-用户管理
-
-权限管理
-
-umask
-
-suid
-
-文件管理
-
-文本编辑
-
-vim, grep, sed&#x20;
-
-磁盘管理
-
-df, free, fdisk, mount, mke2fs, e2fsck&#x20;
-
-文件系统&#x20;
-
-压缩及归档
-
-gzip(.gz), bzip2(.bz2), xz, zip,cpio, tar,&#x20;
-
-Bash脚本
-
-if, for, while, case&#x20;
-
-配置文件 | /usr/local/bin | /etc/sudoers | /etc/shadow
-
-
-
 ## 小命令
 
 whomai, who, w, last, lastb, lastlog, basename, hostname, whatis
