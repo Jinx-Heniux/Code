@@ -1,4 +1,13 @@
-# Bash
+# bash
+
+
+
+```bash
+bash -x script.sh
+# -x: Print commands and their arguments as they are executed.
+```
+
+
 
 
 
