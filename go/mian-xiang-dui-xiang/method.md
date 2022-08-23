@@ -60,28 +60,44 @@ in Notify: go, go@go.com, main.User, 0xc0000ba0c0
 package main
 
 import (
-    "fmt"
+	"fmt"
 )
 
 //结构体
 type User struct {
-    Name  string
-    Email string
+	Name  string
+	Email string
 }
 
 //方法
 func (u *User) Notify() {
-    fmt.Printf("%v : %v \n", u.Name, u.Email)
+	fmt.Printf("in Notify: %v, %v, %T, %p,%p \n", u.Name, u.Email, u, u, &u)
+
 }
 func main() {
-    // 值类型调用方法
-    u1 := User{"golang", "golang@golang.com"}
-    u1.Notify()
-    // 指针类型调用方法
-    u2 := User{"go", "go@go.com"}
-    u3 := &u2
-    u3.Notify()
+	// 值类型调用方法
+	u1 := User{"golang", "golang@golang.com"}
+	fmt.Printf("u1 in main: %v, %v, %T, %p \n", u1.Name, u1.Email, u1, &u1)
+	u1.Notify()
+	fmt.Println()
+	// 指针类型调用方法
+	u2 := User{"go", "go@go.com"}
+	u3 := &u2
+	fmt.Printf("u2 in main: %v, %v, %T, %p \n", u2.Name, u2.Email, u2, &u2)
+	fmt.Printf("u3 in main: %v, %v, %T, %p,%p\n", u3.Name, u3.Email, u3, u3, &u3)
+	u3.Notify()
 }
+
+/*
+u1 in main: golang, golang@golang.com, main.User, 0xc0000ba000
+in Notify: golang, golang@golang.com, *main.User, 0xc0000ba000,0xc0000b4020
+
+u2 in main: go, go@go.com, main.User, 0xc0000ba040
+u3 in main: go, go@go.com, *main.User, 0xc0000ba040,0xc0000b4028
+in Notify: go, go@go.com, *main.User, 0xc0000ba040,0xc0000b4030
+*/
+
+
 ```
 
 
