@@ -80,3 +80,57 @@ mValue: 0x47f920,func()
 
 ```
 
+
+
+### method expression，注意 receiver 类型的差异
+
+```go
+package main
+
+import "fmt"
+
+type User struct {
+	id   int
+	name string
+}
+
+func (self *User) TestPointer() {
+	fmt.Printf("TestPointer: %p, %v\n", self, self)
+}
+
+func (self User) TestValue() {
+	fmt.Printf("TestValue: %p, %v\n", &self, self)
+}
+
+func main() {
+	u := User{1, "Tom"}
+	fmt.Printf("User u: %p, %v\n", &u, u)
+	// u2 := User{2, "Tom2"}
+	// fmt.Printf("User u2: %p, %v\n", &u2, u2)
+
+	mv := User.TestValue
+	fmt.Printf("mv: %p, %T\n", &mv, mv)
+	mv(u)
+
+	mp := (*User).TestPointer
+	fmt.Printf("mp: %p, %T\n", &mp, mp)
+	mp(&u)
+
+	mp2 := (*User).TestValue // *User 方法集包含 TestValue。签名变为 func TestValue(self *User)。实际依然是 receiver value copy。
+	fmt.Printf("mp2: %p, %T\n", &mp2, mp2)
+	mp2(&u)
+}
+
+/*
+User u: 0xc00000c030, {1 Tom}
+mv: 0xc00000e030, func(main.User)
+TestValue: 0xc00000c060, {1 Tom}
+mp: 0xc00000e038, func(*main.User)
+TestPointer: 0xc00000c030, &{1 Tom}
+mp2: 0xc00000e040, func(*main.User)
+TestValue: 0xc00000c0a8, {1 Tom}
+*/
+
+
+```
+
