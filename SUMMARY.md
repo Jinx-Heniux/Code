@@ -81,6 +81,8 @@
   * [Coursera - Python 3 Programming Specialization](python/coursera-python-3-programming-specialization.md)
   * [Django](python/django/README.md)
     * [Quickstart](python/django/quickstart.md)
+  * [Matplotlib](python/matplotlib/README.md)
+    * [Book - Python Crash Course](python/matplotlib/book-python-crash-course.md)
 * [Spark](spark/README.md)
   * [Quickstart](spark/quickstart.md)
 * [Splunk](splunk/README.md)
