@@ -37,6 +37,12 @@ func main() {
 	reflect_type(x)
 }
 
+/*
+t: *reflect.rtype, float64
+t: *reflect.rtype, float64
+a is float64
+*/
+
 
 ```
 
