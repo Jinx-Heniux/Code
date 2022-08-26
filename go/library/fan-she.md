@@ -4,7 +4,7 @@
 
 ### 空接口与反射
 
-#### 反射获取interface类型信息
+### 反射获取interface类型信息
 
 ```go
 package main
@@ -41,6 +41,45 @@ func main() {
 t: *reflect.rtype, float64
 t: *reflect.rtype, float64
 a is float64
+*/
+
+
+```
+
+
+
+### 反射获取interface值信息
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+//反射获取interface值信息
+
+func reflect_value(a interface{}) {
+	v := reflect.ValueOf(a)
+	fmt.Println(v)
+	k := v.Kind()
+	fmt.Println(k)
+	switch k {
+	case reflect.Float64:
+		fmt.Println("a是：", v.Float())
+	}
+}
+
+func main() {
+	var x float64 = 3.4
+	reflect_value(x)
+}
+
+/*
+3.4
+float64
+a是： 3.4
 */
 
 
