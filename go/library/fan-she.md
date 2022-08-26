@@ -135,3 +135,63 @@ main: 7.9
 
 ```
 
+
+
+### 反射修改值信息2
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+//反射修改值
+func reflect_set_value(a interface{}) {
+	v := reflect.ValueOf(a)
+	fmt.Printf("v: %T, %v\n", v, v)
+	k := v.Kind()
+	fmt.Printf("k: %T, %v\n", k, k)
+	switch k {
+	case reflect.Float64:
+		// 反射修改值
+		v.SetFloat(6.9)
+		fmt.Println("a is ", v.Float())
+	case reflect.Ptr:
+		// Elem()获取地址指向的值
+		v.Elem().SetFloat(7.9)
+		fmt.Println("case:", v.Elem().Float())
+		// 地址
+		fmt.Println(v.Pointer())
+	}
+}
+
+func main() {
+	var x float64 = 3.4
+	// 反射认为下面是指针类型，不是float类型
+	reflect_set_value(x)
+	fmt.Println("main:", x)
+}
+
+/*
+v: reflect.Value, 3.4
+k: reflect.Kind, float64
+panic: reflect: reflect.Value.SetFloat using unaddressable value
+
+goroutine 1 [running]:
+reflect.flag.mustBeAssignableSlow(0x19?)
+	/usr/local/go/src/reflect/value.go:262 +0x85
+reflect.flag.mustBeAssignable(...)
+	/usr/local/go/src/reflect/value.go:249
+reflect.Value.SetFloat({0x486460?, 0xc00001c0f8?, 0x496936?}, 0x401b99999999999a)
+	/usr/local/go/src/reflect/value.go:2147 +0x49
+main.reflect_set_value({0x486460?, 0xc00001c0f8?})
+	/home/zhs2si/go/src/hello/main.go:17 +0x397
+main.main()
+	/home/zhs2si/go/src/hello/main.go:31 +0x36
+exit status 2
+*/
+
+```
+
