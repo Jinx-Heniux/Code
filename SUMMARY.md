@@ -46,7 +46,7 @@
       * [ioutil](go/io/ioutil.md)
       * [fmt](go/quickstart/fmt.md)
     * [Reflection](go/library/reflection/README.md)
-      * [反射 · Go语言中文文档](go/library/reflection/fan-she-go-yu-yan-zhong-wen-wen-dang.md)
+      * [反射 · Go语言中文文档](go/library/fan-she.md)
       * [reflect package - reflect - Go Packages](go/library/reflection/reflect-package-reflect-go-packages.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go/README.md)
     * [Course 1](go/coursera-programming-with-google-go.md)

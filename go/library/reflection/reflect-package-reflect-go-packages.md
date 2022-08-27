@@ -1,6 +1,8 @@
-# reflect package - reflect - Go Packages
+---
+description: https://pkg.go.dev/reflect
+---
 
-[https://pkg.go.dev/reflect](https://pkg.go.dev/reflect)
+# reflect package - reflect - Go Packages
 
 ## func TypeOf
 
