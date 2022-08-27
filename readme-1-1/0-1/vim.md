@@ -463,8 +463,7 @@ N
 
 ## 配置
 
-```bash
-:set number
+<pre class="language-vim"><code class="lang-vim">:set number
 :set nu
 # 显示行号
 
@@ -481,6 +480,16 @@ N
 :set autoindent
 :set ai
 # 设定自动缩进
+
+<strong>:set shiftwidth=2
+</strong># 或
+:set sw=2
+# 使用每层缩进的空格数
+
+:set tabstop=4
+# 或
+:viset ts=4
+# 编辑时一个TAB字符占多少个空格的位置
 
 :set noai
 # 取消设定自动缩进
@@ -499,8 +508,7 @@ N
 
 # 配置文件
 # /etc/vimrc：全局，所有用户生效
-# ~/.vimrc：个别用户生效
-```
+# ~/.vimrc：个别用户生效</code></pre>
 
 
 
