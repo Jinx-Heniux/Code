@@ -39,3 +39,21 @@ echo "zhs2si is logged in!"
 
 ```
 
+
+
+### 简化
+
+```bash
+#!/bin/bash
+#
+
+until who | grep 'zhs2si' &> /dev/null; do
+  echo "zhs2si is not logged in!"
+  sleep 5
+done
+
+echo "zhs2si is logged in!"
+
+
+```
+
