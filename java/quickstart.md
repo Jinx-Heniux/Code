@@ -1,6 +1,6 @@
 # Quickstart
 
-
+## 安装Java
 
 <pre class="language-bash"><code class="lang-bash"># Install Java on Ubuntu 20.04
 
@@ -26,4 +26,18 @@ echo $JAVA_HOME
 # 卸载 Java
 sudo apt remove openjdk-11-jdk
 </code></pre>
+
+
+
+## 安装IDE
+
+### 配置 VS Code
+
+
+
+### 安装IntelliJ IDEA
+
+
+
+### 安装Jetbrains Toolbox
 
