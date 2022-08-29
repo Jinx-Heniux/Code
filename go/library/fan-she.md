@@ -5,6 +5,8 @@ description: >-
 
 # 反射 · Go语言中文文档
 
+link
+
 ## 空接口与反射
 
 ### 反射获取interface类型信息
@@ -194,6 +196,79 @@ main.reflect_set_value({0x486460?, 0xc00001c0f8?})
 main.main()
 	/home/zhs2si/go/src/hello/main.go:31 +0x36
 exit status 2
+*/
+
+```
+
+
+
+## 结构体与反射
+
+### 查看类型、字段和方法
+
+```go
+package main
+
+import (
+    "fmt"
+    "reflect"
+)
+
+// 定义结构体
+type User struct {
+    Id   int
+    Name string
+    Age  int
+}
+
+// 绑方法
+func (u User) Hello() {
+    fmt.Println("Hello")
+}
+
+// 传入interface{}
+func Poni(o interface{}) {
+    t := reflect.TypeOf(o)
+    fmt.Println("类型：", t)
+    fmt.Println("字符串类型：", t.Name())
+    // 获取值
+    v := reflect.ValueOf(o)
+    fmt.Println(v)
+    // 可以获取所有属性
+    // 获取结构体字段个数：t.NumField()
+    for i := 0; i < t.NumField(); i++ {
+        // 取每个字段
+        f := t.Field(i)
+        fmt.Printf("%s : %v", f.Name, f.Type)
+        // 获取字段的值信息
+        // Interface()：获取字段对应的值
+        val := v.Field(i).Interface()
+        fmt.Println("val :", val)
+    }
+    fmt.Println("=================方法====================")
+    for i := 0; i < t.NumMethod(); i++ {
+        m := t.Method(i)
+        fmt.Println(m.Name)
+        fmt.Println(m.Type)
+    }
+
+}
+
+func main() {
+    u := User{1, "zs", 20}
+    Poni(u)
+}
+
+/*
+类型： main.User
+字符串类型： User
+{1 zs 20}
+Id : intval : 1
+Name : stringval : zs
+Age : intval : 20
+=================方法====================
+Hello
+func(main.User)
 */
 
 ```
