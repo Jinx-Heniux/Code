@@ -1,11 +1,6 @@
----
-description: >-
-  https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/%E5%8F%8D%E5%B0%84.html
----
-
 # 反射 · Go语言中文文档
 
-link
+[Link](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/%E5%8F%8D%E5%B0%84.html)
 
 ## 空接口与反射
 
