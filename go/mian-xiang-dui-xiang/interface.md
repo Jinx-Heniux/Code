@@ -336,3 +336,46 @@ x is a bool is true
 
 ```
 
+
+
+## [8、interface与类型断言 · 语雀](https://www.yuque.com/aceld/mo95lb/frv2c9)
+
+
+
+### 直接断言使用
+
+```go
+package main
+
+import "fmt"
+
+/*
+func funcName(a interface{}) string {
+        return string(a)
+}
+*/
+
+func funcName(a interface{}) string {
+	value, ok := a.(string)
+	if !ok {
+		fmt.Println("It is not ok for type string")
+		return ""
+	}
+	fmt.Println("The value is ", value)
+
+	return value
+}
+
+func main() {
+	//      str := "123"
+	//      funcName(str)
+
+	var a interface{} // It is not ok for type string
+	// var a string = "123" // The value is  123
+	// var a int = 10 // It is not ok for type string
+	funcName(a)
+}
+
+
+```
+
