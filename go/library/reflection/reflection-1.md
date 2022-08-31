@@ -1,4 +1,4 @@
-# 反射 · Go语言中文文档
+# Reflection 1
 
 ## [反射 · Go语言中文文档](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/%E5%8F%8D%E5%B0%84.html)
 
@@ -454,14 +454,28 @@ func main() {
 		fmt.Println("open file error", err)
 		return
 	}
+	fmt.Printf("tty: %T, %v,%p,%p\n", tty, tty, &tty, tty)
 
 	var r io.Reader
+	fmt.Printf("r: %T, %v,%p,%p\n", r, r, &r, r)
 	r = tty
+	fmt.Printf("r: %T, %v,%p,%p\n", r, r, &r, r)
 
 	var w io.Writer
+	fmt.Printf("w: %T, %v,%p,%p\n", w, w, &w, w)
 	w = r.(io.Writer)
+	fmt.Printf("w: %T, %v,%p,%p\n", w, w, &w, w)
 	w.Write([]byte("HELLO THIS IS A TEST!!!\n"))
 }
+
+/*
+tty: *os.File, &{0xc0000b6120},0xc0000b4018,0xc0000b4020
+r: <nil>, <nil>,0xc00009e210,%!p(<nil>)
+r: *os.File, &{0xc0000b6120},0xc00009e210,0xc0000b4020
+w: <nil>, <nil>,0xc00009e220,%!p(<nil>)
+w: *os.File, &{0xc0000b6120},0xc00009e220,0xc0000b4020
+*/
+
 
 
 ```
