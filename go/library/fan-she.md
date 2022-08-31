@@ -557,3 +557,51 @@ value:  1.2345
 
 ```
 
+
+
+### 从relfect.Value中获取接口interface的信息
+
+### 已知原有类型【进行“强制转换”】
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	var num float64 = 1.2345
+	fmt.Printf("num: %T, %v, %p\n", num, num, &num)
+
+	pointer := reflect.ValueOf(&num)
+	fmt.Printf("pointer: %T, %v, %p\n", pointer, pointer, &pointer)
+	value := reflect.ValueOf(num)
+	fmt.Printf("value: %T, %v, %p\n", value, value, &value)
+
+	// 可以理解为“强制转换”，但是需要注意的时候，转换的时候，如果转换的类型不完全符合，则直接panic
+	// Golang 对类型要求非常严格，类型一定要完全符合
+	// 如下两个，一个是*float64，一个是float64，如果弄混，则会panic
+	convertPointer := pointer.Interface().(*float64)
+	fmt.Printf("convertPointer: %T, %v, %p\n", convertPointer, convertPointer, &convertPointer)
+	convertValue := value.Interface().(float64)
+	fmt.Printf("convertValue: %T, %v, %p\n", convertValue, convertValue, &convertValue)
+
+	fmt.Println(convertPointer)
+	fmt.Println(convertValue)
+}
+
+/*
+num: float64, 1.2345, 0xc0000ba000
+pointer: reflect.Value, 0xc0000ba000, 0xc0000ac018
+value: reflect.Value, 1.2345, 0xc0000ac060
+convertPointer: *float64, 0xc0000ba000, 0xc0000b4020
+convertValue: float64, 1.2345, 0xc0000ba038
+0xc0000ba000
+1.2345
+*/
+
+
+```
+
