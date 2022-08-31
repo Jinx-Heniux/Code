@@ -480,7 +480,7 @@ w: *os.File, &{0xc0000b6120},0xc00009e220,0xc0000b4020
 
 ```
 
-
+### 接口变量内部(值value；类型concrete type) pair
 
 ```go
 package main
@@ -523,6 +523,35 @@ func main() {
 /*
 Read a book.
 Write a book.
+*/
+
+
+```
+
+
+
+### reflect的基本功能TypeOf和ValueOf
+
+reflect.TypeOf()是获取pair中的type，reflect.ValueOf()获取pair中的value
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	var num float64 = 1.2345
+
+	fmt.Println("type: ", reflect.TypeOf(num))
+	fmt.Println("value: ", reflect.ValueOf(num))
+}
+
+/*
+type:  float64
+value:  1.2345
 */
 
 
