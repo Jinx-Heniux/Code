@@ -1,8 +1,8 @@
 # 反射 · Go语言中文文档
 
-[Link](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/%E5%8F%8D%E5%B0%84.html)
+## [反射 · Go语言中文文档](https://www.topgoer.com/%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86%E5%BA%93/%E5%8F%8D%E5%B0%84.html)
 
-## 空接口与反射
+### 空接口与反射
 
 ### 反射获取interface类型信息
 
@@ -197,7 +197,7 @@ exit status 2
 
 
 
-## 结构体与反射
+### 结构体与反射
 
 ### 查看类型、字段和方法
 
@@ -429,6 +429,39 @@ func main() {
 name1
 name2
 */
+
+
+```
+
+
+
+## [9、反射reflect · 语雀](https://www.yuque.com/aceld/mo95lb/cwur9v)
+
+### 接口变量内部(值value；类型concrete type) pair
+
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func main() {
+	tty, err := os.OpenFile("./names.txt", os.O_RDWR, 0)
+	if err != nil {
+		fmt.Println("open file error", err)
+		return
+	}
+
+	var r io.Reader
+	r = tty
+
+	var w io.Writer
+	w = r.(io.Writer)
+	w.Write([]byte("HELLO THIS IS A TEST!!!\n"))
+}
 
 
 ```
