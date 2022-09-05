@@ -49,6 +49,7 @@
       * [fmt](go/quickstart/fmt.md)
     * [Reflection](go/library/reflection/README.md)
       * [Reflection 1](go/library/fan-she.md)
+      * [Reflection 2](go/library/reflection/reflection-2.md)
       * [reflect package - reflect - Go Packages](go/library/reflection/reflect-package-reflect-go-packages.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go/README.md)
     * [Course 1](go/coursera-programming-with-google-go.md)
