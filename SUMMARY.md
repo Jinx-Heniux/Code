@@ -79,6 +79,7 @@
     * [case](readme-1-1/bash/case.md)
     * [while](readme-1-1/bash/while.md)
     * [until](readme-1-1/bash/until.md)
+    * [for](readme-1-1/bash/for.md)
 * [MongoDB](mongodb/README.md)
   * [Quickstart](mongodb/quickstart.md)
 * [PostgreSQL](postgresql/README.md)

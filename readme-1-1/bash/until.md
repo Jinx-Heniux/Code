@@ -1,6 +1,6 @@
 # until
 
-## 10 05 脚本编程之八 脚本完成磁盘分区格式化
+## [10 05 脚本编程之八 脚本完成磁盘分区格式化](https://www.youtube.com/watch?v=kiUp9i7ewEI)
 
 4:33&#x20;
 
