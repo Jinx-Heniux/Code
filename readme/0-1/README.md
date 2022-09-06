@@ -40,7 +40,7 @@ suid
 
 
 
-## 文件
+## 文件 文件夹
 
 ### basename
 
@@ -66,7 +66,7 @@ Bash脚本
 
 if, for, while, case&#x20;
 
-## 文件
+## 配置文件 配置文件夹
 
 ### /etc/passwd
 
@@ -82,11 +82,9 @@ if, for, while, case&#x20;
 
 ### /etc/default/useradd
 
+### /usr/local/bin
 
-
-#### /usr/local/bin
-
-#### /etc/sudoers&#x20;
+### /etc/sudoers&#x20;
 
 
 
