@@ -34,3 +34,20 @@ echo $SUM
 
 ```
 
+
+
+### 一百以内所有偶数之和
+
+```bash
+#!/bin/bash
+#
+declare -i SUM=0
+
+for ((I=2;I<=100;I+=2 )); do
+  let SUM+=$I
+done
+
+echo $SUM
+
+```
+
