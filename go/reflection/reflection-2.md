@@ -142,3 +142,77 @@ FieldName: List, len: 10.
 
 ```
 
+
+
+### Value
+
+### Addr 方法
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type UserService interface {
+	Service(str string) string
+}
+
+type userService struct {
+	ServerName string
+	Info       map[string]interface{}
+	List       [10]int
+}
+
+func (*userService) Service(str string) string {
+	return "name"
+}
+
+func main() {
+	ptr_st_value := reflect.ValueOf(&userService{})
+	fmt.Printf("ptr_st_value: (%T) %#v\n", ptr_st_value, ptr_st_value)
+	st_value := reflect.ValueOf(userService{})
+	fmt.Printf("st_value: (%T) %#v\n", st_value, st_value)
+
+	fmt.Println(reflect.ValueOf(&userService{}).CanAddr()) // 所有的 reflect.ValueOf()都不可以直接拿到addr()
+	fmt.Println(reflect.ValueOf(userService{}).CanAddr())
+
+	fmt.Println()
+	x := 2
+	fmt.Printf("x: (%T) %#v\n", x, x)
+	d := reflect.ValueOf(&x)
+	fmt.Printf("d: (%T) %#v\n", d, d)
+	fmt.Printf("d.Elem(): (%T) %v\n", d.Elem(), d.Elem())
+	fmt.Printf("d.Elem().CanAddr(): (%T) %v\n", d.Elem().CanAddr(), d.Elem().CanAddr())
+	fmt.Printf("d.Elem().Addr(): (%T) %#v\n", d.Elem().Addr(), d.Elem().Addr())
+	fmt.Printf("d.Elem().Addr().Interface(): (%T) %#v\n", d.Elem().Addr().Interface(), d.Elem().Addr().Interface())
+	value := d.Elem().Addr().Interface().(*int) // 可以直接转换为指针
+	fmt.Printf("value: (%T) %#v\n", value, value)
+	*value = 1000
+	fmt.Printf("*value: (%T) %#v\n", *value, *value)
+	fmt.Println(x) // "3"
+
+}
+
+/*
+ptr_st_value: (reflect.Value) &main.userService{ServerName:"", Info:map[string]interface {}(nil), List:[10]int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+st_value: (reflect.Value) main.userService{ServerName:"", Info:map[string]interface {}(nil), List:[10]int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+false
+false
+
+x: (int) 2
+d: (reflect.Value) (*int)(0xc0000be090)
+d.Elem(): (reflect.Value) 2
+d.Elem().CanAddr(): (bool) true
+d.Elem().Addr(): (reflect.Value) (*int)(0xc0000be090)
+d.Elem().Addr().Interface(): (*int) (*int)(0xc0000be090)
+value: (*int) (*int)(0xc0000be090)
+*value: (int) 1000
+1000
+*/
+
+
+```
+
