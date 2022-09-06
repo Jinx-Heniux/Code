@@ -216,3 +216,82 @@ value: (*int) (*int)(0xc0000be090)
 
 ```
 
+
+
+### Set 方法
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+
+	fmt.Println()
+	x := 2
+	fmt.Printf("x: (%T) %#v\n", x, x)
+	d := reflect.ValueOf(&x)
+	fmt.Printf("d: (%T) %#v\n", d, d)
+	fmt.Printf("d.Elem(): (%T) %v\n", d.Elem(), d.Elem())
+	fmt.Printf("d.Elem().CanSet(): (%T) %v\n", d.Elem().CanSet(), d.Elem().CanSet())
+
+	d.Elem().SetInt(1000)
+	fmt.Printf("x: (%T) %#v\n", x, x)
+
+}
+
+/*
+x: (int) 2
+d: (reflect.Value) (*int)(0xc00001c100)
+d.Elem(): (reflect.Value) 2
+d.Elem().CanSet(): (bool) true
+x: (int) 1000
+*/
+
+```
+
+
+
+### Elem
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+
+	x := 2
+	fmt.Printf("x: (%T) %#v\n", x, x)
+	d := reflect.ValueOf(&x)
+	fmt.Printf("d: (%T) %#v\n", d, d)
+	fmt.Printf("d.Kind(): (%T) %#v\n", d.Kind(), d.Kind())
+	fmt.Printf("reflect.Ptr: (%T) %#v\n", reflect.Ptr, reflect.Ptr)
+	fmt.Printf("d.Elem(): (%T) %#v\n", d.Elem(), d.Elem())
+	if d.Kind() == reflect.Ptr {
+		d.Elem() // 调用elem 获取指针真正指向的对象
+	}
+
+	// 或者，可以调用这个方法安全的调用
+	d = reflect.Indirect(d)
+	fmt.Printf("d: (%T) %#v\n", d, d)
+
+}
+
+/*
+x: (int) 2
+d: (reflect.Value) (*int)(0xc0000a8000)
+d.Kind(): (reflect.Kind) 0x16
+reflect.Ptr: (reflect.Kind) 0x16
+d.Elem(): (reflect.Value) 2
+d: (reflect.Value) 2
+*/
+
+```
+
