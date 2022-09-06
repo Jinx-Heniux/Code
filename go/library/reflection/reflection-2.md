@@ -340,3 +340,64 @@ hello world
 
 ```
 
+
+
+### value.Set()方法set数据的时候，value的类型不能是指针类型
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+	"time"
+)
+
+type User struct {
+	Name     string
+	Age      int
+	birthday time.Time //这个不可见
+}
+
+func main() {
+	user := User{}
+	fmt.Printf("user: (%T) %#v\n", user, user)
+	value := reflect.ValueOf(&user)
+	fmt.Printf("value: (%T) %#v\n", value, value)
+	fmt.Println(value.String())
+	fmt.Printf("value.String(): (%T) %#v\n", value.String(), value.String())
+	for value.Kind() == reflect.Ptr { // 是指针类型，就去拿到真正的类型
+		value = value.Elem()
+	}
+	if value.Kind() == reflect.Struct { // 如果是struct类型，就可以去拿字段
+		birthDay := value.FieldByName("birthday") // 这个显然不能set
+		fmt.Printf("birthDay: (%T) %#v\n", birthDay, birthDay)
+		fmt.Printf("birthDay.CanSet(): (%T) %#v\n", birthDay.CanSet(), birthDay.CanSet())
+		if birthDay.CanSet() {
+			birthDay.Set(reflect.ValueOf(time.Now()))
+		}
+		name := value.FieldByName("Name") // 这个可以
+		fmt.Printf("name: (%T) %#v\n", name, name)
+		fmt.Printf("name.CanSet(): (%T) %#v\n", name.CanSet(), name.CanSet())
+		if name.CanSet() {
+			name.Set(reflect.ValueOf("tom"))
+		}
+	}
+	fmt.Printf("%+v", user) // {Name:tom Age:0 birthday:{wall:0 ext:0 loc:<nil>}}
+}
+
+/*
+user: (main.User) main.User{Name:"", Age:0, birthday:time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}}
+value: (reflect.Value) &main.User{Name:"", Age:0, birthday:time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}}
+<*main.User Value>
+value.String(): (string) "<*main.User Value>"
+birthDay: (reflect.Value) time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}
+birthDay.CanSet(): (bool) false
+name: (reflect.Value) ""
+name.CanSet(): (bool) true
+{Name:tom Age:0 birthday:{wall:0 ext:0 loc:<nil>}}
+*/
+
+
+```
+
