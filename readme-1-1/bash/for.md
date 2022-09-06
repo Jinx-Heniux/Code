@@ -19,3 +19,18 @@ echo $SUM
 
 ```
 
+
+
+```bash
+#!/bin/bash
+#
+declare -i SUM=0
+
+for ((I=1;I<=100;I++ )); do
+  let SUM+=$I
+done
+
+echo $SUM
+
+```
+
