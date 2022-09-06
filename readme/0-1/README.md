@@ -1,8 +1,30 @@
 # Commands
 
-常用命令
+## 常用
 
-用户管理
+### man
+
+### whatis
+
+### which
+
+
+
+## 用户 用户组
+
+### adduser
+
+### groupadd
+
+### useradd
+
+### w
+
+### who
+
+### whoami
+
+
 
 权限管理
 
@@ -10,7 +32,21 @@ umask
 
 suid
 
-文件管理
+## 密码
+
+### md5sum
+
+### passwd
+
+
+
+## 文件
+
+### basename
+
+### file
+
+
 
 文本编辑
 
@@ -30,21 +66,35 @@ Bash脚本
 
 if, for, while, case&#x20;
 
-配置文件 | /usr/local/bin | /etc/sudoers | /etc/shadow
+## 文件
+
+### /etc/passwd
+
+### /etc/shadow
+
+### /etc/group
+
+### /etc/gshadow
+
+### /etc/shells
+
+### /sbin/nologin
+
+### /etc/default/useradd
+
+
+
+#### /usr/local/bin
+
+#### /etc/sudoers&#x20;
 
 
 
 ## 小命令
 
-whomai, who, w, last, lastb, lastlog, basename, hostname, whatis
+last, lastb, lastlog, hostname,&#x20;
 
 ```shell
-basename /etc/passwd
-# 直接取得路径基名(文件名)
-
-
-
-
 
 # 如果当前主机的主机名不是 www.magedu.com，就把它改成www.magedu.com
 [ `hostname` != "www.magedu.com" ] && hostname www.magedu.com
@@ -70,17 +120,7 @@ lastlog -u hadoop
 
 
 
-w
-# Show who is logged on and what they are doing.
 
-whatis
-# display one-line manual page descriptions
-
-who
-# show who is logged on
-
-whoami
-# print effective userid
 ```
 
 
