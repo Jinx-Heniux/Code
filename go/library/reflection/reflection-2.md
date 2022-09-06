@@ -295,3 +295,48 @@ d: (reflect.Value) 2
 
 ```
 
+
+
+### New & Set (十分重要)
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+
+	fmt.Printf("reflect.TypeOf(\"111\"): (%T) %#v\n", reflect.TypeOf("111"), reflect.TypeOf("111"))
+	value := reflect.New(reflect.TypeOf("111")) // 初始化一个 string类型的value，但是需要注意的是初始化完成后是 *string，任何类型都是，New()方法调用完成后都会是一个指针指向原来的类型数据，也就是多了个*
+	fmt.Printf("value: (%T) %#v\n", value, value)
+
+	// fmt.Println(value.Kind())       // 因此这里输出的是 *string ，ptr
+	fmt.Printf("value.Kind(): (%T) %#v\n", value.Kind(), value.Kind())
+
+	value = reflect.Indirect(value) // 获取真正的类型,string，
+	fmt.Printf("value: (%T) %#v\n", value, value)
+	// fmt.Println(value.Kind())       //
+	fmt.Printf("value.Kind(): (%T) %#v\n", value.Kind(), value.Kind())
+
+	if value.CanSet() {
+		value.SetString("hello world") // set string,必须要求类型是string的，而且can set，
+	}
+	fmt.Println(value.Interface().(string)) // "hello world"
+
+}
+
+/*
+reflect.TypeOf("111"): (*reflect.rtype) &reflect.rtype{size:0x10, ptrdata:0x8, hash:0xe0ff5cb4, tflag:0x7, align:0x8, fieldAlign:0x8, kind:0x18, equal:(func(unsafe.Pointer, unsafe.Pointer) bool)(0x402d20), gcdata:(*uint8)(0x4b56e8), str:3087, ptrToThis:21760}
+value: (reflect.Value) (*string)(0xc00009e210)
+value.Kind(): (reflect.Kind) 0x16
+value: (reflect.Value) ""
+value.Kind(): (reflect.Kind) 0x18
+hello world
+*/
+
+
+```
+
