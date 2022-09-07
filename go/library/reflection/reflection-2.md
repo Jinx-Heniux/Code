@@ -401,3 +401,55 @@ name.CanSet(): (bool) true
 
 ```
 
+
+
+### Call(相当重要)
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type UserService interface {
+	Service(str string) string
+}
+
+type userService struct {
+	ServerName string
+	Info       map[string]interface{}
+	List       [10]int
+}
+
+func (*userService) Service(str string) string {
+	return "name"
+}
+
+func main() {
+	value := reflect.ValueOf(new(userService))
+	fmt.Printf("value: (%T) %v | %#v\n", value, value, value)
+	if value.NumMethod() > 0 {
+		fmt.Println(value.NumMethod()) // 1
+		method := value.MethodByName("Service")
+		fmt.Printf("method: (%T) %v | %#v\n", method, method, method)
+		fmt.Printf("method.Kind(): (%T) %v | %#v\n", method.Kind(), method.Kind(), method.Kind())
+		fmt.Println(method.Kind())                                                  // "func"
+		method_call := method.Call([]reflect.Value{reflect.ValueOf("hello world")}) // hello world
+		fmt.Printf("method_call: (%T) %v | %#v\n", method_call, method_call, method_call)
+	}
+}
+
+/*
+value: (reflect.Value) &{ map[] [0 0 0 0 0 0 0 0 0 0]} | &main.userService{ServerName:"", Info:map[string]interface {}(nil), List:[10]int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
+1
+method: (reflect.Value) 0x486500 | (func(string) string)(0x486500)
+method.Kind(): (reflect.Kind) func | 0x13
+func
+method_call: ([]reflect.Value) [name] | []reflect.Value{reflect.Value{typ:(*reflect.rtype)(0x4c7880), ptr:(unsafe.Pointer)(0xc000010340), flag:0x98}}
+*/
+
+
+```
+
