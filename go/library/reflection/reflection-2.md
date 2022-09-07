@@ -468,7 +468,7 @@ import (
 // isValid 是判断一个value 是不是有值
 func main() {
 	of := reflect.ValueOf(nil)
-	fmt.Printf("value: (%T) %v | %#v\n", of, of, of)
+	fmt.Printf("of: (%T) %v | %#v\n", of, of, of)
 	fmt.Println(of.IsValid()) // false
 	fmt.Printf("of.IsValid(): (%T) %v | %#v\n", of.IsValid(), of.IsValid(), of.IsValid())
 }
@@ -479,6 +479,42 @@ func main() {
 value: (reflect.Value) <invalid reflect.Value> | <invalid reflect.Value>
 false
 of.IsValid(): (bool) false | false
+*/
+
+
+```
+
+
+
+### IsNil
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+// ok 没问题
+func main() {
+	i := (*error)(nil)
+	fmt.Printf("i: (%T) %v | %#v\n", i, i, i)
+	value := reflect.ValueOf(i)
+	fmt.Printf("value: (%T) %v | %#v\n", value, value, value)
+	fmt.Println(value.IsValid()) // true ,显示不是空
+	fmt.Println(value.IsNil())   // true , 因为它确实是nil
+}
+
+// IsNil reports whether its argument v is nil. The argument must be
+// a chan, func, interface, map, pointer, or slice value; if it is
+// not, IsNil panics.
+
+/*
+i: (*error) <nil> | (*error)(nil)
+value: (reflect.Value) <nil> | (*error)(nil)
+true
+true
 */
 
 
