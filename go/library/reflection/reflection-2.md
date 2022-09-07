@@ -520,3 +520,45 @@ true
 
 ```
 
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	var (
+		isNilKind = map[reflect.Kind]interface{}{
+			reflect.Chan:          nil,
+			reflect.Func:          nil,
+			reflect.Map:           nil,
+			reflect.Ptr:           nil,
+			reflect.UnsafePointer: nil,
+			reflect.Interface:     nil,
+			reflect.Slice:         nil,
+		}
+	)
+	fmt.Printf("isNilKind: (%T) %v | %#v\n", isNilKind, isNilKind, isNilKind)
+	value := reflect.ValueOf(1234)
+	fmt.Printf("value: (%T) %v | %#v\n", value, value, value)
+	fmt.Printf("value.Kind(): (%T) %v | %#v\n", value.Kind(), value.Kind(), value.Kind())
+	_, isExist := isNilKind[value.Kind()]
+	if isExist {
+		fmt.Println(value.IsNil()) // 调用这个需要前置的判断条件，就是kind
+	}
+
+}
+
+/*
+isNilKind: (map[reflect.Kind]interface {}) map[chan:<nil> func:<nil> interface:<nil> map:<nil> ptr:<nil> slice:<nil> unsafe.Pointer:<nil>] | map[reflect.Kind]interface {}{0x12:interface {}(nil), 0x13:interface {}(nil), 0x14:interface {}(nil), 0x15:interface {}(nil), 0x16:interface {}(nil), 0x17:interface {}(nil), 0x1a:interface {}(nil)}
+value: (reflect.Value) 1234 | 1234
+value.Kind(): (reflect.Kind) int | 0x2
+*/
+
+
+```
+
