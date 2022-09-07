@@ -562,3 +562,65 @@ value.Kind(): (reflect.Kind) int | 0x2
 
 ```
 
+
+
+### Field
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type UserService interface {
+	Service(str string) string
+}
+
+type userService struct {
+	ServerName string
+	Info       map[string]interface{}
+	List       [10]int
+}
+
+func (*userService) Service(str string) string {
+	return "name"
+}
+
+func main() {
+	tp := reflect.TypeOf(new(userService))
+	fmt.Printf("tp: (%T) %v | %#v\n", tp, tp, tp)
+	fmt.Printf("tp.Kind(): (%T) %v | %#v\n", tp.Kind(), tp.Kind(), tp.Kind())
+
+	if tp.Kind() == reflect.Ptr {
+		tp = tp.Elem()
+	}
+
+	fmt.Printf("tp: (%T) %v | %#v\n", tp, tp, tp)
+	fmt.Printf("tp.Kind(): (%T) %v | %#v\n", tp.Kind(), tp.Kind(), tp.Kind())
+	if tp.Kind() != reflect.Struct {
+		// t.Fatal("not support")
+		panic("not support")
+	}
+
+	field, _ := tp.FieldByName("ServerName") // 不许是struct 类型
+	fmt.Printf("field: (%T) %v | %#v\n", field, field, field)
+	fmt.Printf("FieldTag json=%s\n", field.Tag.Get("json"))
+	fmt.Printf("FieldName=%s\n", field.Name)
+
+}
+
+/*
+tp: (*reflect.rtype) *main.userService | &reflect.rtype{size:0x8, ptrdata:0x8, hash:0xb4a3a62, tflag:0x9, align:0x8, fieldAlign:0x8, kind:0x36, equal:(func(unsafe.Pointer, unsafe.Pointer) bool)(0x402c20), gcdata:(*uint8)(0x4b8358), str:11640, ptrToThis:0}
+tp.Kind(): (reflect.Kind) ptr | 0x16
+tp: (*reflect.rtype) main.userService | &reflect.rtype{size:0x68, ptrdata:0x18, hash:0x51ed1e38, tflag:0x7, align:0x8, fieldAlign:0x8, kind:0x19, equal:(func(unsafe.Pointer, unsafe.Pointer) bool)(nil), gcdata:(*uint8)(0x4b77c6), str:11640, ptrToThis:36896}
+tp.Kind(): (reflect.Kind) struct | 0x19
+field: (reflect.StructField) {ServerName  string  0 [0] false} | reflect.StructField{Name:"ServerName", PkgPath:"", Type:(*reflect.rtype)(0x48a140), Tag:"", Offset:0x0, Index:[]int{0}, Anonymous:false}
+FieldTag json=
+FieldName=ServerName
+*/
+
+
+```
+
