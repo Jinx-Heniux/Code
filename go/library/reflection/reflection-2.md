@@ -453,3 +453,34 @@ method_call: ([]reflect.Value) [name] | []reflect.Value{reflect.Value{typ:(*refl
 
 ```
 
+
+
+### IsValid
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+// isValid 是判断一个value 是不是有值
+func main() {
+	of := reflect.ValueOf(nil)
+	fmt.Printf("value: (%T) %v | %#v\n", of, of, of)
+	fmt.Println(of.IsValid()) // false
+	fmt.Printf("of.IsValid(): (%T) %v | %#v\n", of.IsValid(), of.IsValid(), of.IsValid())
+}
+
+// IsValid reports whether v represents a value. 代表v表示一个值（nil显示不是）
+// It returns false if v is the zero Value.（false 是 v是一个空）
+/*
+value: (reflect.Value) <invalid reflect.Value> | <invalid reflect.Value>
+false
+of.IsValid(): (bool) false | false
+*/
+
+
+```
+
