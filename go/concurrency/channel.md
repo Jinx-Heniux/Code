@@ -329,3 +329,46 @@ main go程结束
 
 ```
 
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	c := make(chan int)
+
+	go func() {
+		defer fmt.Println("子go程结束")
+
+		fmt.Println("子go程正在运行……")
+
+		// time.Sleep(2 * time.Second)
+
+		c <- 666 //666发送到c
+	}()
+
+	fmt.Println("main go程正在运行……")
+	time.Sleep(5 * time.Second)
+	num := <-c //从c中接收数据，并赋值给num
+
+	fmt.Println("num = ", num)
+
+	time.Sleep(5 * time.Second)
+	fmt.Println("main go程结束")
+}
+
+/*
+main go程正在运行……
+子go程正在运行……
+num =  666
+子go程结束
+main go程结束
+*/
+
+```
+
