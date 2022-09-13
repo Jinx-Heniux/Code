@@ -149,31 +149,6 @@ passwd -d user3
 
 
 
-
-############################## useradd ##############################
-useradd -u 1000 user1
-# 添加用户，设置属主ID为1000
-
-useradd -g mygroup user2
-# 添加用户user2给设置基本组为mygroup，如果组不存在报错
-
-useradd -G mygroup user3
-useradd -G mygroup,mygroup2 user3
-tail /etc/group
-# 添加user3，并设置附加组为mygroup和mygroup2
-
-useradd -c "Tony Blare" -d /home/blare user4
-# 设置注释信息 和 家目录
-
-useradd -s /sbin/nologin user5 
-# 不让使用shell 用户不能登录
-
-useradd -r apache
-# 添加系统用户apache，即使指定家目录，也不会被创建
-
-
-
-
 ############################## usermod ##############################
 # As root, run this command to add your user "sammy" to the sudo group
 usermod -G sudo sammy
