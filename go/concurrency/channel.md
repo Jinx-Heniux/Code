@@ -372,3 +372,76 @@ main go程结束
 
 ```
 
+
+
+### 单向channel及应用
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	c := make(chan int, 5)
+	go counter(c)
+
+	go printer(c)
+
+	time.Sleep(2 * time.Second)
+}
+
+func printer(outofc <-chan int) {
+	defer fmt.Println("printer ending 111 ...")
+	defer fmt.Println("printer ending 222 ...")
+	fmt.Println("in printer ...")
+	for i := range outofc {
+		fmt.Println("read from chan: ", i)
+	}
+}
+
+func counter(intoc chan<- int) {
+	defer fmt.Println("counter ending 111 ...")
+	defer fmt.Println("counter ending 222 ...")
+	defer close(intoc)
+	fmt.Println("in counter ...")
+	for i := 0; i < 10; i++ {
+		intoc <- i
+		fmt.Println("write to chan: ", i)
+	}
+}
+
+/*
+in printer ...
+in counter ...
+write to chan:  0
+write to chan:  1
+write to chan:  2
+write to chan:  3
+write to chan:  4
+write to chan:  5
+read from chan:  0
+read from chan:  1
+read from chan:  2
+read from chan:  3
+read from chan:  4
+read from chan:  5
+read from chan:  6
+write to chan:  6
+write to chan:  7
+write to chan:  8
+write to chan:  9
+counter ending 222 ...
+counter ending 111 ...
+read from chan:  7
+read from chan:  8
+read from chan:  9
+printer ending 222 ...
+printer ending 111 ...
+*/
+
+
+```
+
