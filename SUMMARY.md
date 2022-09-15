@@ -1,6 +1,7 @@
 # Table of contents
 
 * [0](README.md)
+  * [程序是怎样跑起来的](readme/cheng-xu-shi-zen-yang-pao-qi-lai-de.md)
 * [Anaconda](anaconda/README.md)
   * [Quickstart](anaconda/quickstart.md)
 * [C and C++](<README (1).md>)
