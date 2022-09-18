@@ -125,35 +125,15 @@ lastlog -u hadoop
 
 ## 用户管理
 
-useradd, id, finger, usermod, userdel, chsh, chfn, passwd, pwck, groupadd, groupmod, groupdel, gpasswd, newgrp, chage
+
 
 ```shell
-finger a-user-name
-# user information lookup program
-# The finger displays information about the system users.
 
 
 
 
 
 
-############################## passwd ##############################
-echo "redhat" | passwd --stdin user3
-# 从标准输入读取密码，传递密码过去。不是手动输入
-# 从管道接受字符 修改密码
-
-passwd -d user3 
-# 清空user3的密码 空密码 无法登陆
-
-
-
-
-
-############################## usermod ##############################
-# As root, run this command to add your user "sammy" to the sudo group
-usermod -G sudo sammy
-usermod -aG sudo sammy
-# -a 表示追加
 
 
 
