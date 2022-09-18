@@ -1,7 +1,6 @@
 # Table of contents
 
 * [0](README.md)
-  * [程序是怎样跑起来的](readme/cheng-xu-shi-zen-yang-pao-qi-lai-de.md)
 * [Anaconda](anaconda/README.md)
   * [Quickstart](anaconda/quickstart.md)
 * [C and C++](<README (1).md>)
@@ -64,7 +63,6 @@
   * [Quickstart](kubernetes/quickstart/README.md)
     * [CLI](kubernetes/quickstart/kubectl.md)
 * [Linux](<README (1) (1).md>)
-  * [Quickstart](readme/quickstart.md)
   * [Commands](readme/0-1/README.md)
     * [磁盘及文件系统管理](readme-1-1/0-1/ci-pan-ji-wen-jian-xi-tong-guan-li.md)
     * [cat](readme/0-1/cat.md)
