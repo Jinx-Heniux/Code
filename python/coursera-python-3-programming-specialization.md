@@ -60,30 +60,6 @@ while i > 0:
 
 
 
-### 7.15. Chapter Assessment
-
-![](../.gitbook/assets/2022-04-09\_20h51\_12.png)
-
-```python
-week_temps_f = "75.1,77.7,83.2,82.5,81.0,79.5,85.7"
-lst = week_temps_f.split(",")
-lst = [float(item) for item in lst]
-t_sum = 0.0
-for item in lst:
-    t_sum += item
-avg_temp = t_sum / len(lst)
-
-##################################################
-
-week_temps_f = "75.1,77.7,83.2,82.5,81.0,79.5,85.7"
-lst = [float(x) for x in week_temps_f.split(",")]
-sum = 0.0
-for i in lst:
-    sum += i
-avg_temp = sum / len(lst)
-
-```
-
 
 
 
