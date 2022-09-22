@@ -132,22 +132,7 @@ lastlog -u hadoop
 chown, chgrp, chmod, setfacl, getfacl, umask
 
 ```shell
-############################## chown ##############################
 
-chown hadoop /tmp/hi
-# 将hi目录的属主改成hadoop，注意，只有该目录的属主被改变，其中的内容没有改变
-
-chown -R hadoop /tmp/hi
-# 目录和其中内容的属主都改变为hadoop
-
-chown --reference=/tmp/abc /tmp/test
-# 参考/tmp/abc，也就是和它一样
-
-chown root:root /tmp/abc
-# 同时改变属主和属组
-
-chown :hadoop /tmp/abc
-# 只改变属组
 
 
 
