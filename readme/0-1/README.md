@@ -12,11 +12,7 @@
 
 ## 用户 用户组
 
-### adduser
 
-### groupadd
-
-### useradd
 
 ### w
 
@@ -126,45 +122,6 @@ lastlog -u hadoop
 ## 用户管理
 
 
-
-```shell
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-############################## 练习 ##############################
-# 创建一个用户mandriva，其ID号为2002，基本组为distro（组ID为3003），附加组为linux；
-groupadd -g 3003 distro
-groupadd linux
-useradd -u 2002 -g distro -G linux mandriva
-
-# 创建一个用户fedora，其全名为Fedora Community，默认shell为tcsh；
-useradd -c "Fedora Community" -s /bin/tcsh fedora
-
-# 修改mandriva的ID号为4004，基本组为linux，附加组为distro和fedora；
-usermod -u 4004 -g linux -G distro,fedora mandriva
-
-# 给fedora加密码，并设定其密码最短使用期限为2天，最长为50天
-passwd -n 2 -x 50 fedora
-
-# 将mandriva的默认shell改为/bin/bash;
-usermod -s /bin/bash mandirva
-
-# 添加系统用户hbase，且不允许其登录系统；
-useradd -r -s /sbin/nologin hbase
-```
 
 
 
