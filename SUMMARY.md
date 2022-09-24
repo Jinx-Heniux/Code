@@ -57,8 +57,6 @@
     * [Course 3](go/coursera-programming-with-google-go/course-3.md)
 * [Helm](helm/README.md)
   * [Quickstart](helm/quickstart.md)
-* [Java](java/README.md)
-  * [Quickstart](java/quickstart.md)
 * [Kubernetes](kubernetes/README.md)
   * [Quickstart](kubernetes/quickstart/README.md)
     * [CLI](kubernetes/quickstart/kubectl.md)
