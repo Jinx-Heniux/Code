@@ -4,60 +4,6 @@
 
 
 
-### 6.11. Chapter Assessment
-
-![](../.gitbook/assets/2022-04-09\_20h54\_06.png)
-
-```python
-nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
-
-how_many = 0
-
-def cal(num_lst, num):
-    how_many = 0
-    i = 0
-    j = len(num_lst)
-    while i<j:
-        if num_lst[i] == num:
-            how_many += 1
-        i += 1
-    return how_many
-
-how_many = cal(nums, 9)
-
-##################################################
-
-nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
-how_many = 0
-for item in nums:
-    if item == 9:
-        how_many += 1
-
-##################################################
-
-nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
-how_many = 0
-i = 0
-j = len(nums)
-while i < j:
-    if nums[i] == 9:
-        how_many += 1
-    i += 1
-
-##################################################
-
-nums = [4, 2, 23.4, 9, 545, 9, 1, 234.001, 5, 49, 8, 9 , 34, 52, 1, -2, 9.1, 4]
-how_many = 0
-i = len(nums)
-while i > 0:
-    print(nums[i-1])
-    if nums[i-1] == 9:
-        how_many += 1
-    i -= 1
-    
-    
-```
-
 
 
 
