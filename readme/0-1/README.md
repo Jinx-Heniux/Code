@@ -1,87 +1,5 @@
 # Commands
 
-## 常用
-
-### man
-
-### whatis
-
-### which
-
-
-
-## 用户 用户组
-
-
-
-### w
-
-### who
-
-### whoami
-
-
-
-权限管理
-
-umask
-
-suid
-
-## 密码
-
-### md5sum
-
-### passwd
-
-
-
-## 文件 文件夹
-
-### basename
-
-### file
-
-
-
-文本编辑
-
-vim, grep, sed&#x20;
-
-磁盘管理
-
-df, free, fdisk, mount, mke2fs, e2fsck&#x20;
-
-文件系统&#x20;
-
-压缩及归档
-
-gzip(.gz), bzip2(.bz2), xz, zip,cpio, tar,&#x20;
-
-Bash脚本
-
-if, for, while, case&#x20;
-
-## 配置文件 配置文件夹
-
-### /etc/passwd
-
-### /etc/shadow
-
-### /etc/group
-
-### /etc/gshadow
-
-### /etc/shells
-
-### /sbin/nologin
-
-### /etc/default/useradd
-
-### /usr/local/bin
-
-### /etc/sudoers&#x20;
-
 
 
 ## 小命令
@@ -119,8 +37,6 @@ lastlog -u hadoop
 
 
 
-## 用户管理
-
 
 
 
@@ -129,7 +45,7 @@ lastlog -u hadoop
 
 ## 权限管理
 
-chown, chgrp, chmod, setfacl, getfacl, umask
+
 
 ```shell
 

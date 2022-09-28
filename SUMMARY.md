@@ -61,8 +61,6 @@
 * [Linux](<README (1) (1).md>)
   * [Commands](readme/0-1/README.md)
     * [磁盘及文件系统管理](readme-1-1/0-1/ci-pan-ji-wen-jian-xi-tong-guan-li.md)
-    * [cat](readme/0-1/cat.md)
-    * [ls](readme-1-1/0-1/ls.md)
     * [sed](readme/0-1/sed.md)
     * [tar](readme-1-1/0-1/ya-suo-ji-gui-dang.md)
     * [vim](readme-1-1/0-1/vim.md)
