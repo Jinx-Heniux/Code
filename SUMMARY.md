@@ -48,7 +48,6 @@
     * [reflect package - reflect - Go Packages](go/library/reflection/reflect-package-reflect-go-packages.md)
   * [Library](go/library/README.md)
     * [IO](go/quickstart/io.md)
-      * [io](go/io/io.md)
       * [ioutil](go/io/ioutil.md)
       * [fmt](go/quickstart/fmt.md)
   * [Coursera - Programming with Google Go](go/coursera-programming-with-google-go/README.md)
