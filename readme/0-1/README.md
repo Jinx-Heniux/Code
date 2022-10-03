@@ -84,10 +84,6 @@ setfacl -x g:www /etc/inittab
 
 
 
-umask
-# set file mode creation mask
-
-
 ```
 
 
