@@ -9,7 +9,6 @@
   * [线性表](data-structure-and-algorithm/xian-xing-biao.md)
 * [Go](go/README.md)
   * [Quickstart](go/quickstart/README.md)
-    * [基础](go/quickstart/ji-ben-lei-xing.md)
     * [Pointer](go/quickstart/pointer.md)
     * [Array](go/quickstart/array.md)
     * [Slice](go/quickstart/slice.md)
