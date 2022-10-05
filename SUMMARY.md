@@ -33,7 +33,6 @@
     * [匿名字段](go/mian-xiang-dui-xiang/ni-ming-zi-duan.md)
     * [方法集](go/mian-xiang-dui-xiang/fang-fa-ji.md)
     * [Expression](go/mian-xiang-dui-xiang/expression.md)
-    * [Interface](go/mian-xiang-dui-xiang/interface.md)
   * [网络编程](go/wang-luo-bian-cheng/README.md)
     * [HTTP](go/wang-luo-bian-cheng/http.md)
   * [Concurrency](go/concurrency/README.md)
