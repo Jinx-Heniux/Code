@@ -7,6 +7,7 @@
   * [Built-in](c-and-c++/built-in.md)
 * [Data Structure & Algorithm](data-structure-and-algorithm/README.md)
   * [线性表](data-structure-and-algorithm/xian-xing-biao.md)
+  * [趣学数据结构](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou.md)
 * [Go](go/README.md)
   * [Quickstart](go/quickstart/README.md)
     * [Pointer](go/quickstart/pointer.md)
