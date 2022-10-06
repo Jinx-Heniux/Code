@@ -5,6 +5,8 @@
   * [Quickstart](anaconda/quickstart.md)
 * [C and C++](<README (1).md>)
   * [Built-in](c-and-c++/built-in.md)
+* [Computer Organization](computer-organization/README.md)
+  * [程序是怎样跑起来的](computer-organization/cheng-xu-shi-zen-yang-pao-qi-lai-de.md)
 * [Data Structure & Algorithm](data-structure-and-algorithm/README.md)
   * [线性表](data-structure-and-algorithm/xian-xing-biao.md)
   * [趣学数据结构](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou.md)
