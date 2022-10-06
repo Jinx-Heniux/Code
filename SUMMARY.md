@@ -19,7 +19,6 @@
       * [Bubble Sort](go/quickstart/sort/bubble-sort.md)
     * [Exception](go/quickstart/exception.md)
   * [Struct](go/struct/README.md)
-    * [Struct 1](go/struct/struct.md)
     * [Struct 2](go/struct/struct-2.md)
   * [Function](go/function/README.md)
     * [函数定义](go/quickstart/function.md)
