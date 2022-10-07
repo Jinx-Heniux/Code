@@ -27,7 +27,6 @@
     * [Closure](go/function/closure.md)
     * [defer](go/function/defer.md)
   * [面向对象](go/mian-xiang-dui-xiang/README.md)
-    * [Method](go/mian-xiang-dui-xiang/method.md)
     * [匿名字段](go/mian-xiang-dui-xiang/ni-ming-zi-duan.md)
     * [方法集](go/mian-xiang-dui-xiang/fang-fa-ji.md)
     * [Expression](go/mian-xiang-dui-xiang/expression.md)
