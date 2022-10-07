@@ -1,8 +1,6 @@
 # Table of contents
 
 * [0](README.md)
-* [Anaconda](anaconda/README.md)
-  * [Quickstart](anaconda/quickstart.md)
 * [C and C++](<README (1).md>)
   * [Built-in](c-and-c++/built-in.md)
 * [Computer Organization](computer-organization/README.md)
