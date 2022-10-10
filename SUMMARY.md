@@ -9,6 +9,7 @@
   * [线性表](data-structure-and-algorithm/xian-xing-biao.md)
   * [趣学数据结构](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou.md)
     * [Chapter 1 数据结构入门](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou/chapter-1-shu-ju-jie-gou-ru-men.md)
+    * [Chapter 2 线性表](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou/chapter-2-xian-xing-biao.md)
 * [Go](go/README.md)
   * [Quickstart](go/quickstart/README.md)
     * [Pointer](go/quickstart/pointer.md)
