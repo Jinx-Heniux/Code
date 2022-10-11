@@ -28,8 +28,6 @@
     * [匿名函数](go/function/ni-ming-han-shu.md)
     * [Closure](go/function/closure.md)
     * [defer](go/function/defer.md)
-  * [面向对象](go/mian-xiang-dui-xiang/README.md)
-    * [Expression](go/mian-xiang-dui-xiang/expression.md)
   * [网络编程](go/wang-luo-bian-cheng/README.md)
     * [HTTP](go/wang-luo-bian-cheng/http.md)
   * [Concurrency](go/concurrency/README.md)
