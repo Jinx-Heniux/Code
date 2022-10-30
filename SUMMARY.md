@@ -17,7 +17,6 @@
     * [Chapter 2 线性表](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou/chapter-2-xian-xing-biao.md)
 * [Go](go/README.md)
   * [Quickstart](go/quickstart/README.md)
-    * [Map](go/quickstart/map.md)
     * [流程控制](go/quickstart/liu-cheng-kong-zhi.md)
     * [数据格式](go/quickstart/shu-ju-ge-shi.md)
     * [Sort](go/quickstart/pai-xu.md)
