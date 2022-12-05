@@ -15,8 +15,6 @@ psql
 sudo -u postgres psql
 ```
 
-
-
 ```bash
 # set permissions so postgres can read csv files
 chmod 755 /home/zhs2si/projects/bigdata/big-data-3
@@ -38,10 +36,7 @@ chmod 644 *.csv
 
 # create and load tables for hands on
 psql -f setup/init-postgres.sql
-
 ```
-
-
 
 ```bash
 # start the Postgres shell by running psql
@@ -59,8 +54,6 @@ select * from buyclicks;
 # Filter rows and columns. We can query only the price and userid columns with the following command:
 select price, userid from buyclicks;
 ```
-
-
 
 ## Links
 
