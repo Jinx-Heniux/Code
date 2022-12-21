@@ -5,6 +5,7 @@
   * [凤凰架构](architecture/feng-huang-jia-gou/README.md)
     * [第1章　服务架构演进史](architecture/feng-huang-jia-gou/di-1-zhang-fu-wu-jia-gou-yan-jin-shi.md)
     * [第2章　访问远程服务](architecture/feng-huang-jia-gou/di-2-zhang-fang-wen-yuan-cheng-fu-wu.md)
+    * [第3章　事务处理](architecture/feng-huang-jia-gou/di-3-zhang-shi-wu-chu-li.md)
 * [C and C++](<README (1).md>)
   * [Built-in](c-and-c++/built-in.md)
 * [Computer Organization](computer-organization/README.md)
