@@ -1,8 +1,6 @@
 # Table of contents
 
 * [0](README.md)
-* [C and C++](<README (1).md>)
-  * [Built-in](c-and-c++/built-in.md)
 * [Computer Organization](computer-organization/README.md)
   * [程序是怎样跑起来的](computer-organization/cheng-xu-shi-zen-yang-pao-qi-lai-de.md)
     * [第1章　对程序员来说CPU是什么](computer-organization/cheng-xu-shi-zen-yang-pao-qi-lai-de/di-1-zhang-dui-cheng-xu-yuan-lai-shuo-cpu-shi-shi-mo.md)
