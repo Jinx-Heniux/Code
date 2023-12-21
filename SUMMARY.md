@@ -1,17 +1,8 @@
 # Table of contents
 
 * [0](README.md)
-* [Computer Organization](computer-organization/README.md)
-  * [程序是怎样跑起来的](computer-organization/cheng-xu-shi-zen-yang-pao-qi-lai-de.md)
-    * [第1章　对程序员来说CPU是什么](computer-organization/cheng-xu-shi-zen-yang-pao-qi-lai-de/di-1-zhang-dui-cheng-xu-yuan-lai-shuo-cpu-shi-shi-mo.md)
-    * [第2章　数据是用二进制数表示的](computer-organization/cheng-xu-shi-zen-yang-pao-qi-lai-de/di-2-zhang-shu-ju-shi-yong-er-jin-zhi-shu-biao-shi-de.md)
-    * [第3章　计算机进行小数运算时出错的原因](computer-organization/cheng-xu-shi-zen-yang-pao-qi-lai-de/di-3-zhang-ji-suan-ji-jin-hang-xiao-shu-yun-suan-shi-chu-cuo-de-yuan-yin.md)
 * [Data Structure & Algorithm](data-structure-and-algorithm/README.md)
   * [线性表](data-structure-and-algorithm/xian-xing-biao.md)
-  * [趣学数据结构](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou.md)
-    * [Chapter 1 数据结构入门](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou/chapter-1-shu-ju-jie-gou-ru-men.md)
-    * [Chapter 2 线性表](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou/chapter-2-xian-xing-biao.md)
-    * [Chapter 3 栈和队列](data-structure-and-algorithm/qu-xue-shu-ju-jie-gou/chapter-3-zhan-he-dui-lie.md)
 * [Go](go/README.md)
   * [Quickstart](go/quickstart/README.md)
     * [Sort](go/quickstart/pai-xu.md)
